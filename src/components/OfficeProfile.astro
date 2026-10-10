@@ -1,0 +1,107 @@
+---
+// Widok od ulicy: budynek biura z mapy (zabudowa przy przystanku „Biuro”). Rysunek poglądowy.
+---
+
+<figure class="view">
+  <svg viewBox="0 0 560 270" role="img" aria-labelledby="of-title">
+    <title id="of-title">Rysunek poglądowy budynku biura widzianego od ulicy</title>
+    <g>
+      <path d="M0 232 H560" class="edge"></path>
+      <path d="M0 252 H560" class="kerb"></path>
+    </g>
+    <g class="ink">
+      <rect x="150" y="60" width="250" height="172"></rect>
+      <path d="M140 60 H410" class="cornice"></path>
+      <rect x="182" y="24" width="64" height="36"></rect>
+      <path d="M150 116 H400 M150 172 H400" class="thin"></path>
+      <rect x="172" y="76" width="34" height="26"></rect><rect x="226" y="76" width="34" height="26"></rect>
+      <rect x="290" y="76" width="34" height="26"></rect><rect x="344" y="76" width="34" height="26"></rect>
+      <rect x="172" y="132" width="34" height="26"></rect><rect x="226" y="132" width="34" height="26"></rect>
+      <rect x="290" y="132" width="34" height="26"></rect><rect x="344" y="132" width="34" height="26"></rect>
+      <rect x="172" y="186" width="34" height="26"></rect><rect x="226" y="186" width="34" height="26"></rect>
+      <rect x="344" y="186" width="34" height="26"></rect>
+      <rect x="284" y="184" width="46" height="48"></rect>
+      <path d="M307 184 v48" class="thin"></path>
+      <rect x="282" y="176" width="50" height="6" class="plate"></rect>
+      <path d="M262 232 h90 v-4 h-90 z" class="thin"></path>
+      <rect x="60" y="150" width="70" height="82"></rect>
+      <path d="M60 150 l35 -26 l35 26" class="thin"></path>
+      <rect x="78" y="176" width="34" height="26" class="thin"></rect>
+      <rect x="420" y="128" width="96" height="104"></rect>
+      <path d="M420 128 H516 M420 164 H516 M420 198 H516" class="thin"></path>
+      <rect x="436" y="140" width="22" height="16" class="thin"></rect><rect x="478" y="140" width="22" height="16" class="thin"></rect>
+      <rect x="436" y="174" width="22" height="16" class="thin"></rect><rect x="478" y="174" width="22" height="16" class="thin"></rect>
+    </g>
+    <g class="leaders">
+      <path d="M307 180 L332 26 H372"></path>
+      <path d="M190 102 L120 40 H80"></path>
+    </g>
+    <g class="notes">
+      <text x="376" y="30">BIURO · WEJŚCIE</text>
+      <text x="76" y="44" text-anchor="end">PIĘTRA</text>
+    </g>
+  </svg>
+  <figcaption>Widok od ulicy. Rysunek poglądowy.</figcaption>
+</figure>
+
+<style>
+  .view svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .edge {
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 1.4;
+  }
+
+  .kerb {
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 1;
+    stroke-dasharray: 10 6;
+    opacity: 0.6;
+  }
+
+  .ink rect,
+  .ink path {
+    fill: var(--deep);
+    stroke: var(--navy);
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+  }
+
+  .ink .thin {
+    fill: none;
+    stroke-width: 1;
+  }
+
+  .ink .cornice {
+    stroke-width: 5;
+    stroke-linecap: square;
+  }
+
+  .ink .plate {
+    fill: var(--navy);
+  }
+
+  .leaders path {
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 1;
+  }
+
+  .notes text {
+    font: 600 12px var(--note);
+    letter-spacing: 1.4px;
+    fill: var(--navy);
+  }
+
+  figcaption {
+    margin-top: 10px;
+    font: 500 0.875rem/1.4 var(--note);
+    letter-spacing: 0.03em;
+    color: #4a5f7d;
+  }
+</style>

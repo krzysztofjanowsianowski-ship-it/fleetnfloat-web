@@ -3,6 +3,7 @@
 // (start → przystanek 1 → … → przystanek 4), żeby skrypt strony mógł rysować
 // ją do wybranego działu. Bez JavaScriptu cała trasa jest narysowana.
 import { dzialy } from "../data/firma";
+import { ampersand } from "../data/ampersand";
 
 const stations = [
   { x: 236, y: 300 },
@@ -34,6 +35,11 @@ const labels = [
     aria-label="Mapa trasy: cztery działy FLEET&FLOAT"
   >
     <defs>
+      <symbol id="pieczec" viewBox="0 0 400 400">
+        <circle cx="200" cy="200" r="184" fill="#fff" stroke="var(--navy)" stroke-width="32"></circle>
+        <circle cx="200" cy="200" r="138" fill="none" stroke="var(--gold)" stroke-width="10"></circle>
+        <path fill="var(--navy)" d={ampersand} transform="translate(200 200) scale(0.78) translate(-200 -200)"></path>
+      </symbol>
       <pattern id="zabudowa" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
         <line x1="0" y1="0" x2="0" y2="6" stroke="#203A5F" stroke-width="0.8" opacity="0.35"></line>
       </pattern>
@@ -72,9 +78,14 @@ const labels = [
       <path class="road-casing" d="M200 1300 C220 1000 240 860 250 778 C270 690 300 640 360 600 C430 555 520 560 570 520 C610 488 640 470 700 480 C900 510 1100 500 1450 520"></path>
       <path class="road" d="M200 1300 C220 1000 240 860 250 778 C270 690 300 640 360 600 C430 555 520 560 570 520 C610 488 640 470 700 480 C900 510 1100 500 1450 520"></path>
       <g fill="url(#zabudowa)" class="blocks">
-        <rect x="652" y="640" width="40" height="44"></rect><rect x="730" y="656" width="38" height="46"></rect>
-        <rect x="738" y="716" width="30" height="42"></rect><rect x="690" y="600" width="46" height="30"></rect>
+        <rect x="652" y="640" width="40" height="44"></rect><rect x="718" y="650" width="28" height="44"></rect>
+        <rect x="722" y="730" width="24" height="36"></rect><rect x="690" y="600" width="46" height="30"></rect>
         <rect x="626" y="690" width="32" height="26"></rect>
+      </g>
+      <g transform="translate(700 46)" class="north">
+        <path d="M0 -26 L9 10 L0 4 L-9 10 Z"></path>
+        <line x1="0" y1="4" x2="0" y2="22"></line>
+        <text y="-34" text-anchor="middle">N</text>
       </g>
       <g transform="translate(40 728)" class="scale">
         <rect width="40" height="6" fill="var(--navy)"></rect>
@@ -98,7 +109,7 @@ const labels = [
 
     <g class="start" aria-hidden="true">
       <circle cx="120" cy="40" r="16" fill="var(--navy)"></circle>
-      <circle cx="120" cy="40" r="10" fill="none" stroke="var(--gold-on-navy)" stroke-width="1.4"></circle>
+      <circle cx="120" cy="40" r="10" fill="none" stroke="#fff" stroke-width="1.4"></circle>
       <text class="note" x="146" y="46">START · KM 0,0</text>
     </g>
 
@@ -113,15 +124,15 @@ const labels = [
               <circle class="mark-ring" cx={s.x} cy={s.y} r="18" />
               <circle class="mark-dot" cx={s.x} cy={s.y} r="12" />
             </g>
-            <g class="seal">
-              <circle class="seal-outer" cx={s.x} cy={s.y} r="21" />
-              <circle class="seal-inner" cx={s.x} cy={s.y} r="14" />
-            </g>
+            <use class="seal" href="#pieczec" x={s.x - 25} y={s.y - 25} width="50" height="50" />
             <text class={d.woda ? "label label-water" : "label label-land"} x={l.x} y={l.y} text-anchor={l.anchor}>
               {d.woda ? "Houseboaty BYGGA" : d.nazwa.toUpperCase()}
             </text>
             <text class="note label-note" x={l.x} y={l.noteY} text-anchor={l.anchor}>
               {`${d.miejsce.toUpperCase()} · KM ${d.km}`}
+            </text>
+            <text class="label-short" x={l.x} y={l.y} text-anchor={l.anchor}>
+              {d.miejsce}
             </text>
           </a>
         );
@@ -280,16 +291,26 @@ const labels = [
     opacity: 0;
   }
 
-  .seal-outer {
-    fill: #fff;
-    stroke: var(--navy);
-    stroke-width: 5;
+  .north path {
+    fill: var(--navy);
   }
 
-  .seal-inner {
-    fill: none;
-    stroke: var(--gold);
-    stroke-width: 1.6;
+  .north line {
+    stroke: var(--navy);
+    stroke-width: 1.2;
+  }
+
+  .north text {
+    font: 600 13px var(--note);
+    letter-spacing: 1px;
+    fill: var(--navy);
+  }
+
+  .label-short {
+    display: none;
+    font: 600 34px var(--note);
+    letter-spacing: 1px;
+    fill: var(--navy);
   }
 
   .station.is-active .seal {
@@ -324,16 +345,8 @@ const labels = [
     letter-spacing: 2.4px;
   }
 
-  .station.is-active .label-note {
-    fill: var(--gold-deep);
-  }
-
   .station:focus-visible .seal {
     opacity: 1;
-  }
-
-  .station:focus-visible .seal-outer {
-    stroke: var(--gold);
   }
 
   @media (max-width: 760px) {
@@ -342,13 +355,22 @@ const labels = [
       aspect-ratio: 752 / 778;
     }
 
-    /* Na telefonie legenda stoi tuż nad mapą: mapa zostaje czystym schematem trasy. */
+    /* Na telefonie nazwy działów są w legendzie tuż nad mapą:
+       przystanki podpisujemy krótko, nazwą miejsca i kilometrem jak w legendzie. */
     .label,
     .label-note,
-    .note,
     .soundings,
-    .water-name {
+    .water-name,
+    .scale {
       display: none;
+    }
+
+    .label-short {
+      display: inline;
+    }
+
+    .note {
+      font-size: 26px;
     }
   }
 

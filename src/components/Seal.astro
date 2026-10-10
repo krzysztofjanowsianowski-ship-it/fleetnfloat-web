@@ -1,0 +1,18 @@
+---
+// Pieczęć: podwójny pierścień z ampersandem z logo. Jedyny emblemat stanu
+// (aktywny przystanek na mapie, bieżący odcinek na szynie, wybrany dział).
+import { ampersand } from "../data/ampersand";
+
+interface Props {
+  size?: number;
+  class?: string;
+}
+
+const { size = 30, class: className } = Astro.props;
+---
+
+<svg class:list={["seal-mark", className]} width={size} height={size} style={`width:${size}px;height:${size}px;max-width:none`} viewBox="0 0 400 400" aria-hidden="true">
+  <circle cx="200" cy="200" r="184" fill="#fff" stroke="var(--navy)" stroke-width="32"></circle>
+  <circle cx="200" cy="200" r="138" fill="none" stroke="var(--gold)" stroke-width="10"></circle>
+  <path fill="var(--navy)" d={ampersand} transform="translate(200 200) scale(0.78) translate(-200 -200)"></path>
+</svg>

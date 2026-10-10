@@ -4,7 +4,6 @@
   --navy-soft: #3a5274;
   --gold: #b8925a;
   --gold-on-navy: #d2b07a;
-  --gold-deep: #735828; /* złoto do drobnego tekstu: ≥4,5:1 na lądzie i wodzie */
   --land: #ebddc2;
   --shoal: #d6e0ea;
   --deep: #f7f9fb;
@@ -54,8 +53,8 @@ body {
 }
 
 ::selection {
-  background: var(--gold-on-navy);
-  color: var(--navy-ink);
+  background: var(--navy);
+  color: #fff;
 }
 
 h1,
@@ -84,7 +83,7 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--navy);
   outline-offset: 3px;
 }
 
@@ -97,17 +96,18 @@ a {
   white-space: nowrap;
 }
 
-/* Akcja działu: złoty podkreślony link w notacji mapy. */
+/* Akcja działu: granatowy podkreślony link w notacji mapy.
+   Złoto należy tylko do trasy i pieczęci. */
 .action {
   display: inline-flex;
   align-items: center;
   gap: 0.45em;
   font: 600 1rem/1 var(--note);
   letter-spacing: 0.05em;
-  color: var(--gold-deep);
+  color: var(--navy);
   text-decoration: none;
   padding-bottom: 4px;
-  border-bottom: 1.5px solid var(--gold);
+  border-bottom: 1.5px solid var(--navy);
   white-space: nowrap;
   transition: color 0.2s, border-color 0.2s;
 }
@@ -119,15 +119,15 @@ a {
 }
 
 .action:hover {
-  color: var(--navy);
-  border-color: var(--navy);
+  border-bottom-width: 3px;
+  padding-bottom: 2.5px;
 }
 
 .action:hover svg {
   transform: translateX(3px);
 }
 
-/* Przycisk główny: granatowa plakietka ze złotym pierścieniem pieczęci. */
+/* Przycisk główny: granatowa plakietka z wewnętrzną białą ramką. */
 .button {
   display: inline-flex;
   align-items: center;
@@ -141,7 +141,7 @@ a {
   color: #fff;
   background: var(--navy);
   border: 0;
-  box-shadow: inset 0 0 0 1px var(--navy), inset 0 0 0 4px var(--navy), inset 0 0 0 5px var(--gold-on-navy);
+  box-shadow: inset 0 0 0 4px var(--navy), inset 0 0 0 5px rgba(255, 255, 255, 0.7);
   cursor: pointer;
   transition: background 0.2s, box-shadow 0.2s;
 }
@@ -153,13 +153,13 @@ a {
 
 .button:hover {
   background: var(--navy-ink);
-  box-shadow: inset 0 0 0 1px var(--navy-ink), inset 0 0 0 4px var(--navy-ink), inset 0 0 0 5px var(--gold);
+  box-shadow: inset 0 0 0 4px var(--navy-ink), inset 0 0 0 5px #fff;
 }
 
 /* Pole do uzupełnienia: widoczny znacznik szkicu zamiast wymyślonych danych. */
 .draft {
   font: 500 0.95em/1.3 var(--note);
   letter-spacing: 0.04em;
-  color: var(--gold-deep);
-  border-bottom: 1px dashed var(--gold);
+  color: var(--navy);
+  border-bottom: 1px dashed var(--navy);
 }

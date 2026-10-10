@@ -5,6 +5,8 @@ import Legend from "../components/Legend.astro";
 import Leg from "../components/Leg.astro";
 import HouseboatProfile from "../components/HouseboatProfile.astro";
 import VehiclesProfile from "../components/VehiclesProfile.astro";
+import OfficeProfile from "../components/OfficeProfile.astro";
+import Seal from "../components/Seal.astro";
 import ContactForm from "../components/ContactForm.astro";
 import Arrow from "../components/Arrow.astro";
 import External from "../components/External.astro";
@@ -31,7 +33,7 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
     </header>
 
     <main class="route" data-route>
-      <div class="rail" aria-hidden="true"><span class="rail-fill" data-rail-fill></span></div>
+      <div class="rail" aria-hidden="true" data-rail><span class="rail-ghost"></span><span class="rail-fill" data-rail-fill></span></div>
 
       <section class="hero" aria-labelledby="tytul">
         <div class="hero-copy">
@@ -51,7 +53,7 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
       </section>
 
       <Leg id="houseboaty" km={dzial.houseboaty.km} title={dzial.houseboaty.nazwa} water tint="water">
-        <div class="leg-grid">
+        <div class="leg-grid wide-text">
           <div class="leg-text">
             <p class="lead">
               Jesteśmy dealerem BYGGA, producenta houseboatów i domów modułowych z Bydgoszczy, działającego od 2017 roku.
@@ -81,7 +83,7 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
               <a class="action" href="https://www.bygga.pl/" rel="noopener" target="_blank">Pełna oferta producenta <External /><span class="visually-hidden"> (nowe okno)</span></a>
             </div>
           </div>
-          <div class="leg-figure"><HouseboatProfile /></div>
+          <div class="leg-figure sticky"><HouseboatProfile /></div>
         </div>
       </Leg>
 
@@ -139,21 +141,29 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
       </Leg>
 
       <Leg id="kadry" km={dzial.kadry.km} title={dzial.kadry.nazwa} tint="land">
-        <div class="leg-quiet">
-          <p class="lead">
-            Wspieramy przedsiębiorstwa w sprawach kadrowych i administracyjnych. Napisz, czego dotyczy sprawa, a
-            zaproponujemy zakres współpracy.
-          </p>
-          <div class="acts">
-            <a class="button" href="#kontakt" data-zapytanie="kadry">{dzial.kadry.akcja} <Arrow /></a>
+        <div class="leg-grid">
+          <div class="leg-text">
+            <p class="lead">Wspieramy przedsiębiorstwa w sprawach kadrowych i administracyjnych.</p>
+            <p class="scope">Zakres usług: <span class="draft">[zakres usług do uzupełnienia]</span></p>
+            <h3>Żeby przygotować propozycję, napisz nam</h3>
+            <ul class="checklist">
+              <li><b>Czego dotyczy sprawa.</b> Jedna konkretna rzecz czy stałe wsparcie.</li>
+              <li><b>Ile osób pracuje w firmie.</b> Wystarczy przybliżona liczba.</li>
+              <li><b>Jak pracujecie dziś.</b> Samodzielnie, z biurem rachunkowym czy z innym partnerem.</li>
+              <li><b>Od kiedy.</b> Termin, od którego potrzebujesz pomocy.</li>
+            </ul>
+            <div class="acts">
+              <a class="button" href="#kontakt" data-zapytanie="kadry">{dzial.kadry.akcja} <Arrow /></a>
+            </div>
           </div>
+          <div class="leg-figure"><OfficeProfile /></div>
         </div>
       </Leg>
 
       <section class="contact" id="kontakt" aria-labelledby="kontakt-tytul" data-leg>
         <div class="leg-inner">
           <div class="contact-head">
-            <span class="kmark end" aria-hidden="true"><span class="km">koniec trasy</span><span class="stop"><i class="dot"></i><i class="seal"></i></span></span>
+            <span class="kmark end" aria-hidden="true"><span class="km">koniec trasy</span><span class="stop"><i class="dot"></i><Seal size={32} class="stop-seal" /></span></span>
             <h2 id="kontakt-tytul">Kontakt</h2>
             <p>Wybierz dział i napisz kilka zdań. Odpowiemy na podany e-mail albo telefon.</p>
           </div>
@@ -210,7 +220,10 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
 
   function bind(el: Element, id: string) {
     el.addEventListener("pointerenter", () => reach(id));
-    el.addEventListener("pointerleave", () => reach(null));
+    el.addEventListener("pointerleave", (e) => {
+      // Na ekranie dotykowym wybór zostaje do następnego stuknięcia.
+      if ((e as PointerEvent).pointerType === "mouse") reach(null);
+    });
     el.addEventListener("focusin", () => reach(id));
     el.addEventListener("focusout", () => reach(null));
   }
@@ -229,22 +242,47 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
     );
   }
 
-  // Szyna na marginesie: złoto wypełnia przebytą trasę, przystanek w widoku dostaje pieczęć.
+  // Szyna na marginesie: trasa zaczyna się przy km 0,0 i rośnie razem z przewijaniem;
+  // przystanek, do którego dotarła, dostaje pieczęć.
   const route = document.querySelector<HTMLElement>("[data-route]");
+  const rail = document.querySelector<HTMLElement>("[data-rail]");
   const fill = document.querySelector<HTMLElement>("[data-rail-fill]");
   const legs = [...document.querySelectorAll<HTMLElement>("[data-leg]")];
+  const startMark = document.querySelector<HTMLElement>(".hero-head .kmark");
+  const endStop = document.querySelector<HTMLElement>("#kontakt .stop");
+  let start = 0;
+  let total = 0;
+  let stops: number[] = [];
   let ticking = false;
+
+  const docY = (el: Element) => {
+    const r = el.getBoundingClientRect();
+    return r.top + r.height / 2 + scrollY;
+  };
+
+  function measure() {
+    if (!route || !rail || !startMark || !endStop) return;
+    const top = route.getBoundingClientRect().top + scrollY;
+    start = docY(startMark);
+    total = Math.max(0, docY(endStop) - start);
+    rail.style.top = `${start - top}px`;
+    rail.style.bottom = "auto";
+    rail.style.height = `${total}px`;
+    stops = legs.map((l) => docY(l.querySelector(".stop") ?? l));
+    onScroll();
+  }
 
   function onScroll() {
     ticking = false;
-    if (!route || !fill) return;
-    const box = route.getBoundingClientRect();
-    const mid = innerHeight * 0.55;
-    const p = Math.min(1, Math.max(0, (mid - box.top) / box.height));
-    fill.style.transform = `scaleY(${p})`;
+    if (!fill) return;
+    const room = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    const pace = Math.max(1, total / room);
+    const len = Math.min(total, Math.max(0, scrollY * pace));
+    fill.style.height = `${len}px`;
+    const head = start + len;
     let current = -1;
-    legs.forEach((l, i) => {
-      if (l.getBoundingClientRect().top < mid) current = i;
+    stops.forEach((y, i) => {
+      if (y <= head + 2) current = i;
     });
     legs.forEach((l, i) => {
       l.classList.toggle("is-current", i === current);
@@ -262,8 +300,10 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
     },
     { passive: true },
   );
-  addEventListener("resize", onScroll);
-  onScroll();
+  addEventListener("resize", measure);
+  addEventListener("load", measure);
+  document.fonts?.ready.then(measure);
+  measure();
 
   // Akcje działów wybierają dział w formularzu.
   const select = document.querySelector<HTMLSelectElement>("#f-dzial");
@@ -377,7 +417,7 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
 
   .masthead nav a:not(.cta):hover {
     text-decoration: underline;
-    text-decoration-color: var(--gold);
+    text-decoration-color: rgba(32, 58, 95, 0.5);
   }
 
   .masthead .cta {
@@ -406,25 +446,28 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
     pointer-events: none;
   }
 
-  .rail::before {
-    content: "";
+  /* Szyna to dalszy ciąg trasy z mapy: przerywany duch przed nami,
+     złota wstęga z białymi kropkami za nami. */
+  .rail-ghost {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: -0.5px;
-    width: 1px;
-    background: var(--rule);
+    left: -0.6px;
+    width: 1.2px;
+    background: repeating-linear-gradient(180deg, var(--navy) 0 3px, transparent 3px 10px);
+    opacity: 0.45;
   }
 
   .rail-fill {
     position: absolute;
     top: 0;
-    bottom: 0;
-    left: -2px;
-    width: 4px;
-    background: var(--gold);
-    transform: scaleY(0);
-    transform-origin: top;
+    left: -2.5px;
+    width: 5px;
+    height: 0;
+    border-radius: 3px;
+    background:
+      radial-gradient(circle at center, #fff 0 0.8px, transparent 1.15px) center 11px / 5px 22px repeat-y,
+      var(--gold);
   }
 
   .hero {
@@ -461,6 +504,7 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
 
   .hero-head .kmark {
     top: 0.9em;
+    line-height: 0;
   }
 
   .hero-head .kmark::after {
@@ -511,12 +555,21 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
     align-items: start;
   }
 
+  .leg-grid.wide-text {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  }
+
+  .leg-figure.sticky {
+    position: sticky;
+    top: 32px;
+  }
+
   .leg-grid.soft {
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   }
 
   .leg-text {
-    max-width: 38rem;
+    max-width: 40rem;
   }
 
   .lead {
@@ -563,6 +616,7 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
   }
 
   .spis thead th {
+    white-space: nowrap;
     font: 600 0.75rem/1.2 var(--note);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -576,7 +630,13 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
 
   .spis tbody th a {
     color: var(--navy);
-    text-decoration-color: var(--gold);
+    text-decoration-color: rgba(32, 58, 95, 0.45);
+  }
+
+  .spis td:nth-child(3),
+  .spis td:nth-child(4) {
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
   }
 
   .spis td {
@@ -621,7 +681,7 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
     top: 1.55em;
     width: 16px;
     height: 1.5px;
-    background: var(--gold);
+    background: var(--navy);
   }
 
   .checklist b {
@@ -661,7 +721,7 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
     top: 1.05em;
     width: 12px;
     height: 1.5px;
-    background: var(--gold);
+    background: var(--navy);
   }
 
   .inset {
@@ -692,6 +752,11 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
     border-top: 1px solid var(--rule);
     font: 500 0.875rem/1.4 var(--note);
     color: #3d5373;
+  }
+
+  .scope {
+    margin-top: 14px;
+    font-size: 1.0625rem;
   }
 
   .leg-quiet {
@@ -734,6 +799,7 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
   }
 
   .contact-head .kmark {
+    z-index: 3;
     top: 0.75em;
     display: flex;
     align-items: center;
@@ -742,7 +808,7 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
   }
 
   .contact-head .km {
-    padding-right: 16px;
+    padding-right: 24px;
     font-size: 0.75rem;
   }
 
@@ -753,11 +819,10 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
   }
 
   .contact-head .dot,
-  .contact-head .seal {
+  .contact-head .stop > :global(.stop-seal) {
     position: absolute;
     left: 0;
     top: 0;
-    border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: opacity 0.35s;
   }
@@ -765,20 +830,21 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
   .contact-head .dot {
     width: 14px;
     height: 14px;
+    border-radius: 50%;
     background: var(--deep);
     box-shadow: 0 0 0 1.5px var(--navy), 0 0 0 5px var(--deep);
   }
 
-  .contact-head .seal {
-    width: 30px;
-    height: 30px;
-    background: #fff;
-    box-shadow: inset 0 0 0 4px var(--navy), inset 0 0 0 8px #fff, inset 0 0 0 9.5px var(--gold);
+  .contact-head .stop > :global(.stop-seal) {
     opacity: 0;
   }
 
-  .contact.is-current .seal {
+  .contact.is-current .stop > :global(.stop-seal) {
     opacity: 1;
+  }
+
+  .contact.is-current .dot {
+    opacity: 0;
   }
 
   .contact-grid {
@@ -858,7 +924,8 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
   }
 
   .foot nav a:hover {
-    color: var(--gold-on-navy);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
   }
 
   .foot-line {
@@ -872,11 +939,11 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
     font: 500 0.8125rem/1.4 var(--note);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--gold-on-navy);
+    color: rgba(255, 255, 255, 0.78);
   }
 
   .foot :focus-visible {
-    outline-color: var(--gold-on-navy);
+    outline-color: #fff;
   }
 
   @media (max-width: 1100px) {
@@ -886,8 +953,13 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
 
     .leg-grid,
     .leg-grid.soft,
+    .leg-grid.wide-text,
     .contact-grid {
       grid-template-columns: minmax(0, 1fr);
+    }
+
+    .leg-figure.sticky {
+      position: static;
     }
 
     .leg-figure,
@@ -921,13 +993,22 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
     }
 
     .hero-head .kmark {
-      display: none;
+      left: calc(-1 * (var(--rail) + 14px));
+      padding-right: 12px;
+      font-size: 0.65rem;
+      letter-spacing: 0;
+    }
+
+    .hero-head .kmark::after {
+      width: 7px;
     }
 
     .hero-map {
       border-left: 0;
       border-top: 1px solid var(--rule);
       margin-left: var(--rail);
+      padding: 6px 12px 6px 0;
+      background: var(--land);
     }
 
     .hero-map :global(.chart) {
@@ -938,6 +1019,10 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
     .leg-inner,
     .contact .leg-inner {
       padding: 0 16px 0 calc(var(--rail) + 14px);
+    }
+
+    .contact-head .kmark {
+      left: calc(-1 * (var(--rail) + 14px));
     }
 
     .contact-head .km {

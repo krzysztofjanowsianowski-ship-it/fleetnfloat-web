@@ -1,6 +1,8 @@
 ---
 // Odcinek trasy: sekcja działu. Kilometr i przystanek siedzą na szynie
 // marginesu, nagłówek po prawej; nazwy wodne kursywą, lądowe wersalikami.
+import Seal from "./Seal.astro";
+
 interface Props {
   id: string;
   km: string;
@@ -17,7 +19,7 @@ const { id, km, title, water = false, tint } = Astro.props;
     <div class="leg-head">
       <span class="kmark" aria-hidden="true">
         <span class="km">km {km}</span>
-        <span class="stop"><i class="dot"></i><i class="seal"></i></span>
+        <span class="stop"><i class="dot"></i><Seal size={32} class="stop-seal" /></span>
       </span>
       <h2 id={`${id}-tytul`} class:list={[water ? "water" : "land"]}>{title}</h2>
     </div>
@@ -58,6 +60,7 @@ const { id, km, title, water = false, tint } = Astro.props;
 
   .kmark {
     position: absolute;
+    z-index: 3;
     left: calc(-1 * (var(--rail) + var(--gutter)));
     top: 0.55em;
     width: var(--rail);
@@ -71,7 +74,7 @@ const { id, km, title, water = false, tint } = Astro.props;
   }
 
   .km {
-    padding-right: 16px;
+    padding-right: 24px;
     white-space: nowrap;
   }
 
@@ -82,13 +85,16 @@ const { id, km, title, water = false, tint } = Astro.props;
   }
 
   .dot,
-  .seal {
+  .stop > :global(.stop-seal) {
     position: absolute;
     left: 0;
     top: 0;
-    border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: opacity 0.35s, background-color 0.35s;
+  }
+
+  .dot {
+    border-radius: 50%;
   }
 
   .dot {
@@ -98,11 +104,7 @@ const { id, km, title, water = false, tint } = Astro.props;
     box-shadow: 0 0 0 4px var(--deep), 0 0 0 5px var(--navy);
   }
 
-  .seal {
-    width: 30px;
-    height: 30px;
-    background: #fff;
-    box-shadow: inset 0 0 0 4px var(--navy), inset 0 0 0 8px #fff, inset 0 0 0 9.5px var(--gold);
+  .stop > :global(.stop-seal) {
     opacity: 0;
   }
 
@@ -111,7 +113,7 @@ const { id, km, title, water = false, tint } = Astro.props;
     box-shadow: 0 0 0 1.5px var(--navy), 0 0 0 5px var(--deep);
   }
 
-  :global(.leg.is-current) .seal {
+  :global(.leg.is-current) .stop > :global(.stop-seal) {
     opacity: 1;
   }
 
@@ -136,8 +138,14 @@ const { id, km, title, water = false, tint } = Astro.props;
   }
 
   @media (max-width: 760px) {
+    .kmark {
+      left: calc(-1 * (var(--rail) + 14px));
+      font-size: 0.65rem;
+      letter-spacing: 0;
+    }
+
     .km {
-      display: none;
+      padding-right: 19px;
     }
 
     h2.land {
