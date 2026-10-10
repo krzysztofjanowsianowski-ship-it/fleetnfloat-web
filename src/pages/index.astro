@@ -38,7 +38,7 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
       <section class="hero" aria-labelledby="tytul">
         <div class="hero-copy">
           <div class="hero-head">
-            <span class="kmark" aria-hidden="true">km 0,0</span>
+            <span class="kmark" aria-hidden="true"><span class="km-unit">km </span>0,0</span>
             <h1 id="tytul">Cztery usługi dla firm. <em>Jedna trasa,</em> ta sama solidność.</h1>
           </div>
           <p class="lede">
@@ -163,7 +163,7 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
       <section class="contact" id="kontakt" aria-labelledby="kontakt-tytul" data-leg>
         <div class="leg-inner">
           <div class="contact-head">
-            <span class="kmark end" aria-hidden="true"><span class="km">koniec trasy</span><span class="stop"><i class="dot"></i><Seal size={32} class="stop-seal" /></span></span>
+            <span class="kmark end" aria-hidden="true"><span class="km">meta</span><span class="stop"><i class="dot"></i><Seal size={32} class="stop-seal" /></span></span>
             <h2 id="kontakt-tytul">Kontakt</h2>
             <p>Wybierz dział i napisz kilka zdań. Odpowiemy na podany e-mail albo telefon.</p>
           </div>
@@ -995,8 +995,12 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
     .hero-head .kmark {
       left: calc(-1 * (var(--rail) + 14px));
       padding-right: 12px;
-      font-size: 0.65rem;
+      font-size: 0.75rem;
       letter-spacing: 0;
+    }
+
+    .hero-head .km-unit {
+      display: none;
     }
 
     .hero-head .kmark::after {
@@ -1026,7 +1030,8 @@ const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
     }
 
     .contact-head .km {
-      display: none;
+      padding-right: 13px;
+      font-size: 0.7rem;
     }
 
     .contact-head h2 {

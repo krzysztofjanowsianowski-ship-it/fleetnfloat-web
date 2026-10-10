@@ -11,7 +11,7 @@ import Seal from "./Seal.astro";
     {
       dzialy.map((d) => (
         <li class="row" data-dzial={d.id}>
-          <span class="kmark" aria-hidden="true">km {d.km}</span>
+          <span class="kmark" aria-hidden="true"><span class="km-unit">km </span>{d.km}</span>
           <span class="sym" aria-hidden="true">
             <svg class="sym-dot" viewBox="0 0 30 30">
               <circle cx="15" cy="15" r="7" fill="var(--navy)" />
@@ -154,8 +154,12 @@ import Seal from "./Seal.astro";
     .kmark {
       right: calc(100% + 14px + 1.5px);
       padding-right: 12px;
-      font-size: 0.65rem;
+      font-size: 0.75rem;
       letter-spacing: 0;
+    }
+
+    .km-unit {
+      display: none;
     }
 
     .kmark::after {

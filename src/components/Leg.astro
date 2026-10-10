@@ -18,7 +18,7 @@ const { id, km, title, water = false, tint } = Astro.props;
   <div class="leg-inner">
     <div class="leg-head">
       <span class="kmark" aria-hidden="true">
-        <span class="km">km {km}</span>
+        <span class="km"><span class="km-unit">km </span>{km}</span>
         <span class="stop"><i class="dot"></i><Seal size={32} class="stop-seal" /></span>
       </span>
       <h2 id={`${id}-tytul`} class:list={[water ? "water" : "land"]}>{title}</h2>
@@ -140,12 +140,16 @@ const { id, km, title, water = false, tint } = Astro.props;
   @media (max-width: 760px) {
     .kmark {
       left: calc(-1 * (var(--rail) + 14px));
-      font-size: 0.65rem;
       letter-spacing: 0;
     }
 
     .km {
       padding-right: 19px;
+      font-size: 0.75rem;
+    }
+
+    .km-unit {
+      display: none;
     }
 
     h2.land {
