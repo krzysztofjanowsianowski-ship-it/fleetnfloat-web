@@ -1,0 +1,40 @@
+---
+import "@fontsource/bodoni-moda/500.css";
+import "@fontsource/bodoni-moda/500-italic.css";
+import "@fontsource/bodoni-moda/600.css";
+import "@fontsource/barlow/400.css";
+import "@fontsource/barlow/500.css";
+import "@fontsource/barlow/600.css";
+import "@fontsource/barlow-semi-condensed/500.css";
+import "@fontsource/barlow-semi-condensed/600.css";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/brand/ikona-aplikacji.svg" />
+    <meta name="theme-color" content="#203A5F" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

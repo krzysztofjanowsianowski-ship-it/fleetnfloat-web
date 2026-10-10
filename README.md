@@ -1,0 +1,30 @@
+# fleetnfloat-web
+
+Strona firmowa FLEET&FLOAT (fleetnfloat.com). Statyczny serwis w Astro.
+
+## Uruchomienie
+
+```bash
+cd fleetnfloat-web
+npm install
+npm run dev      # podgląd na http://localhost:4321
+npm run build    # wynik w dist/
+```
+
+## Co trzeba uzupełnić przed publikacją
+
+Wszystkie miejsca do uzupełnienia są w `src/data/firma.ts`. Pole ustawione na `null` jest widoczne na stronie jako złoty znacznik „[… do uzupełnienia]”, nigdy jako wymyślona wartość.
+
+- `adres`, `nip`, `telefon`, `email`: dane firmy w kontakcie i stopce.
+- `formularz`: adres usługi przyjmującej formularz (np. Formspree albo własny endpoint). Bez niego formularz działa w trybie roboczym i nic nie wysyła.
+- Link do polityki prywatności w zgodzie formularza (`src/components/ContactForm.astro`).
+- Zdjęcia houseboatów i domów BYGGA: zastąpią rysunek poglądowy w sekcji houseboatów.
+- Lista pojazdów: zastąpi rysunek poglądowy w sekcji wynajmu.
+- Zakres usług kadrowo-administracyjnych.
+
+## Materiały
+
+- `public/brand/`: logo w wariantach od klienta; `logo-na-granacie.svg` to wersja na granatowe tło, przekolorowana z `logo.svg` zgodnie z arkuszem znaku.
+- `public/realizacje/kursy-symulator.webp`: zrzut ekranu z platformy kursy.fleetnfloat.com; pochodzenie zapisane w pliku `.json` obok.
+- `PRODUCT.md`: potwierdzone fakty o firmie i ograniczenia treści (bez cen BYGGA, bez wymyślonych liczb i opinii).
+- `.impeccable/surfaces/`: kierunek wizualny strony głównej („Locja szlaku”).

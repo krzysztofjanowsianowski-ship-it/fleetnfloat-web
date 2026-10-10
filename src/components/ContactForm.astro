@@ -1,0 +1,199 @@
+---
+// Formularz zapytania w układzie tabliczki rysunkowej: każde pole to komórka
+// z podpisem w rogu. Dział wybiera się tu albo przez akcję działu na stronie.
+import { dzialy, firma } from "../data/firma";
+import Arrow from "./Arrow.astro";
+---
+
+<form
+  class="tb"
+  action={firma.formularz ?? undefined}
+  method="post"
+  novalidate
+  data-form
+  data-endpoint={firma.formularz ?? ""}
+>
+  <div class="cell span">
+    <label for="f-dzial">Dział</label>
+    <select id="f-dzial" name="dzial" required>
+      {dzialy.map((d) => <option value={d.id}>{d.nazwa}</option>)}
+    </select>
+  </div>
+  <div class="cell">
+    <label for="f-imie">Imię i nazwisko</label>
+    <input id="f-imie" name="imie" autocomplete="name" required aria-describedby="e-imie" />
+    <p class="err" id="e-imie" hidden>Wpisz imię i nazwisko, żebyśmy wiedzieli, do kogo odpisać.</p>
+  </div>
+  <div class="cell">
+    <label for="f-firma">Firma</label>
+    <input id="f-firma" name="firma" autocomplete="organization" />
+  </div>
+  <div class="cell">
+    <label for="f-email">E-mail</label>
+    <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="e-email" />
+    <p class="err" id="e-email" hidden>Podaj adres e-mail w formacie nazwa@firma.pl, na który mamy odpisać.</p>
+  </div>
+  <div class="cell">
+    <label for="f-tel">Telefon <span>(opcjonalnie)</span></label>
+    <input id="f-tel" name="telefon" type="tel" autocomplete="tel" inputmode="tel" />
+  </div>
+  <div class="cell span">
+    <label for="f-wiad">Czego potrzebujesz?</label>
+    <textarea id="f-wiad" name="wiadomosc" rows="5" required aria-describedby="e-wiad"></textarea>
+    <p class="err" id="e-wiad" hidden>Napisz w kilku słowach, czego dotyczy zapytanie.</p>
+  </div>
+  <div class="cell span consent">
+    <input id="f-zgoda" name="zgoda" type="checkbox" required aria-describedby="e-zgoda" />
+    <label for="f-zgoda">
+      Zgadzam się na przetwarzanie moich danych przez FLEET&FLOAT w celu odpowiedzi na to zapytanie.{" "}
+      <span class="draft">[link do polityki prywatności]</span>
+    </label>
+    <p class="err" id="e-zgoda" hidden>Zaznacz zgodę: bez niej nie możemy odpowiedzieć na zapytanie.</p>
+  </div>
+  <div class="cell span submit">
+    <button class="button" type="submit">Wyślij zapytanie <Arrow /></button>
+    <p class="status" role="status" aria-live="polite" data-status></p>
+  </div>
+</form>
+
+<style>
+  .tb {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1.5px solid var(--navy);
+    background: #fff;
+  }
+
+  .cell {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 12px 16px 12px;
+    transition: background-color 0.2s;
+  }
+
+  .cell:nth-child(even):not(.span) {
+    border-right: 0;
+  }
+
+  .cell.span {
+    grid-column: 1 / -1;
+    border-right: 0;
+  }
+
+  .cell:last-child {
+    border-bottom: 0;
+  }
+
+  .cell:focus-within {
+    background: #fbf8f2;
+    box-shadow: inset 0 0 0 1.5px var(--gold);
+  }
+
+  label {
+    font: 600 0.75rem/1.2 var(--note);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  label span {
+    letter-spacing: 0.05em;
+    text-transform: none;
+    font-weight: 500;
+    color: #4a5f7d;
+  }
+
+  input:not([type="checkbox"]),
+  select,
+  textarea {
+    width: 100%;
+    margin-top: 6px;
+    padding: 6px 0;
+    border: 0;
+    background: transparent;
+    font: 400 1.125rem/1.4 var(--sans);
+    color: var(--navy-ink);
+    outline: none;
+  }
+
+  select {
+    font: 500 1.25rem/1.3 var(--serif);
+    color: var(--navy);
+    cursor: pointer;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .consent {
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .consent input {
+    width: 20px;
+    height: 20px;
+    margin: 1px 0 0;
+    flex: none;
+  }
+
+  .consent label {
+    flex: 1;
+    font: 400 1rem/1.5 var(--sans);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .consent .err {
+    flex-basis: 100%;
+  }
+
+  .err {
+    margin-top: 6px;
+    font: 500 0.9375rem/1.4 var(--note);
+    color: #9a3b1f;
+  }
+
+  [aria-invalid="true"] {
+    color: #9a3b1f;
+  }
+
+  .submit {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 16px;
+  }
+
+  .status {
+    font: 500 1rem/1.45 var(--note);
+    color: var(--navy);
+    max-width: 52ch;
+  }
+
+  .status:empty {
+    display: none;
+  }
+
+  @media (max-width: 760px) {
+    .tb {
+      grid-template-columns: 1fr;
+    }
+
+    select {
+      font-size: 1.0625rem;
+    }
+
+    .cell {
+      border-right: 0;
+    }
+  }
+</style>

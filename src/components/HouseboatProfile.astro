@@ -1,0 +1,110 @@
+---
+// Widok od strony wody, jak rysunek brzegu w locji. Rysunek poglądowy, nie konkretny model.
+---
+
+<figure class="view">
+  <svg viewBox="0 0 560 270" role="img" aria-labelledby="hb-title">
+    <title id="hb-title">Rysunek poglądowy houseboata widzianego z boku, od strony wody</title>
+    <g>
+      <path d="M0 208 H560 V270 H0 Z" fill="var(--shoal)"></path>
+      <path
+        class="wl"
+        d="M0 208 q14 -5 28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0"
+      ></path>
+      <path class="ripple" d="M40 228 h120 M220 236 h90 M380 226 h140 M90 250 h70 M300 254 h160"></path>
+    </g>
+    <g class="ink">
+      <rect x="50" y="186" width="440" height="24" rx="12"></rect>
+      <line x1="62" y1="198" x2="478" y2="198" class="thin"></line>
+      <rect x="36" y="172" width="470" height="14"></rect>
+      <rect x="136" y="84" width="276" height="88"></rect>
+      <path d="M118 84 H430" class="roof"></path>
+      <path d="M150 72 l10 -8 h64 l-10 8 Z M236 72 l10 -8 h64 l-10 8 Z M322 72 l10 -8 h64 l-10 8 Z" class="thin"></path>
+      <rect x="152" y="100" width="106" height="52"></rect>
+      <path d="M187 100 v52 M222 100 v52" class="thin"></path>
+      <rect x="276" y="102" width="34" height="70"></rect>
+      <circle cx="303" cy="138" r="2" class="fillink"></circle>
+      <rect x="328" y="100" width="66" height="34"></rect>
+      <path d="M361 100 v34" class="thin"></path>
+      <path d="M44 172 V146 H122 V172 M64 146 v26 M84 146 v26 M104 146 v26" class="thin"></path>
+      <path d="M426 172 V146 H500 V172 M446 146 v26 M466 146 v26 M486 146 v26" class="thin"></path>
+      <path d="M22 168 h16 v18 l-6 30 h-6 l-4 -30 Z"></path>
+    </g>
+    <g class="leaders">
+      <path d="M84 146 L72 40 H40"></path>
+      <path d="M274 84 L290 30 H330"></path>
+      <path d="M466 146 L480 52 H520"></path>
+      <path d="M180 210 L170 248 H130"></path>
+    </g>
+    <g class="notes">
+      <text x="40" y="34">TARAS RUFOWY</text>
+      <text x="334" y="34">CZĘŚĆ MIESZKALNA</text>
+      <text x="520" y="46" text-anchor="end">TARAS</text>
+      <text x="126" y="264" text-anchor="end">PŁYWAKI</text>
+    </g>
+  </svg>
+  <figcaption>Widok od strony wody. Rysunek poglądowy, nie konkretny model.</figcaption>
+</figure>
+
+<style>
+  .view svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .wl {
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 1.2;
+  }
+
+  .ripple {
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 0.8;
+    opacity: 0.45;
+  }
+
+  .ink rect,
+  .ink path,
+  .ink line {
+    fill: var(--deep);
+    stroke: var(--navy);
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+  }
+
+  .ink .thin {
+    fill: none;
+    stroke-width: 1;
+  }
+
+  .ink .roof {
+    stroke-width: 6;
+    stroke-linecap: square;
+  }
+
+  .ink .fillink {
+    fill: var(--navy);
+    stroke: none;
+  }
+
+  .leaders path {
+    fill: none;
+    stroke: var(--gold-deep);
+    stroke-width: 1;
+  }
+
+  .notes text {
+    font: 600 12px var(--note);
+    letter-spacing: 1.4px;
+    fill: var(--navy);
+  }
+
+  figcaption {
+    margin-top: 10px;
+    font: 500 0.875rem/1.4 var(--note);
+    letter-spacing: 0.03em;
+    color: #4a5f7d;
+  }
+</style>

@@ -1,0 +1,21 @@
+{
+  "name": "fleetnfloat-web",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource/barlow": "^5.3.0",
+    "@fontsource/barlow-condensed": "^5.3.0",
+    "@fontsource/barlow-semi-condensed": "^5.3.0",
+    "@fontsource/bodoni-moda": "^5.3.0",
+    "@fontsource/manrope": "^5.3.0",
+    "astro": "^7.3.8"
+  }
+}

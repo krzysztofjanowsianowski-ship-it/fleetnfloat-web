@@ -1,0 +1,93 @@
+---
+// Widok z drogi: samochód ciężarowy i osobowy. Rysunek poglądowy.
+---
+
+<figure class="view">
+  <svg viewBox="0 0 560 250" role="img" aria-labelledby="veh-title">
+    <title id="veh-title">Rysunek poglądowy samochodu ciężarowego i osobowego widzianych z boku</title>
+    <g>
+      <path d="M0 204 H560" class="edge"></path>
+      <path d="M0 236 H560" class="edge"></path>
+      <path d="M0 220 H560" class="lane"></path>
+    </g>
+    <g class="ink">
+      <rect x="18" y="52" width="230" height="124"></rect>
+      <path d="M40 52 v124 M218 52 v124" class="thin"></path>
+      <path d="M248 176 V82 H300 Q306 82 310 88 L334 124 Q338 130 338 138 V176 Z"></path>
+      <path d="M262 92 H298 L318 124 H262 Z" class="thin"></path>
+      <path d="M18 176 H338 V188 H18 Z"></path>
+      <circle cx="74" cy="192" r="21"></circle><circle cx="74" cy="192" r="8" class="thin"></circle>
+      <circle cx="122" cy="192" r="21"></circle><circle cx="122" cy="192" r="8" class="thin"></circle>
+      <circle cx="294" cy="192" r="21"></circle><circle cx="294" cy="192" r="8" class="thin"></circle>
+      <path
+        d="M372 186 V158 Q372 146 384 144 L418 140 L446 114 Q452 108 462 108 H504 Q514 108 520 116 L538 142 Q544 146 544 158 V186 Z"
+      ></path>
+      <path d="M426 140 L450 118 H476 V140 Z M484 118 H502 Q508 118 512 124 L524 140 H484 Z" class="thin"></path>
+      <circle cx="406" cy="190" r="17"></circle><circle cx="406" cy="190" r="6" class="thin"></circle>
+      <circle cx="512" cy="190" r="17"></circle><circle cx="512" cy="190" r="6" class="thin"></circle>
+    </g>
+    <g class="leaders">
+      <path d="M134 52 L148 22 H190"></path>
+      <path d="M470 108 L484 70 H520"></path>
+    </g>
+    <g class="notes">
+      <text x="194" y="26">CIĘŻAROWE</text>
+      <text x="524" y="66" text-anchor="end">OSOBOWE</text>
+    </g>
+  </svg>
+  <figcaption>Widok z drogi. Rysunek poglądowy; listę pojazdów pokażemy po jej przygotowaniu.</figcaption>
+</figure>
+
+<style>
+  .view svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .edge {
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 1.4;
+  }
+
+  .lane {
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 1;
+    stroke-dasharray: 18 14;
+    opacity: 0.6;
+  }
+
+  .ink rect,
+  .ink path,
+  .ink circle {
+    fill: var(--deep);
+    stroke: var(--navy);
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+  }
+
+  .ink .thin {
+    fill: none;
+    stroke-width: 1;
+  }
+
+  .leaders path {
+    fill: none;
+    stroke: var(--gold-deep);
+    stroke-width: 1;
+  }
+
+  .notes text {
+    font: 600 12px var(--note);
+    letter-spacing: 1.4px;
+    fill: var(--navy);
+  }
+
+  figcaption {
+    margin-top: 10px;
+    font: 500 0.875rem/1.4 var(--note);
+    letter-spacing: 0.03em;
+    color: #4a5f7d;
+  }
+</style>

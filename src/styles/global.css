@@ -1,0 +1,165 @@
+:root {
+  --navy: #203a5f;
+  --navy-ink: #1a3050;
+  --navy-soft: #3a5274;
+  --gold: #b8925a;
+  --gold-on-navy: #d2b07a;
+  --gold-deep: #735828; /* złoto do drobnego tekstu: ≥4,5:1 na lądzie i wodzie */
+  --land: #ebddc2;
+  --shoal: #d6e0ea;
+  --deep: #f7f9fb;
+  --rule: rgba(32, 58, 95, 0.28);
+  --rule-soft: rgba(32, 58, 95, 0.14);
+
+  --serif: "Bodoni Moda", "Bodoni 72", Didot, serif;
+  --sans: "Barlow", system-ui, sans-serif;
+  --note: "Barlow Semi Condensed", "Barlow", system-ui, sans-serif;
+
+  --frame: clamp(8px, 1.4vw, 18px);
+  --rail: clamp(44px, 6vw, 84px);
+  --gutter: clamp(20px, 3vw, 40px);
+  --step: clamp(72px, 9vw, 128px);
+
+  color-scheme: light;
+  accent-color: var(--navy);
+  caret-color: var(--navy);
+  scrollbar-color: var(--navy-soft) var(--deep);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--deep);
+  color: var(--navy-ink);
+  font: 400 1.125rem/1.55 var(--sans);
+  font-feature-settings: "lnum" 1;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--gold-on-navy);
+  color: var(--navy-ink);
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+table {
+  margin: 0;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Akcja działu: złoty podkreślony link w notacji mapy. */
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  font: 600 1rem/1 var(--note);
+  letter-spacing: 0.05em;
+  color: var(--gold-deep);
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 1.5px solid var(--gold);
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.action svg {
+  width: 1.05em;
+  height: 1.05em;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.action:hover {
+  color: var(--navy);
+  border-color: var(--navy);
+}
+
+.action:hover svg {
+  transform: translateX(3px);
+}
+
+/* Przycisk główny: granatowa plakietka ze złotym pierścieniem pieczęci. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  min-height: 52px;
+  padding: 0 22px;
+  font: 600 1.0625rem/1 var(--note);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background: var(--navy);
+  border: 0;
+  box-shadow: inset 0 0 0 1px var(--navy), inset 0 0 0 4px var(--navy), inset 0 0 0 5px var(--gold-on-navy);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.button svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.button:hover {
+  background: var(--navy-ink);
+  box-shadow: inset 0 0 0 1px var(--navy-ink), inset 0 0 0 4px var(--navy-ink), inset 0 0 0 5px var(--gold);
+}
+
+/* Pole do uzupełnienia: widoczny znacznik szkicu zamiast wymyślonych danych. */
+.draft {
+  font: 500 0.95em/1.3 var(--note);
+  letter-spacing: 0.04em;
+  color: var(--gold-deep);
+  border-bottom: 1px dashed var(--gold);
+}
