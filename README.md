@@ -29,6 +29,20 @@ Wszystkie miejsca do uzupełnienia są w `src/data/firma.ts`. Pole ustawione na 
 - `PRODUCT.md`: potwierdzone fakty o firmie i ograniczenia treści (bez cen BYGGA, bez wymyślonych liczb i opinii).
 - `.impeccable/surfaces/`: kierunek wizualny strony głównej (wizytówka F&F GROUP).
 
+## Rezerwacje (kalendarz F&F LEASE)
+
+Kalendarz najmu okazjonalnego na `/lease/` czyta plik `public/rezerwacje.json` (na serwerze: `/var/www/fnfgroup/rezerwacje.json`). Każde auto ma listę okresów od–do (włącznie):
+
+```json
+{
+  "lexus-lc500": [{ "od": "2026-10-16", "do": "2026-10-18" }],
+  "lexus-rx350": [],
+  "mercedes-glc": []
+}
+```
+
+Plik na serwerze można podmienić w dowolnej chwili, bez przebudowy strony. Auta i ich opisy są w `src/data/flota.ts`.
+
 ## Wdrożenie (www.fnfgroup.pl)
 
 Strona jest statyczna i działa na serwerze Hetzner (91.107.222.145) obok kursy.fleetnfloat.com, za Caddy, który sam wystawia certyfikaty HTTPS.

@@ -1,20 +1,210 @@
 ---
 import Division from "../layouts/Division.astro";
-import VehiclesProfile from "../components/VehiclesProfile.astro";
+import CarIllustration from "../components/CarIllustration.astro";
+import AvailabilityCalendar from "../components/AvailabilityCalendar.astro";
+import Arrow from "../components/Arrow.astro";
+import { flota, formyNajmu } from "../data/flota";
 ---
 
-<Division id="lease" lead="Samochody ciężarowe i osobowe na wynajem dla firm. Napisz, czego i na kiedy potrzebujesz, a przygotujemy propozycję.">
-  <div class="split">
-    <div class="prose">
-      <h2 class="h-sec">Do wyceny wystarczy nam</h2>
-      <ul class="checklist">
-        <li><b>Rodzaj pojazdu.</b> Ciężarowy czy osobowy, i ile sztuk.</li>
-        <li><b>Termin.</b> Od kiedy i na jak długo.</li>
-        <li><b>Miejsce odbioru.</b> Gdzie pojazd ma na Ciebie czekać.</li>
-        <li><b>Cel.</b> Przewóz towaru, auto dla pracownika albo zastępstwo we flocie.</li>
-      </ul>
-      <p class="fine">Listę dostępnych pojazdów opublikujemy wkrótce.</p>
-    </div>
-    <div class="side"><VehiclesProfile /></div>
+<Division
+  id="lease"
+  lead="Samochody na wynajem dla firm i ich gości: od jednego dnia, przez najem krótko- i długoterminowy, po leasing na 2 do 5 lat."
+>
+  <section aria-labelledby="formy-tytul">
+    <h2 id="formy-tytul" class="h-sec">Formy najmu</h2>
+    <ul class="offers">
+      {
+        formyNajmu.map((f) => (
+          <li class="offer">
+            <h3>{f.nazwa}</h3>
+            <p class="period">{f.okres}</p>
+            <p class="desc">{f.opis}</p>
+            <a class="action" href={f.href}>
+              {f.akcja} <Arrow />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="fleet" aria-labelledby="flota-tytul">
+    <h2 id="flota-tytul" class="h-sec">Nasze samochody</h2>
+    <ul class="cars">
+      {
+        flota.map((a) => (
+          <li class="car-card">
+            <div class="art">
+              <CarIllustration nadwozie={a.nadwozie} lakier={a.lakier} dach={a.dach} tytul={`${a.nazwa}, ${a.kolor}: ilustracja poglądowa`} />
+            </div>
+            <div class="info">
+              <h3>{a.nazwa}</h3>
+              <dl>
+                {a.rok && (
+                  <div>
+                    <dt>Rocznik</dt>
+                    <dd>{a.rok}</dd>
+                  </div>
+                )}
+                <div>
+                  <dt>Kolor</dt>
+                  <dd>{a.kolor}</dd>
+                </div>
+              </dl>
+              <a class="action" href="#kalendarz" data-wybierz-auto={a.id}>
+                Sprawdź dostępność <Arrow />
+              </a>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="fine">Ilustracje poglądowe. Zdjęcia samochodów pojawią się po sesji zdjęciowej.</p>
+  </section>
+
+  <div class="cal-wrap">
+    <AvailabilityCalendar />
   </div>
 </Division>
+
+<style>
+  .offers {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--gold);
+  }
+
+  .offer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 22px 22px 24px 0;
+  }
+
+  .offer + .offer {
+    padding-left: 22px;
+    border-left: 1px solid var(--rule);
+  }
+
+  .offer h3 {
+    font: 600 1.1875rem/1.25 var(--sans);
+    color: var(--navy-ink);
+  }
+
+  .period {
+    font: 500 1rem/1.2 var(--serif);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold-deep-text);
+  }
+
+  .desc {
+    flex: 1;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: #2b4466;
+  }
+
+  .offer .action {
+    align-self: flex-start;
+    margin-top: 6px;
+  }
+
+  .fleet {
+    margin-top: clamp(56px, 7vw, 88px);
+  }
+
+  .cars {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .car-card {
+    border: 1px solid var(--rule);
+    background: #fff;
+  }
+
+  .art {
+    padding: 28px 22px 14px;
+    background: var(--beige);
+  }
+
+  .info {
+    padding: 18px 20px 22px;
+  }
+
+  .info h3 {
+    font: 500 1.25rem/1.2 var(--serif);
+    letter-spacing: 0.06em;
+    color: var(--navy);
+  }
+
+  .info dl {
+    margin: 12px 0 16px;
+  }
+
+  .info dl div {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    font-size: 0.9375rem;
+  }
+
+  .info dt {
+    color: #4a5f7d;
+  }
+
+  .info dd {
+    margin: 0;
+    color: var(--navy-ink);
+  }
+
+  .cal-wrap {
+    margin-top: clamp(56px, 7vw, 88px);
+  }
+
+  @media (max-width: 1000px) {
+    .offers {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .offer:nth-child(3) {
+      padding-left: 0;
+      border-left: 0;
+    }
+
+    .offer:nth-child(n + 3) {
+      border-top: 1px solid var(--rule);
+    }
+
+    .cars {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 600px) {
+    .offers,
+    .cars {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .offer,
+    .offer + .offer {
+      padding-left: 0;
+      border-left: 0;
+    }
+
+    .offer + .offer {
+      border-top: 1px solid var(--rule);
+    }
+  }
+</style>
