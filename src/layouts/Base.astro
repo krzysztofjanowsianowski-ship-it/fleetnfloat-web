@@ -10,6 +10,7 @@ import "@fontsource/barlow-semi-condensed/600.css";
 import "../styles/global.css";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import { firma } from "../data/firma";
 
 interface Props {
   title: string;
@@ -18,6 +19,8 @@ interface Props {
 
 const { title, description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// Dopóki dane firmy są niepełne, strona nie jest indeksowana przez wyszukiwarki.
+const roboczy = [firma.adres, firma.nip, firma.telefon, firma.email].some((v) => v === null);
 ---
 
 <!doctype html>
@@ -28,6 +31,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {roboczy && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" type="image/svg+xml" href="/brand/ikona-aplikacji.svg" />
     <meta name="theme-color" content="#203A5F" />
     <meta property="og:type" content="website" />

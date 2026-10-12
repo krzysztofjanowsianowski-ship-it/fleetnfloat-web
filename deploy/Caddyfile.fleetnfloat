@@ -1,0 +1,23 @@
+# Strona F&F GROUP (statyczna, Astro). Dopisz do /etc/caddy/Caddyfile na serwerze
+# albo zaimportuj: import /etc/caddy/sites/fleetnfloat.caddy
+www.fleetnfloat.com {
+	root * /var/www/fleetnfloat
+	encode zstd gzip
+	try_files {path} {path}/ {path}/index.html
+	file_server
+
+	header /_astro/* Cache-Control "public, max-age=31536000, immutable"
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+	}
+
+	handle_errors {
+		rewrite * /index.html
+		file_server
+	}
+}
+
+fleetnfloat.com {
+	redir https://www.fleetnfloat.com{uri} permanent
+}
