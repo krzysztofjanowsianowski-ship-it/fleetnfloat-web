@@ -4,12 +4,14 @@
   --navy-soft: #3a5274;
   --gold: #b8925a;
   --gold-on-navy: #d2b07a;
+  --gold-deep-text: #735828; /* złoto do tekstu na jasnym tle (≥4,5:1) */
   --shoal: #d6e0ea;
-  --deep: #f4eee4; /* beż: tło strony */
-  --beige: #ece2d1; /* głębszy beż: pasy kontaktu i działów */
-  --paper: #fffdf9; /* ciepła biel: kafle, formularze */
-  --rule: rgba(84, 66, 40, 0.24);
-  --rule-soft: rgba(84, 66, 40, 0.14);
+  --deep: #ffffff; /* tło strony */
+  --beige: #f2f3f5; /* jasnoszary: pasy kontaktu, stopka */
+  --paper: #ffffff;
+  --grey: #e6e8ec; /* linie i tła kafli */
+  --rule: rgba(32, 58, 95, 0.2);
+  --rule-soft: rgba(32, 58, 95, 0.12);
 
   --serif: "Bodoni Moda", "Bodoni 72", Didot, serif;
   --sans: "Barlow", system-ui, sans-serif;

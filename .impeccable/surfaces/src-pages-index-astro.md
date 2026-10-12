@@ -5,7 +5,7 @@ primary_target: "src/pages/index.astro"
 related_targets: ["src/pages/lease.astro","src/pages/it.astro","src/pages/homes.astro","src/pages/hr.astro"]
 ---
 
-# Strona główna F&F GROUP
+# Strona główna F&F GROUP (układ serwisu grupy)
 
 ## Scope and mode
 
@@ -19,15 +19,15 @@ Strona główna (`src/pages/index.astro`) jako wizytówka grupy oraz cztery stro
 
 ## Direction contract
 
-THESIS: Profesjonalna wizytówka grupy w języku znaku FLEET&FLOAT: wersaliki szeryfowe w szerokim rozstrzeleniu ze złotym kursywnym ampersandem, granat i złoto z arkusza znaku. Kafle działów są przypięte przez brief (redesign na życzenie użytkownika), więc odrzucamy tylko ich tani wariant: ikonka, nagłówek i tekst w zaokrąglonej karcie z cieniem.
+THESIS: Strona główna w układzie korporacyjnego serwisu grupy kapitałowej (wzór wskazany przez użytkownika: grupapolsatplus.pl, „W skrócie” i „Obszary działalności”), wypełniony identyfikacją FLEET&FLOAT. Odrzuca stylizowane wizytówki i landing page; ma wyglądać jak rzetelny serwis grupy.
 
-OWN-WORLD: Granatowy hero #203A5F z białym znakiem „F&F GROUP” i dużym sygnetem (biały pierścień, złoty pierścień wewnętrzny, złoty ampersand). Poniżej jasne tło #F7F9FB, białe kafle z cienką granatową ramką, każdy ze znakiem działu „F&F LEASE / F&F.IT / F&F HOMES / F&F HR” w notacji logo i rysunkiem kreskowym działu. Pismo: Bodoni Moda w znakach i nagłówkach, Barlow w tekście.
+OWN-WORLD: Białe tło, jasnoszare pasy #F2F3F5, granat #203A5F i złoto z logo. Dwurzędowy nagłówek (linki pomocnicze, logo + menu), okruszki, menu boczne sekcji. Znaki działów w notacji logo: wersaliki Bodoni ze złotym kursywnym ampersandem; tekst Barlow.
 
-STORY: Odwiedzający widzi grupę i jej cztery działy, rozumie, że to jedna marka z jednym standardem, wybiera kafel swojego działu; na stronie działu dostaje konkret (modele BYGGA, lista do wyceny, realizacja IT, zakres HR) i formularz z wybranym działem.
+STORY: Odwiedzający czyta krótkie „W skrócie”, widzi na diagramie cztery działy wokół sygnetu, czyta akapit o wspólnym standardzie, a w „Obszarach działalności” wybiera kafel działu.
 
-FIRST VIEWPORT: Biały pasek z logo i nawigacją po czterech działach oraz „Kontakt”. Granatowy hero: po lewej znak „F&F GROUP” około 92 px, akapit „Grupa F&F prowadzi działania…”, przycisk „Przejdź do odpowiedniego działu” i link „Kontakt”; po prawej sygnet. Pod hero zaczyna się sekcja „W skład grupy należą”.
+FIRST VIEWPORT: Nagłówek z logo i menu (O grupie, F&F LEASE, F&F.IT, F&F HOMES, F&F HR), okruszki, menu boczne po lewej; w treści „W skrócie”, pogrubiony szary akapit „Grupa F&F prowadzi działania…”, „W skład grupy należą:” i okrągły diagram: cztery ćwiartki w granacie i złocie z nazwami działów, sygnet w środku, napis na pierścieniu.
 
-FORM: Wizytówka z kaflami, przypięta przez brief użytkownika (redesign po odrzuceniu kierunku z rzutu d45d10a1). Interakcja sygnaturowa: kafel na najechanie dostaje granatową ramkę, cień, linię u góry rysowaną od lewej i przesunięcie strzałki „Przejdź do działu”.
+FORM: Serwis grupy kapitałowej, przypięty przez brief użytkownika (redesign po odrzuceniu wizytówki i wersji w brązie). Interakcja sygnaturowa: ćwiartka diagramu na najechanie wysuwa się na zewnątrz i rozjaśnia; kafel obszaru przybliża rysunek, ciemnieje pasek, strzałki się przesuwają.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 
