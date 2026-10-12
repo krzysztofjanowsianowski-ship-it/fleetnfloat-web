@@ -2,36 +2,345 @@
 import Division from "../layouts/Division.astro";
 import HouseboatProfile from "../components/HouseboatProfile.astro";
 import External from "../components/External.astro";
-import { modeleBygga } from "../data/firma";
+import Arrow from "../components/Arrow.astro";
+import { producent, houseboaty, cechyHouseboatow, domy, cechyDomow, sauny, jezyki } from "../data/bygga";
 ---
 
 <Division
   id="homes"
-  lead="Jesteśmy dealerem BYGGA, producenta houseboatów i domów modułowych z Bydgoszczy, działającego od 2017 roku. Pomożemy dobrać model do miejsca i celu, a potem umówimy oględziny."
+  lead="Jesteśmy dealerem BYGGA, producenta houseboatów i domów modułowych z Bydgoszczy, w sprzedaży poza terytorium Polski. Klientów obsługujemy po angielsku, niemiecku i francusku."
 >
-  <div class="split">
-    <div class="prose">
-      <h2 class="h-sec">Wybrane modele według producenta</h2>
-      <table class="spis">
-        <thead>
-          <tr><th scope="col">Model</th><th scope="col">Rodzaj</th><th scope="col">Część mieszkalna</th><th scope="col">Wymiary</th></tr>
-        </thead>
-        <tbody>
+  <section aria-labelledby="eksport-tytul">
+    <h2 id="eksport-tytul" class="h-sec">Dla klientów spoza Polski</h2>
+    <ul class="pillars">
+      <li>
+        <h3>Sprzedaż za granicę</h3>
+        <p>Sprzedajemy houseboaty, domy i sauny BYGGA klientom spoza Polski.</p>
+      </li>
+      <li>
+        <h3>Obsługa w trzech językach</h3>
+        <ul class="langs">
           {
-            modeleBygga.map((m) => (
-              <tr>
-                <th scope="row"><a href={m.url} rel="noopener" target="_blank">{m.model}<span class="visually-hidden"> (karta modelu u producenta, nowe okno)</span></a></th>
-                <td>{m.rodzaj}</td>
-                <td>{m.mieszkalna}</td>
-                <td>{m.wymiary}</td>
-              </tr>
+            jezyki.map((j) => (
+              <li>
+                <span class="code">{j.kod}</span>
+                <span class="say" lang={j.kod.toLowerCase()}>{j.zdanie}</span>
+              </li>
             ))
           }
-        </tbody>
-      </table>
-      <p class="fine">Dane z kart modeli na bygga.pl. Cenę, dostępność i transport potwierdzamy przy zapytaniu.</p>
-      <p><a class="action" href="https://www.bygga.pl/" rel="noopener" target="_blank">Pełna oferta producenta <External /><span class="visually-hidden"> (nowe okno)</span></a></p>
+        </ul>
+      </li>
+      <li>
+        <h3>Transport</h3>
+        <p>Producent pomaga w transporcie za granicę. Koszt zależy od miejsca docelowego i podajemy go w wycenie.</p>
+      </li>
+    </ul>
+    <p class="fine">Zasady postawienia domu lub cumowania houseboata oraz uprawnienia do jego prowadzenia zależą od kraju i miejsca.</p>
+  </section>
+
+  <section class="block" aria-labelledby="producent-tytul">
+    <h2 id="producent-tytul" class="h-sec">Producent: BYGGA, Bydgoszcz</h2>
+    <p class="intro-text">
+      {producent.nazwa} to samodzielny zakład produkcyjny, który buduje houseboaty linii FLUO, domy modułowe i mobilne linii TERRA oraz sauny FLAMMA.
+    </p>
+    <dl class="facts">
+      {
+        producent.fakty.map((f) => (
+          <div>
+            <dt>{f.liczba}</dt>
+            <dd>{f.opis}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="block" aria-labelledby="fluo-tytul">
+    <h2 id="fluo-tytul" class="h-sec">Houseboaty FLUO</h2>
+    <div class="split">
+      <div class="prose">
+        <ul class="checklist">{cechyHouseboatow.map((c) => <li>{c}</li>)}</ul>
+      </div>
+      <div class="side"><HouseboatProfile /></div>
     </div>
-    <div class="side"><HouseboatProfile /></div>
-  </div>
+    <table class="spis wide">
+      <thead>
+        <tr><th scope="col">Model</th><th scope="col">Część mieszkalna</th><th scope="col">Pokład</th><th scope="col">Układ</th><th scope="col">Silnik</th><th scope="col">Masa</th></tr>
+      </thead>
+      <tbody>
+        {
+          houseboaty.map((m) => (
+            <tr>
+              <th scope="row"><a href={m.url} rel="noopener" target="_blank">{m.model}<span class="visually-hidden"> (karta modelu u producenta, nowe okno)</span></a></th>
+              <td data-label="Część mieszkalna">{m.mieszkalna}</td>
+              <td data-label="Pokład">{m.poklad}</td>
+              <td data-label="Układ">{m.uklad}</td>
+              <td data-label="Silnik">{m.naped}</td>
+              <td data-label="Masa">{m.masa}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </section>
+
+  <section class="block" aria-labelledby="terra-tytul">
+    <h2 id="terra-tytul" class="h-sec">Domy TERRA</h2>
+    <ul class="checklist cols">{cechyDomow.map((c) => <li>{c}</li>)}</ul>
+    <table class="spis">
+      <thead>
+        <tr><th scope="col">Model</th><th scope="col">Rodzaj</th><th scope="col">Powierzchnia</th><th scope="col">Wymiary</th></tr>
+      </thead>
+      <tbody>
+        {
+          domy.map((m) => (
+            <tr>
+              <th scope="row"><a href={m.url} rel="noopener" target="_blank">{m.model}<span class="visually-hidden"> (karta modelu u producenta, nowe okno)</span></a></th>
+              <td data-label="Rodzaj">{m.rodzaj}</td>
+              <td data-label="Powierzchnia">{m.mieszkalna}</td>
+              <td data-label="Wymiary">{m.wymiary}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </section>
+
+  <section class="block" aria-labelledby="flamma-tytul">
+    <h2 id="flamma-tytul" class="h-sec">Sauny FLAMMA</h2>
+    <p class="intro-text">Sauny ogrodowe dla 4 osób na stalowej konstrukcji, z systemem do podnoszenia dźwigiem lub HDS.</p>
+    <table class="spis">
+      <thead>
+        <tr><th scope="col">Model</th><th scope="col">Wymiary zewnętrzne</th><th scope="col">Piec</th></tr>
+      </thead>
+      <tbody>
+        {
+          sauny.map((m) => (
+            <tr>
+              <th scope="row"><a href={m.url} rel="noopener" target="_blank">{m.model}<span class="visually-hidden"> (karta modelu u producenta, nowe okno)</span></a></th>
+              <td data-label="Wymiary">{m.wymiary}</td>
+              <td data-label="Piec">{m.piec}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+    <p class="fine">
+      Dane z kart modeli na bygga.pl (odczyt 10.2026). Ceny podawane przez producenta dotyczą modułu podstawowego w Polsce; cenę z wyposażeniem i transportem do Twojego kraju potwierdzamy przy zapytaniu.
+    </p>
+    <p><a class="action" href="https://www.bygga.pl/" rel="noopener" target="_blank">Pełna oferta producenta <External /><span class="visually-hidden"> (nowe okno)</span></a></p>
+  </section>
+
+  <section class="block configurator" aria-labelledby="konf-tytul">
+    <div>
+      <p class="soon">Wkrótce</p>
+      <h2 id="konf-tytul">Konfigurator</h2>
+      <p>Tu pojawi się konfigurator, w którym wybierzesz model i wyposażenie. Do tego czasu napisz, czego potrzebujesz, a przygotujemy zestawienie.</p>
+    </div>
+    <a class="button" href="#kontakt">Zapytaj o konfigurację <Arrow /></a>
+  </section>
 </Division>
+
+<style>
+  .block {
+    margin-top: clamp(56px, 7vw, 88px);
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--gold);
+  }
+
+  .pillars > li {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    padding: 22px 22px 24px 0;
+  }
+
+  .pillars > li + li {
+    padding-left: 22px;
+    border-left: 1px solid var(--rule);
+  }
+
+  .pillars h3 {
+    font: 600 1.1875rem/1.25 var(--sans);
+    color: var(--navy-ink);
+  }
+
+  .pillars p,
+  .intro-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #2b4466;
+  }
+
+  .intro-text {
+    max-width: 46em;
+    margin-top: 12px;
+  }
+
+  .langs {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .langs li {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .code {
+    flex: none;
+    min-width: 2.4em;
+    padding: 3px 6px;
+    text-align: center;
+    font: 600 0.75rem/1.2 var(--sans);
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: var(--navy);
+  }
+
+  .say {
+    font-style: italic;
+    color: #2b4466;
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    margin: 24px 0 0;
+    background: var(--navy);
+  }
+
+  .facts div {
+    padding: 20px 22px;
+  }
+
+  .facts div + div {
+    border-left: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .facts dt {
+    font: 500 clamp(1.5rem, 2.4vw, 2rem) / 1.1 var(--serif);
+    color: var(--gold-on-navy);
+  }
+
+  .facts dd {
+    margin: 6px 0 0;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.86);
+  }
+
+  .block .split {
+    margin-top: 16px;
+  }
+
+  .spis {
+    margin-top: 24px;
+  }
+
+  .spis.wide td:nth-child(4) {
+    white-space: normal;
+  }
+
+  .cols {
+    columns: 2;
+    column-gap: 40px;
+    margin-top: 16px;
+  }
+
+  .cols li {
+    break-inside: avoid;
+  }
+
+  .configurator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 28px 32px;
+    border: 1.5px dashed var(--navy);
+    background: var(--beige);
+  }
+
+  .configurator h2 {
+    font: 500 clamp(1.5rem, 2.2vw, 1.875rem) / 1.2 var(--serif);
+    letter-spacing: 0.06em;
+    color: var(--navy-ink);
+  }
+
+  .configurator p {
+    max-width: 40em;
+    margin-top: 8px;
+    color: #2b4466;
+  }
+
+  .configurator .soon {
+    margin: 0 0 4px;
+    font: 600 0.75rem/1 var(--sans);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-deep-text);
+  }
+
+  .configurator .button {
+    flex: none;
+  }
+
+  @media (max-width: 900px) {
+    .pillars,
+    .facts {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .facts div:nth-child(3) {
+      border-left: 0;
+    }
+
+    .facts div:nth-child(n + 3) {
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .pillars > li,
+    .pillars > li + li {
+      padding: 18px 0 20px;
+      border-left: 0;
+    }
+
+    .pillars > li + li {
+      border-top: 1px solid var(--rule);
+    }
+
+    .cols {
+      columns: 1;
+    }
+
+    .configurator {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 24px 20px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .spis td[data-label]::before {
+      content: attr(data-label) ": ";
+      color: #4a5f7d;
+    }
+  }
+</style>

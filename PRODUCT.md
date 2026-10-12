@@ -16,7 +16,7 @@ Potwierdzone przez użytkownika (10.2026): grupa występuje jako **F&F GROUP** (
 
 - **F&F LEASE**: najem okazjonalny (od 1 dnia, z kalendarzem dostępności), krótkoterminowy (do 12 miesięcy), długoterminowy oraz leasing na 2 do 5 lat. Flota do najmu okazjonalnego (10.2026): Lexus LC 500 (czerwony), Lexus RX 350 z 2023 r. (miedziany), Mercedes-Benz GLC z 2018 r. (biały z czarnym dachem). Nazwy modeli do potwierdzenia przez użytkownika (podane jako „CL500” i „X350”). Lexus LC 500 rocznik 2018. Cennik najmu okazjonalnego (netto za dobę, wszystkie auta): 1–3 doby 500 zł, 4–8 dób 450 zł, od 9 dób 400 zł (progi „>4 do 8” i „>8” zinterpretowane jako 4–8 i 9+). Ceny pozostałych form ustalane indywidualnie.
 - **F&F.IT**: oprogramowanie do biura z użyciem AI. Specjalizacje: automatyzacja procesów, integracja środowisk, systemy zarządzania, kontroling, AI marketing; od najmniejszych automatyzacji po rozbudowane CRM. Realizacje: program do rozliczania czasu pracy kierowców, CRM dla agencji pracy z modułem kadrowym, program księgowy, system e-learningowy z symulatorem tachografu (kursy.fleetnfloat.com).
-- **F&F HOMES**: sprzedaż houseboatów i domów jako dealer BYGGA.
+- **F&F HOMES**: dealer BYGGA w sprzedaży poza terytorium Polski; obsługa w językach angielskim, niemieckim i francuskim. Konfigurator zostanie dodany później.
 - **F&F HR**: wsparcie kadrowe i administracyjne.
 
 Kolejność z briefu: LEASE, IT, HOMES, HR. Strona główna to profesjonalna wizytówka grupy z kaflami prowadzącymi do stron działów (`/lease/`, `/it/`, `/homes/`, `/hr/`).
@@ -42,7 +42,7 @@ Jedna firma, cztery niezależne specjalizacje pod wspólną marką i hasłem „
 
 ## Operating Context
 
-- Houseboaty i domki: FLEET&FLOAT jest dealerem producenta BYGGA. Status autoryzacji, zasięg terytorialny i warunki sprzedaży nie są potwierdzone.
+- Houseboaty i domki: FLEET&FLOAT jest dealerem producenta BYGGA. Zasięg: sprzedaż poza terytorium Polski (potwierdzone przez użytkownika 10.2026). Obsługa EN/DE/FR. Warunki sprzedaży i ceny eksportowe nie są potwierdzone; strona nie pokazuje cen. Dane modeli w `src/data/bygga.ts` (odczyt bygga.pl 12.10.2026).
   - Fakty ze strony producenta (bygga.pl, odczyt 10.2026): Bygga Sp. z o.o., Bydgoszcz, działa od 2017 r., własny zakład produkcyjny. Linie: FLUO (houseboaty: 93 Navigator, 93S Navigator z sauną, 84 Pari, 12 River King, Rent 28, Rent 32S), TERRA (domy modułowe Muskoka, Muskoka 35/45/70, mobilny dom Sardegna na przyczepie, biuro mobilne Studio OF001), FLAMMA (sauny, balie). Mniejsze houseboaty z silnikiem 9,9 KM, który według producenta nie wymaga patentu; dostępny pakiet solarny i napęd elektryczny. Domy: „nawet w 3 miesiące”, transport wyceniany indywidualnie.
   - Producent podaje ceny netto, ale jego strony są ze sobą sprzeczne (FAQ a karty modeli). Na stronie FLEET&FLOAT nie publikować cen bez potwierdzenia użytkownika. Model, specyfikację i link do karty producenta można pokazywać jako fakty.
 - Wynajem pojazdów: ciężarowe i osobowe. Lista modeli, cennik i warunki nie zostały przekazane.

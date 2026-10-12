@@ -47,7 +47,7 @@ export const dzialy: Dzial[] = [
     marka: "F&F HOMES",
     sufiks: " HOMES",
     nazwa: "Houseboaty i domy BYGGA",
-    krotko: "Sprzedaż houseboatów i domów modułowych jako dealer producenta BYGGA.",
+    krotko: "Dealer BYGGA na rynki poza Polską: houseboaty, domy modułowe i sauny, obsługa po angielsku, niemiecku i francusku.",
     akcja: "Umów oględziny",
     href: "/homes/",
   },
@@ -60,14 +60,4 @@ export const dzialy: Dzial[] = [
     akcja: "Zapytaj o ofertę",
     href: "/hr/",
   },
-];
-
-// Wybrane modele według kart producenta na bygga.pl (odczyt 10.2026).
-// Bez cen: ceny producenta są niespójne i wymagają potwierdzenia.
-export const modeleBygga = [
-  { model: "FLUO 93 Navigator", rodzaj: "houseboat", mieszkalna: "20,8 m²", wymiary: "pokład 9,3 × 3,2 m", url: "https://www.bygga.pl/fluo-93-navigator/" },
-  { model: "FLUO 84 Pari", rodzaj: "houseboat z sypialnią", mieszkalna: "19,6 m²", wymiary: "pokład 8,5 × 3,7 m", url: "https://www.bygga.pl/fluo-84-pari/" },
-  { model: "FLUO 12 River King", rodzaj: "houseboat, dwie sypialnie", mieszkalna: "35 m² + taras 35 m²", wymiary: "pokład 12 × 4,35 m", url: "https://www.bygga.pl/fluo-12-river-king/" },
-  { model: "Terra Muskoka", rodzaj: "dom modułowy z antresolą", mieszkalna: "34,86 m² + 15 m²", wymiary: "8,3 × 4,2 m", url: "https://www.bygga.pl/terra-muskoka/" },
-  { model: "Terra Sardegna", rodzaj: "dom mobilny na przyczepie", mieszkalna: "18 m²", wymiary: "7,4 × 2,44 m", url: "https://www.bygga.pl/terra-sardegna/" },
 ];
