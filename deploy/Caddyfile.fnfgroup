@@ -1,7 +1,7 @@
-# Strona F&F GROUP (statyczna, Astro). Dopisz do /etc/caddy/Caddyfile na serwerze
-# albo zaimportuj: import /etc/caddy/sites/fleetnfloat.caddy
-www.fleetnfloat.com {
-	root * /var/www/fleetnfloat
+# Strona F&F GROUP www.fnfgroup.pl (statyczna, Astro). Dopisz do /etc/caddy/Caddyfile na serwerze
+# albo zaimportuj: import /etc/caddy/sites/fnfgroup.caddy
+www.fnfgroup.pl {
+	root * /var/www/fnfgroup
 	encode zstd gzip
 	try_files {path} {path}/ {path}/index.html
 	file_server
@@ -18,6 +18,6 @@ www.fleetnfloat.com {
 	}
 }
 
-fleetnfloat.com {
-	redir https://www.fleetnfloat.com{uri} permanent
+fnfgroup.pl {
+	redir https://www.fnfgroup.pl{uri} permanent
 }

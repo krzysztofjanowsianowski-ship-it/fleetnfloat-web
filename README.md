@@ -1,6 +1,6 @@
 # fleetnfloat-web
 
-Strona F&F GROUP (FLEET&FLOAT, fleetnfloat.com): wizytówka grupy i strony działów F&F LEASE, F&F.IT, F&F HOMES, F&F HR. Statyczny serwis w Astro.
+Strona F&F GROUP (FLEET&FLOAT, www.fnfgroup.pl): wizytówka grupy i strony działów F&F LEASE, F&F.IT, F&F HOMES, F&F HR. Statyczny serwis w Astro.
 
 ## Uruchomienie
 
@@ -29,15 +29,14 @@ Wszystkie miejsca do uzupełnienia są w `src/data/firma.ts`. Pole ustawione na 
 - `PRODUCT.md`: potwierdzone fakty o firmie i ograniczenia treści (bez cen BYGGA, bez wymyślonych liczb i opinii).
 - `.impeccable/surfaces/`: kierunek wizualny strony głównej (wizytówka F&F GROUP).
 
-## Wdrożenie (www.fleetnfloat.com)
+## Wdrożenie (www.fnfgroup.pl)
 
 Strona jest statyczna i działa na serwerze Hetzner (91.107.222.145) obok kursy.fleetnfloat.com, za Caddy, który sam wystawia certyfikaty HTTPS.
 
-1. **DNS w home.pl** (panel home.pl → Domeny → fleetnfloat.com → Strefa DNS):
-   - rekord `A` dla `fleetnfloat.com` (host `@`) → `91.107.222.145`
+1. **DNS domeny fnfgroup.pl** u rejestratora:
+   - rekord `A` dla `fnfgroup.pl` (host `@`) → `91.107.222.145`
    - rekord `A` dla `www` → `91.107.222.145`
-   - Rekord `kursy` zostaw bez zmian.
-2. **Jednorazowo na serwerze** (z komputera z dostępem SSH do serwera): `./scripts/setup-server.sh`
+2. **Jednorazowo na serwerze** (z komputera z dostępem SSH): `./scripts/setup-server.sh`
 3. **Każde wdrożenie:** `./scripts/deploy.sh`
 
-`fleetnfloat.com` przekierowuje na `https://www.fleetnfloat.com`. Dopóki w `src/data/firma.ts` brakuje danych firmy, strona ma `noindex` i wyszukiwarki jej nie indeksują; po uzupełnieniu danych znacznik znika przy następnym wdrożeniu.
+`fnfgroup.pl` przekierowuje na `https://www.fnfgroup.pl`. Dopóki w `src/data/firma.ts` brakuje danych firmy, strona ma `noindex`; po uzupełnieniu danych znacznik znika przy następnym wdrożeniu.
