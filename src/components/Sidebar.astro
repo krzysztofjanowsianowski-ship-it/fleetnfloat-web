@@ -1,6 +1,7 @@
 ---
 // Menu boczne sekcji „O grupie”, jak w serwisach korporacyjnych.
 import { dzialy } from "../data/firma";
+import Arrow from "./Arrow.astro";
 ---
 
 <aside class="sidebar" aria-label="Menu sekcji">
@@ -17,7 +18,7 @@ import { dzialy } from "../data/firma";
   <a class="box" href="#kontakt">
     <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="8" width="26" height="17" rx="1.5"></rect><path d="M3 9l13 9 13-9"></path></svg>
     <span><b>Masz pytanie do grupy?</b> Napisz, przekażemy je do właściwego działu.</span>
-    <span class="go">Napisz do nas »</span>
+    <span class="go">Napisz do nas <Arrow /></span>
   </a>
 </aside>
 
@@ -91,7 +92,15 @@ import { dzialy } from "../data/firma";
   .go {
     grid-column: 2;
     justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     font-weight: 600;
+  }
+
+  .go :global(svg) {
+    width: 1em;
+    height: 1em;
   }
 
   @media (max-width: 900px) {

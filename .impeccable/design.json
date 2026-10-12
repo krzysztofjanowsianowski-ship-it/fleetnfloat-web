@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-12T16:24:42+00:00",
+  "generatedAt": "2026-10-12T17:23:41+00:00",
   "title": "Design System: F&F GROUP",
   "extensions": {
     "colorMeta": {
@@ -67,7 +67,7 @@
       "navy-muted": {
         "role": "neutral",
         "displayName": "Muted Navy",
-        "canonical": "oklch(43.8% 0.060 258)",
+        "canonical": "oklch(43.8% 0.06 258)",
         "tonalRamp": [
           "oklch(15% 0.06 258)",
           "oklch(26% 0.06 258)",
@@ -92,6 +92,21 @@
           "oklch(70% 0.055 257)",
           "oklch(82% 0.055 257)",
           "oklch(95% 0.055 257)"
+        ]
+      },
+      "slate-statement": {
+        "role": "neutral",
+        "displayName": "Statement Slate",
+        "canonical": "oklch(52.2% 0.039 255)",
+        "tonalRamp": [
+          "oklch(15% 0.039 255)",
+          "oklch(26% 0.039 255)",
+          "oklch(37% 0.039 255)",
+          "oklch(48% 0.039 255)",
+          "oklch(59% 0.039 255)",
+          "oklch(70% 0.039 255)",
+          "oklch(82% 0.039 255)",
+          "oklch(95% 0.039 255)"
         ]
       },
       "gold": {
@@ -124,45 +139,80 @@
           "oklch(95% 0.081 79)"
         ]
       },
+      "gold-deep-text": {
+        "role": "secondary",
+        "displayName": "Deep Gold Text",
+        "canonical": "oklch(47.8% 0.074 80)",
+        "tonalRamp": [
+          "oklch(15% 0.074 80)",
+          "oklch(26% 0.074 80)",
+          "oklch(37% 0.074 80)",
+          "oklch(48% 0.074 80)",
+          "oklch(59% 0.074 80)",
+          "oklch(70% 0.074 80)",
+          "oklch(82% 0.074 80)",
+          "oklch(95% 0.074 80)"
+        ]
+      },
+      "gold-tagline": {
+        "role": "secondary",
+        "displayName": "Tagline Gold",
+        "canonical": "oklch(54.5% 0.081 78)",
+        "tonalRamp": [
+          "oklch(15% 0.081 78)",
+          "oklch(26% 0.081 78)",
+          "oklch(37% 0.081 78)",
+          "oklch(48% 0.081 78)",
+          "oklch(59% 0.081 78)",
+          "oklch(70% 0.081 78)",
+          "oklch(82% 0.081 78)",
+          "oklch(95% 0.081 78)"
+        ]
+      },
       "deep": {
         "role": "neutral",
-        "displayName": "Pale Deep",
-        "canonical": "oklch(98.1% 0.003 248)",
+        "displayName": "Page White",
+        "canonical": "oklch(100.0% 0.0 0)",
         "tonalRamp": [
-          "oklch(15% 0.003 248)",
-          "oklch(26% 0.003 248)",
-          "oklch(37% 0.003 248)",
-          "oklch(48% 0.003 248)",
-          "oklch(59% 0.003 248)",
-          "oklch(70% 0.003 248)",
-          "oklch(82% 0.003 248)",
-          "oklch(95% 0.003 248)"
+          "oklch(15% 0.0 0)",
+          "oklch(26% 0.0 0)",
+          "oklch(37% 0.0 0)",
+          "oklch(48% 0.0 0)",
+          "oklch(59% 0.0 0)",
+          "oklch(70% 0.0 0)",
+          "oklch(82% 0.0 0)",
+          "oklch(95% 0.0 0)"
         ]
       },
-      "sheet-white": {
+      "paper": {
         "role": "neutral",
         "displayName": "Sheet White",
-        "canonical": "oklch(100% 0 0)",
+        "canonical": "oklch(100.0% 0.0 0)",
         "tonalRamp": [
-          "oklch(15% 0 0)",
-          "oklch(26% 0 0)",
-          "oklch(37% 0 0)",
-          "oklch(48% 0 0)",
-          "oklch(59% 0 0)",
-          "oklch(70% 0 0)",
-          "oklch(82% 0 0)",
-          "oklch(95% 0 0)"
+          "oklch(15% 0.0 0)",
+          "oklch(26% 0.0 0)",
+          "oklch(37% 0.0 0)",
+          "oklch(48% 0.0 0)",
+          "oklch(59% 0.0 0)",
+          "oklch(70% 0.0 0)",
+          "oklch(82% 0.0 0)",
+          "oklch(95% 0.0 0)"
         ]
       },
-      "rule": {
+      "beige": {
         "role": "neutral",
-        "displayName": "Rule",
-        "canonical": "rgba(84, 66, 40, 0.24)"
-      },
-      "rule-soft": {
-        "role": "neutral",
-        "displayName": "Soft Rule",
-        "canonical": "rgba(84, 66, 40, 0.14)"
+        "displayName": "Band Grey",
+        "canonical": "oklch(96.4% 0.003 265)",
+        "tonalRamp": [
+          "oklch(15% 0.003 265)",
+          "oklch(26% 0.003 265)",
+          "oklch(37% 0.003 265)",
+          "oklch(48% 0.003 265)",
+          "oklch(59% 0.003 265)",
+          "oklch(70% 0.003 265)",
+          "oklch(82% 0.003 265)",
+          "oklch(95% 0.003 265)"
+        ]
       },
       "signal-rust": {
         "role": "signal",
@@ -178,36 +228,46 @@
           "oklch(82% 0.134 37)",
           "oklch(95% 0.134 37)"
         ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "canonical": "rgba(32, 58, 95, 0.2)"
+      },
+      "rule-soft": {
+        "role": "neutral",
+        "displayName": "Soft Rule",
+        "canonical": "rgba(32, 58, 95, 0.12)"
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "The F&F GROUP mark in the home hero; uppercase, set via the mark component."
-      },
-      "headline-division": {
-        "displayName": "Headline Division",
-        "purpose": "The division mark on division pages."
+        "purpose": "Division mark heading on division pages."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Section headings in uppercase Bodoni."
+        "purpose": "Uppercase Bodoni contact section heading."
       },
-      "title-mark": {
-        "displayName": "Title Mark",
-        "purpose": "Division mark inside a division tile."
+      "headline-page": {
+        "displayName": "Headline Page",
+        "purpose": "Portal section headings on the home page."
       },
-      "nav-mark": {
-        "displayName": "Nav Mark",
-        "purpose": "Division names in the header navigation."
+      "mark-small": {
+        "displayName": "Mark Small",
+        "purpose": "Division marks in the footer brand row and other-divisions strip."
       },
-      "title": {
-        "displayName": "Title",
-        "purpose": "Plain division name under its mark."
+      "statement": {
+        "displayName": "Statement",
+        "purpose": "Bold centred summary under W skrócie."
       },
       "lead": {
         "displayName": "Lead",
-        "purpose": "Hero and intro paragraphs, max 36-38em."
+        "purpose": "Division intro paragraph, max 40em."
+      },
+      "nav": {
+        "displayName": "Nav",
+        "purpose": "Main menu items."
       },
       "body": {
         "displayName": "Body",
@@ -215,11 +275,11 @@
       },
       "caption": {
         "displayName": "Caption",
-        "purpose": "Figure captions, fine print, crumbs."
+        "purpose": "Crumbs, utility links, captions, fine print."
       },
       "label": {
         "displayName": "Label",
-        "purpose": "In-page section heads, uppercase at 0.16em."
+        "purpose": "Uppercase in-page section heads at 0.16em."
       },
       "label-field": {
         "displayName": "Label Field",
@@ -227,19 +287,18 @@
       },
       "button": {
         "displayName": "Button",
-        "purpose": "Primary and light button labels, uppercase."
+        "purpose": "Primary button label, uppercase."
+      },
+      "action": {
+        "displayName": "Action",
+        "purpose": "Underlined text action label."
       }
     },
     "shadows": [
       {
-        "name": "tile-lift",
-        "value": "0 18px 36px -24px rgba(26, 48, 80, 0.45)",
-        "purpose": "Division tile on hover only, paired with translateY(-2px)."
-      },
-      {
         "name": "proof-frame",
         "value": "0 18px 40px -26px rgba(26, 48, 80, 0.5)",
-        "purpose": "Framed raster screenshot inside division content."
+        "purpose": "Framed raster screenshot inside division content; the only soft shadow."
       },
       {
         "name": "double-ring-primary",
@@ -247,9 +306,9 @@
         "purpose": "Primary button inner keyline at rest."
       },
       {
-        "name": "double-ring-light",
-        "value": "inset 0 0 0 4px #fff, inset 0 0 0 5px var(--navy)",
-        "purpose": "Light button inner keyline on navy bands."
+        "name": "double-ring-primary-hover",
+        "value": "inset 0 0 0 4px var(--navy-ink), inset 0 0 0 5px #fff",
+        "purpose": "Primary button inner keyline on hover."
       },
       {
         "name": "cell-focus",
@@ -261,7 +320,7 @@
       {
         "name": "ease-out-expo",
         "value": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "Tile lift, gold top-line draw and arrow slides."
+        "purpose": "Arrow and chevron slides, diagram quarter offset, tile drawing zoom."
       },
       {
         "name": "duration-state",
@@ -269,26 +328,22 @@
         "purpose": "Colour, border and background state changes."
       },
       {
-        "name": "duration-arrow",
+        "name": "duration-slide",
         "value": "0.25s",
-        "purpose": "Arrow translate on hover (3-4px)."
+        "purpose": "Arrow/chevron translate (3-4px) and tile bar darkening."
       },
       {
-        "name": "duration-tile",
-        "value": "0.3s",
-        "purpose": "Tile lift and shadow."
-      },
-      {
-        "name": "duration-line-draw",
+        "name": "duration-petal",
         "value": "0.35s",
-        "purpose": "Tile gold top line scaling in from the left."
+        "purpose": "Diagram quarter sliding 6px outward and brightening."
+      },
+      {
+        "name": "duration-zoom",
+        "value": "0.5s",
+        "purpose": "Tile drawing scaling to 1.05."
       }
     ],
     "breakpoints": [
-      {
-        "name": "header",
-        "value": "980px"
-      },
       {
         "name": "layout",
         "value": "900px"
@@ -302,6 +357,10 @@
         "value": "760px"
       },
       {
+        "name": "tiles",
+        "value": "600px"
+      },
+      {
         "name": "small",
         "value": "560px"
       }
@@ -312,17 +371,9 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Navy double-ring badge for actions on light grounds (form submit).",
+      "description": "Navy double-ring badge for the division intro CTA and form submit.",
       "html": "<button class=\"ds-button\" type=\"button\">Wyślij zapytanie <svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 10h13M11 5l5 5-5 5\"></path></svg></button>",
       "css": ".ds-button { display: inline-flex; align-items: center; gap: 0.6em; min-height: 52px; padding: 0 22px; font: 600 1.0625rem/1 var(--note); letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: var(--navy); border: 0; border-radius: 0; box-shadow: inset 0 0 0 4px var(--navy), inset 0 0 0 5px rgba(255, 255, 255, 0.7); cursor: pointer; transition: background 0.2s, box-shadow 0.2s; } .ds-button svg { width: 1.1em; height: 1.1em; } .ds-button:hover { background: var(--navy-ink); box-shadow: inset 0 0 0 4px var(--navy-ink), inset 0 0 0 5px #fff; } .ds-button:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }"
-    },
-    {
-      "name": "Light Button",
-      "kind": "button",
-      "refersTo": "button-light",
-      "description": "White double-ring badge for the primary action on navy bands (hero, division intro).",
-      "html": "<div class=\"ds-band\"><a class=\"ds-button-light\" href=\"#\">Przejdź do odpowiedniego działu <svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 10h13M11 5l5 5-5 5\"></path></svg></a></div>",
-      "css": ".ds-band { background: var(--navy); padding: 32px; } .ds-button-light { display: inline-flex; align-items: center; gap: 0.6em; min-height: 52px; padding: 0 22px; font: 600 1.0625rem/1 var(--note); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--navy); background: #fff; border-radius: 0; box-shadow: inset 0 0 0 4px #fff, inset 0 0 0 5px var(--navy); transition: background 0.2s, box-shadow 0.2s; } .ds-button-light svg { width: 1.1em; height: 1.1em; } .ds-button-light:hover { background: var(--deep); box-shadow: inset 0 0 0 4px var(--deep), inset 0 0 0 5px var(--navy); } .ds-button-light:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }"
     },
     {
       "name": "Action Link",
@@ -333,28 +384,44 @@
       "css": ".ds-action { display: inline-flex; align-items: center; gap: 0.45em; font: 600 1rem/1 var(--note); letter-spacing: 0.05em; color: var(--navy); text-decoration: none; padding-bottom: 4px; border-bottom: 1.5px solid var(--navy); white-space: nowrap; transition: color 0.2s, border-color 0.2s; } .ds-action svg { width: 1.05em; height: 1.05em; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); } .ds-action:hover { border-bottom-width: 3px; padding-bottom: 2.5px; } .ds-action:hover svg { transform: translateX(3px); } .ds-action:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }"
     },
     {
-      "name": "Header Navigation",
+      "name": "Two-Row Header",
       "kind": "nav",
-      "refersTo": "header-cta",
-      "description": "White bar with division names in logo-style Bodoni capitals, gold underline for hover/current, and an outlined Kontakt CTA.",
-      "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">F&amp;F LEASE</a><a href=\"#\">F&amp;F.IT</a><a href=\"#\">F&amp;F HOMES</a><a href=\"#\">F&amp;F HR</a><a class=\"ds-nav-cta\" href=\"#\">Kontakt</a></nav>",
-      "css": ".ds-nav { display: flex; align-items: center; gap: clamp(16px, 2vw, 30px); padding: 14px 24px; background: #fff; border-bottom: 1px solid var(--rule-soft); } .ds-nav a { font: 500 0.9375rem/1 var(--serif); letter-spacing: 0.12em; color: var(--navy); text-decoration: none; padding: 8px 0; border-bottom: 1.5px solid transparent; transition: border-color 0.2s; } .ds-nav a:hover, .ds-nav a[aria-current=\"page\"] { border-color: var(--gold); } .ds-nav a.ds-nav-cta { margin-left: auto; font: 600 0.875rem/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 18px; border: 1.5px solid var(--navy); transition: background-color 0.2s, color 0.2s; } .ds-nav a.ds-nav-cta:hover { background: var(--navy); color: #fff; border-color: var(--navy); } .ds-nav a:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }"
+      "refersTo": "nav-link",
+      "description": "White corporate header: utility links row, then logo and Barlow main menu with gold underline on the current item.",
+      "html": "<header class=\"ds-header\"><div class=\"ds-util\"><a href=\"#\">Obszary działalności</a><a href=\"#\">Kontakt</a></div><nav class=\"ds-menu\"><a href=\"#\" aria-current=\"page\">O grupie</a><a href=\"#\">F&amp;F LEASE</a><a href=\"#\">F&amp;F.IT</a><a href=\"#\">F&amp;F HOMES</a><a href=\"#\">F&amp;F HR</a></nav></header>",
+      "css": ".ds-header { background: #fff; border-bottom: 1px solid var(--rule); padding: 0 24px; } .ds-util { display: flex; justify-content: flex-end; gap: 28px; padding-top: 14px; font: 400 0.875rem/1.55 var(--sans); } .ds-util a { color: var(--navy); text-decoration: none; } .ds-util a:hover { text-decoration: underline; } .ds-menu { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px clamp(18px, 2.4vw, 36px); padding: 10px 0 18px; } .ds-menu a { display: block; padding: 6px 0; font: 500 clamp(1rem, 1.3vw, 1.1875rem)/1.2 var(--sans); color: var(--navy); text-decoration: none; border-bottom: 2px solid transparent; transition: border-color 0.2s, color 0.2s; } .ds-menu a:hover { border-color: var(--rule); } .ds-menu a[aria-current=\"page\"] { color: var(--gold-deep-text); border-color: var(--gold); } .ds-menu a:focus-visible, .ds-util a:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }"
     },
     {
-      "name": "Division Tile",
+      "name": "Section Sidebar",
+      "kind": "nav",
+      "refersTo": "sidebar-link",
+      "description": "Ruled section menu on group pages with Bodoni division sub-items.",
+      "html": "<aside class=\"ds-side\"><a href=\"#\" aria-current=\"true\">W skrócie</a><a href=\"#\">Obszary działalności</a><a class=\"ds-sub\" href=\"#\">F&amp;F LEASE</a><a class=\"ds-sub\" href=\"#\">F&amp;F.IT</a><a href=\"#\">Kontakt</a></aside>",
+      "css": ".ds-side { width: 240px; } .ds-side a { display: block; padding: 9px 12px; font: 400 0.9375rem/1.55 var(--sans); color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--rule); } .ds-side a:hover { background: var(--beige); } .ds-side a[aria-current] { color: var(--gold-deep-text); font-weight: 600; } .ds-side a.ds-sub { padding-left: 28px; font-family: var(--serif); font-size: 0.875rem; letter-spacing: 0.08em; } .ds-side a:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }"
+    },
+    {
+      "name": "Area Tile",
       "kind": "card",
-      "refersTo": "division-tile",
-      "description": "Signature: white square tile with the division mark; on hover a navy border, soft lift, gold top line drawn from the left and a sliding arrow.",
-      "html": "<a class=\"ds-tile\" href=\"#\"><span class=\"ds-mark\">F<span class=\"ds-amp\">&amp;</span>F HOMES</span><span class=\"ds-tile-name\">Houseboaty i domy BYGGA</span><span class=\"ds-tile-text\">Dealer houseboatów i domów modułowych BYGGA.</span><span class=\"ds-tile-go\">Przejdź do działu <svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 10h13M11 5l5 5-5 5\"></path></svg></span></a>",
-      "css": ".ds-mark { font-family: var(--serif); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; } .ds-amp { font-style: italic; color: var(--gold); letter-spacing: 0.02em; margin: 0 0.04em; } .ds-tile { position: relative; display: grid; max-width: 420px; padding: clamp(24px, 3vw, 36px); background: #fff; border: 1px solid var(--rule); border-radius: 0; color: var(--navy); text-decoration: none; transition: border-color 0.25s, box-shadow 0.3s, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-tile .ds-mark { font-size: clamp(1.5rem, 2.4vw, 2.125rem); } .ds-tile::before { content: \"\"; position: absolute; left: -1px; right: -1px; top: -1px; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); } .ds-tile:hover { border-color: var(--navy); box-shadow: 0 18px 36px -24px rgba(26, 48, 80, 0.45); transform: translateY(-2px); } .ds-tile:hover::before, .ds-tile:focus-visible::before { transform: scaleX(1); } .ds-tile:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; } .ds-tile-name { margin-top: 14px; font: 600 1.125rem/1.3 var(--sans); } .ds-tile-text { margin-top: 8px; font: 400 1rem/1.5 var(--sans); color: #2b4466; } .ds-tile-go { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--rule-soft); font: 600 0.9375rem/1 var(--sans); letter-spacing: 0.06em; } .ds-tile-go svg { width: 1.1em; height: 1.1em; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); } .ds-tile:hover .ds-tile-go svg { transform: translateX(4px); }"
+      "refersTo": "area-tile-bar",
+      "description": "Signature: grey drawing field over a navy name bar; hover zooms the drawing, darkens the bar and slides the chevron.",
+      "html": "<a class=\"ds-tile\" href=\"#\"><span class=\"ds-tile-img\"><svg viewBox=\"0 0 200 100\" aria-hidden=\"true\"><rect x=\"30\" y=\"30\" width=\"140\" height=\"44\" fill=\"#fff\" stroke=\"var(--navy)\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/><path d=\"M30 52 H170\" fill=\"none\" stroke=\"var(--navy)\" stroke-width=\"1\"/></svg></span><span class=\"ds-tile-bar\"><span class=\"ds-tile-label\"><span class=\"ds-tile-mark\">F<span class=\"ds-amp\">&amp;</span>F HOMES</span><span class=\"ds-tile-name\">Houseboaty i domy BYGGA</span></span><svg class=\"ds-chev\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 5l7 7-7 7M12 5l7 7-7 7\"/></svg></span></a>",
+      "css": ".ds-tile { display: block; max-width: 420px; text-decoration: none; color: #fff; } .ds-tile-img { display: grid; place-items: center; aspect-ratio: 16 / 9; padding: 6% 12%; background: var(--beige); overflow: hidden; } .ds-tile-img svg { width: 100%; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); } .ds-tile:hover .ds-tile-img svg { transform: scale(1.05); } .ds-tile-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 14px 12px 18px; background: var(--navy); transition: background-color 0.25s; } .ds-tile:hover .ds-tile-bar { background: var(--navy-ink); } .ds-tile-label { display: grid; gap: 2px; } .ds-tile-mark { font: 500 1.0625rem/1.2 var(--serif); letter-spacing: 0.12em; text-transform: uppercase; } .ds-amp { font-style: italic; color: var(--gold-on-navy); letter-spacing: 0.02em; } .ds-tile-name { font: 400 0.8125rem/1.4 var(--sans); color: rgba(255, 255, 255, 0.82); } .ds-chev { width: 26px; height: 26px; flex: none; fill: none; stroke: var(--gold-on-navy); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); } .ds-tile:hover .ds-chev { transform: translateX(4px); } .ds-tile:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }"
+    },
+    {
+      "name": "Group Diagram Quarter",
+      "kind": "custom",
+      "refersTo": "group-diagram",
+      "description": "Signature: one diagram quarter with a Bodoni mark; it slides 6px outward and brightens on hover or focus.",
+      "html": "<svg class=\"ds-diagram\" viewBox=\"60 60 280 280\" role=\"group\" aria-label=\"Działy\"><a href=\"#\" class=\"ds-petal\" style=\"--dx:-6px;--dy:-6px\"><path d=\"M311 311 V84 A227 227 0 0 0 84 311 Z\" fill=\"#203A5F\"/><text class=\"ds-p-mark\" x=\"208\" y=\"224\" text-anchor=\"middle\">F<tspan fill=\"#D2B07A\" font-style=\"italic\">&amp;</tspan>F LEASE</text><text class=\"ds-p-name\" x=\"208\" y=\"250\" text-anchor=\"middle\">Wynajem pojazdów</text></a></svg>",
+      "css": ".ds-diagram { width: 280px; height: auto; overflow: visible; } .ds-petal { transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s; outline: none; } .ds-petal:hover, .ds-petal:focus-visible { transform: translate(var(--dx), var(--dy)); filter: brightness(1.12); } .ds-petal:focus-visible path { stroke: var(--gold); stroke-width: 3; } .ds-p-mark { font: 500 21px var(--serif); letter-spacing: 2px; fill: #fff; } .ds-p-name { font: 500 14px var(--sans); fill: rgba(255, 255, 255, 0.92); }"
     },
     {
       "name": "Form Cell",
       "kind": "input",
       "refersTo": "form-cell",
-      "description": "Ruled cell inside a navy-framed form sheet; label at top, borderless input, whole cell tints on focus.",
+      "description": "Ruled cell inside a navy-framed form sheet; label at top, borderless input, inset navy edge on focus.",
       "html": "<div class=\"ds-form\"><div class=\"ds-cell\"><label for=\"ds-f1\">E-mail</label><input id=\"ds-f1\" type=\"email\" /></div><div class=\"ds-cell\"><label for=\"ds-f2\">Telefon <span>(opcjonalnie)</span></label><input id=\"ds-f2\" type=\"tel\" /></div></div>",
-      "css": ".ds-form { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid var(--navy); background: #fff; border-radius: 0; } .ds-cell { display: flex; flex-direction: column; padding: 12px 16px; border-right: 1px solid var(--rule); transition: background-color 0.2s; } .ds-cell:last-child { border-right: 0; } .ds-cell:focus-within { background: var(--deep); box-shadow: inset 0 0 0 1.5px var(--navy); } .ds-cell label { font: 600 0.75rem/1.2 var(--note); letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); } .ds-cell label span { letter-spacing: 0.05em; text-transform: none; font-weight: 500; color: #4a5f7d; } .ds-cell input { width: 100%; margin-top: 6px; padding: 6px 0; border: 0; background: transparent; font: 400 1.125rem/1.4 var(--sans); color: var(--navy-ink); outline: none; }"
+      "css": ".ds-form { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid var(--navy); background: var(--paper); border-radius: 0; } .ds-cell { display: flex; flex-direction: column; padding: 12px 16px; border-right: 1px solid var(--rule); transition: background-color 0.2s; } .ds-cell:last-child { border-right: 0; } .ds-cell:focus-within { box-shadow: inset 0 0 0 1.5px var(--navy); } .ds-cell label { font: 600 0.75rem/1.2 var(--note); letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy-ink); } .ds-cell label span { letter-spacing: 0.05em; text-transform: none; font-weight: 500; color: var(--navy-quiet, #4a5f7d); } .ds-cell input { width: 100%; margin-top: 6px; padding: 6px 0; border: 0; background: transparent; font: 400 1.125rem/1.4 var(--sans); color: var(--navy-ink); outline: none; }"
     },
     {
       "name": "Checklist",
@@ -363,73 +430,69 @@
       "description": "Ruled list under a navy top line, each row led by a short gold dash.",
       "html": "<ul class=\"ds-checklist\"><li><b>Rodzaj pojazdu.</b> Ciężarowy czy osobowy.</li><li><b>Termin.</b> Od kiedy i na jak długo.</li></ul>",
       "css": ".ds-checklist { margin: 0; padding: 0; list-style: none; border-top: 1.5px solid var(--navy); max-width: 40em; font: 400 1.125rem/1.5 var(--sans); color: var(--navy-ink); } .ds-checklist li { position: relative; padding: 14px 0 14px 30px; border-bottom: 1px solid var(--rule); } .ds-checklist li::before { content: \"\"; position: absolute; left: 2px; top: 1.55em; width: 14px; height: 1.5px; background: var(--gold); } .ds-checklist b { font-weight: 600; color: var(--navy); }"
-    },
-    {
-      "name": "Section Head",
-      "kind": "custom",
-      "refersTo": "section-head",
-      "description": "Uppercase Bodoni headline and a one-line aside sharing a baseline over a gold hairline.",
-      "html": "<div class=\"ds-sec-head\"><h2>W skład grupy należą</h2><p>Przejdź do odpowiedniego działu.</p></div>",
-      "css": ".ds-sec-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 32px; padding-bottom: 22px; border-bottom: 1px solid var(--gold); } .ds-sec-head h2 { margin: 0; font: 500 clamp(1.75rem, 3vw, 2.5rem)/1.15 var(--serif); letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); } .ds-sec-head p { margin: 0; font: 400 1.125rem/1.55 var(--sans); color: #2b4466; }"
     }
   ],
   "narrative": {
-    "northStar": "The Brand-Sheet Calling Card",
-    "overview": "The site is a printed calling card for a group of four divisions, composed entirely from the FLEET&FLOAT identity sheet. Every name is set the way the logo sets it: Bodoni Moda capitals spaced wide, with an italic gold ampersand between the two Fs. Navy and gold come straight from the logo files. A navy band opens every page with the white mark and the sygnet (white ring, gold inner ring, gold ampersand). Below it the ground turns pale and cool, and content sits on white sheets edged with a thin navy rule.\n\nDensity is calm and orderly, like good stationery. Sections are separated by a generous fluid step and by hairline rules, not by colour blocks. Each division is a white tile carrying its own mark, a one-line description and a navy line drawing of what it offers (vehicles, a screen, a houseboat, an office). Depth stays quiet: corners are square, surfaces sit flat at rest, and lift appears only when a tile is approached or a raster screenshot needs to read as an object.\n\nThe brand assets are binding: the logo and sygnet are used as supplied and never redrawn or recoloured. The rejected variant of the division tile is the generic one: an icon, a heading and text in a rounded card with a drop shadow.",
+    "northStar": "The Group Portal in Brand Ink",
+    "overview": "The site works like a capital group's corporate portal: a white page with a two-row header, breadcrumbs, a section sidebar, and content laid out in plain ruled blocks. What makes it FLEET&FLOAT is the ink. Navy and gold come straight from the logo files, and every division name in a brand position is set the way the logo sets it, in Bodoni Moda capitals spaced wide with an italic gold ampersand. Explanatory text is plain Barlow.\n\nDensity is orderly and informational rather than theatrical. Grounds are white, light grey bands (#f2f3f5) hold the contact section, the other-divisions strip, the footer's legal row and the tile image fields, and hairline navy-tinted rules separate everything else. The signature object is the group diagram on the home page: four quarter-circle segments in navy and gold tones around the light-ground sygnet, with text set around the ring. Depth is almost absent. Corners are square, surfaces stay flat, and interaction shows as a change of tone, position or scale rather than as lift.\n\nThe brand assets are binding: the logo files and the sygnet are used as supplied, in the colours of their ground.",
     "keyCharacteristics": [
-      "Names always appear in logo notation: F&F + division in spaced serif capitals with a gold italic ampersand.",
-      "A navy hero band with the white mark and the sygnet opens the home page and every division page; a navy footer closes them.",
-      "Pale cool ground (deep), white sheets, thin navy rules; square corners everywhere.",
-      "Navy line drawings in one stroke family illustrate each division and are labelled as illustrative.",
-      "One signature motion: the tile's gold top line draws in from the left while its arrow slides forward."
+      "Corporate portal frame: utility links row, logo plus main menu row, breadcrumbs, a 240px section sidebar on group pages.",
+      "White ground, light grey (#f2f3f5) bands, navy-tinted hairline rules; square corners everywhere.",
+      "Division marks in logo notation: spaced Bodoni capitals with the italic gold ampersand.",
+      "Group diagram: four quarters around the sygnet that slide outward and brighten on hover.",
+      "Area tiles: a grey drawing field over a navy name bar; on hover the drawing zooms in, the bar darkens and the chevron slides."
     ],
     "rules": [
       {
         "name": "The Two Inks Rule",
-        "body": "Navy and gold are the only chromatic colours. Gold marks and underlines; navy carries everything you read. Gold never sets running text on a light ground.",
+        "body": "Navy and gold are the only chromatic families. Gold marks, underlines and rings. Navy carries what you read. The diagram's extra tones (a lighter navy and two dark golds) belong to those families and are confined to the diagram.",
         "section": "colors"
       },
       {
         "name": "The Ground-Matched Gold Rule",
-        "body": "Use gold on pale and white grounds and gold-on-navy on navy bands, exactly as the logo files do. Don't swap them.",
+        "body": "Use gold on white and grey, gold-on-navy on navy fills, and gold-deep-text whenever gold has to be read as text on a light ground. Don't swap them.",
         "section": "colors"
       },
       {
         "name": "The Logo Notation Rule",
-        "body": "The group and division names are always set with the mark component: Bodoni capitals at 0.12–0.14em spacing, with the ampersand in italic gold at 0.02em. Never write \"F&F\" in the sans, and never set the ampersand roman or in navy.",
+        "body": "A division or group mark (page heading, tile bar, diagram quarter, footer brand row, other-divisions strip, form division select) is set in Bodoni capitals at 0.12–0.14em spacing, with an italic ampersand in the ground-matched gold. Never set a mark's ampersand roman.",
         "section": "typography"
       },
       {
         "name": "The Serif Speaks for the Brand Rule",
-        "body": "Bodoni is reserved for marks, section headlines, nav items, table row heads and the form's division select. Explanation, labels and controls are Barlow.",
+        "body": "Bodoni is reserved for marks, the uppercase contact headline, table row heads and the form's division select. Page headings, navigation, explanation, labels and controls are Barlow.",
         "section": "typography"
       },
       {
-        "name": "The Lift on Approach Rule",
-        "body": "Tiles rest flat with a thin rule border. Only hover or focus brings the navy border, the lift, and the gold top line.",
+        "name": "The Portal Frame Rule",
+        "body": "Group-level pages keep the corporate frame: two-row header, breadcrumbs, and the section sidebar on the left.",
+        "section": "layout"
+      },
+      {
+        "name": "The Tone, Not Lift Rule",
+        "body": "Hover is shown by darkening (tile bar, button), tinting (sidebar links, other-division cells), moving (diagram quarters by 6px outward, chevrons and arrows by 3–4px) or scaling inside a clipped field (tile drawing to 1.05). Surfaces never rise.",
         "section": "elevation"
       },
       {
         "name": "The Square Sheet Rule",
-        "body": "No border-radius on any interface surface. The only rounded shapes are inside the supplied app-icon asset and the drawings themselves.",
+        "body": "No border-radius on any interface surface. Rounding is allowed only inside the supplied app icon, line drawings and small stroke icons.",
         "section": "shapes"
       }
     ],
     "dos": [
-      "Do set every group and division name with the mark: Bodoni capitals at 0.14em with the italic gold ampersand (gold on light, gold-on-navy on navy).",
-      "Do open each page with the navy band carrying the white mark and the sygnet, and close it with the navy footer.",
-      "Do separate content with hairlines (rule, rule-soft) and the fluid section step, not with colour blocks or cards.",
-      "Do use the double-ring button: navy on light grounds, light on navy bands, 52px high, condensed uppercase with the drawn arrow.",
-      "Do reserve lift for approach: tiles flat at rest, Tile Lift and the drawn gold top line on hover or focus.",
+      "Do keep the portal frame on group pages: two-row header, breadcrumbs, 240px section sidebar.",
+      "Do set every division and group mark in Bodoni capitals at 0.12–0.14em with the italic ampersand in the ground-matched gold.",
+      "Do build on white with band grey (#f2f3f5) for secondary bands, and separate content with rule and rule-soft hairlines.",
+      "Do use gold-deep-text, not gold, when gold has to be read as text on a light ground.",
+      "Do show hover as tone, offset or clipped scale (tile bar to ink navy, diagram quarter 6px outward, drawing to 1.05), never as lift.",
       "Do mark illustrative drawings as such and show missing facts with the draft marker."
     ],
     "donts": [
-      "Don't redraw, recolour or re-typeset the logo or the sygnet; use the supplied files and the sygnet component as they are.",
+      "Don't redraw or recolour the logo files. Use the variant that matches the ground.",
       "Don't round corners on any interface surface.",
-      "Don't build division tiles as an icon, heading and text in a rounded card with a drop shadow.",
-      "Don't set running text in gold or introduce a third chromatic colour; rust is for errors only.",
-      "Don't write \"F&F\" in the sans or set the ampersand roman.",
-      "Don't put shadows on surfaces at rest, except the Proof Frame around a raster screenshot."
+      "Don't set running text in gold or add a chromatic family beyond navy and gold. Rust is for errors only.",
+      "Don't put shadows on surfaces, except the Proof Frame around a raster screenshot.",
+      "Don't set a mark's ampersand roman or in the wrong gold for its ground."
     ]
   }
 }
