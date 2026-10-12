@@ -50,7 +50,11 @@ Strona jest statyczna i działa na serwerze Hetzner (91.107.222.145) obok kursy.
 1. **DNS domeny fnfgroup.pl** u rejestratora:
    - rekord `A` dla `fnfgroup.pl` (host `@`) → `91.107.222.145`
    - rekord `A` dla `www` → `91.107.222.145`
-2. **Jednorazowo na serwerze** (z komputera z dostępem SSH): `./scripts/setup-server.sh`
-3. **Każde wdrożenie:** `./scripts/deploy.sh`
+2. **Wdrożenie bez kopii projektu na komputerze** (najprostsze): zaloguj się na serwer `ssh root@91.107.222.145` i uruchom
+   ```
+   curl -fsSL https://raw.githubusercontent.com/krzysztofjanowsianowski-ship-it/fleetnfloat-web/claude/jolly-bell-v2k0uz/scripts/server-deploy.sh | bash
+   ```
+   Skrypt pobiera kod z GitHuba, buduje stronę na serwerze, instaluje konfigurację Caddy i podmienia pliki. To samo polecenie służy do każdego kolejnego wdrożenia.
+3. **Albo z własnej kopii projektu** (komputer z Node 22 i dostępem SSH): jednorazowo `./scripts/setup-server.sh`, potem przy każdym wdrożeniu `./scripts/deploy.sh`.
 
 `fnfgroup.pl` przekierowuje na `https://www.fnfgroup.pl`. Dopóki w `src/data/firma.ts` brakuje danych firmy, strona ma `noindex`; po uzupełnieniu danych znacznik znika przy następnym wdrożeniu.
