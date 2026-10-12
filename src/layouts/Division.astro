@@ -10,27 +10,46 @@ import { dzialy, firma } from "../data/firma";
 interface Props {
   id: string;
   lead: string;
+  // Podstrona działu, np. Inwestycje w F&F HOMES: dodaje okruszek, tytuł i własny przycisk.
+  podstrona?: { nazwa: string; akcja?: string };
+  // Zakładki między stronami działu.
+  zakladki?: { href: string; nazwa: string }[];
 }
 
-const { id, lead } = Astro.props;
+const { id, lead, podstrona, zakladki } = Astro.props;
 const dzial = dzialy.find((d) => d.id === id)!;
+const sciezka = Astro.url.pathname;
 const pozostale = dzialy.filter((d) => d.id !== id);
 ---
 
-<Base title={`${dzial.marka} · ${dzial.nazwa} · ${firma.grupa}`} description={`${dzial.marka}: ${dzial.krotko}`}>
+<Base title={podstrona ? `${podstrona.nazwa} · ${dzial.marka} · ${firma.grupa}` : `${dzial.marka} · ${dzial.nazwa} · ${firma.grupa}`} description={`${dzial.marka}: ${dzial.krotko}`}>
   <section class="intro">
     <div class="wrap">
       <div class="intro-grid">
         <div>
-          <nav class="crumbs" aria-label="Okruszki"><a href="/">Strona główna</a><span aria-hidden="true">»</span><a href="/#obszary">Obszary działalności</a><span aria-hidden="true">»</span><span>{dzial.marka}</span></nav>
+          <nav class="crumbs" aria-label="Okruszki"><a href="/">Strona główna</a><span aria-hidden="true">»</span><a href="/#obszary">Obszary działalności</a><span aria-hidden="true">»</span>{podstrona ? <><a href={dzial.href}>{dzial.marka}</a><span aria-hidden="true">»</span><span>{podstrona.nazwa}</span></> : <span>{dzial.marka}</span>}</nav>
           <h1><Mark sufiks={dzial.sufiks} /></h1>
-          <p class="lead"><strong>{dzial.nazwa}.</strong> {lead}</p>
-          <a class="button" href="#kontakt">{dzial.akcja} <Arrow /></a>
+          <p class="lead"><strong>{podstrona?.nazwa ?? dzial.nazwa}.</strong> {lead}</p>
+          <a class="button" href="#kontakt">{podstrona?.akcja ?? dzial.akcja} <Arrow /></a>
         </div>
         <Sygnet class="intro-sygnet" />
       </div>
     </div>
   </section>
+
+  {
+    zakladki && (
+      <nav class="tabs" aria-label={`Strony ${dzial.marka}`}>
+        <div class="wrap">
+          {zakladki.map((z) => (
+            <a href={z.href} aria-current={sciezka.replace(/\/$/, "") === z.href.replace(/\/$/, "") ? "page" : undefined}>
+              {z.nazwa}
+            </a>
+          ))}
+        </div>
+      </nav>
+    )
+  }
 
   <div class="body">
     <div class="wrap">
@@ -125,6 +144,37 @@ const pozostale = dzialy.filter((d) => d.id !== id);
 
   .body {
     padding: var(--step) 0;
+  }
+
+  .tabs {
+    background: #fff;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .tabs .wrap {
+    display: flex;
+    gap: clamp(20px, 3vw, 40px);
+    overflow-x: auto;
+  }
+
+  .tabs a {
+    padding: 16px 0 14px;
+    white-space: nowrap;
+    font: 600 0.875rem/1 var(--sans);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #3d5373;
+    border-bottom: 3px solid transparent;
+  }
+
+  .tabs a:hover {
+    color: var(--navy);
+  }
+
+  .tabs a[aria-current="page"] {
+    color: var(--navy);
+    border-bottom-color: var(--gold);
   }
 
   .others {

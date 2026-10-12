@@ -3,12 +3,14 @@ import Division from "../layouts/Division.astro";
 import HouseboatProfile from "../components/HouseboatProfile.astro";
 import External from "../components/External.astro";
 import Arrow from "../components/Arrow.astro";
+import { zakladkiHomes } from "../data/homes";
 import { producent, houseboaty, cechyHouseboatow, domy, cechyDomow, sauny, jezyki } from "../data/bygga";
 ---
 
 <Division
   id="homes"
-  lead="Jesteśmy dealerem BYGGA, producenta houseboatów i domów modułowych z Bydgoszczy, w sprzedaży poza terytorium Polski. Klientów obsługujemy po angielsku, niemiecku i francusku."
+  lead="Jesteśmy dealerem BYGGA, producenta houseboatów i domów modułowych z Bydgoszczy, w sprzedaży poza terytorium Polski. Klientów obsługujemy po angielsku, niemiecku i francusku. Prowadzimy też własne inwestycje budowlane."
+  zakladki={zakladkiHomes}
 >
   <section aria-labelledby="eksport-tytul">
     <h2 id="eksport-tytul" class="h-sec">Dla klientów spoza Polski</h2>

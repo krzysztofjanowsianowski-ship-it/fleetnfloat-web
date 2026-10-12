@@ -1,0 +1,119 @@
+---
+// Przekrój terenu: dom na skarpie, poniżej rzeka. Rysunek poglądowy, nie projekt.
+interface Props {
+  podpis?: boolean;
+}
+
+const { podpis = true } = Astro.props;
+---
+
+<figure class="view">
+  <svg viewBox="0 0 560 300" role="img" aria-labelledby="sk-title">
+    <title id="sk-title">Rysunek poglądowy: dom wypoczynkowy na skarpie z widokiem na rzekę</title>
+    <path d="M0 130 H210 C260 132 280 170 310 210 C330 236 350 246 380 248 H560 V300 H0 Z" class="ground"></path>
+    <path d="M370 248 H560 V300 H340 C350 270 356 256 370 248 Z" class="water"></path>
+    <path d="M400 262 h40 M470 272 h50 M420 284 h30" class="wave"></path>
+    <g class="ink">
+      <rect x="70" y="72" width="150" height="58"></rect>
+      <path d="M60 72 H230" class="cornice"></path>
+      <rect x="150" y="84" width="58" height="34" class="glass"></rect>
+      <path d="M179 84 v34" class="thin"></path>
+      <rect x="86" y="90" width="26" height="40"></rect>
+      <path d="M220 118 h44 v12 h-44" class="deck"></path>
+    </g>
+    <g class="sight">
+      <path d="M210 100 C300 120 380 190 450 236"></path>
+    </g>
+    <g class="leaders">
+      <path d="M150 72 L130 30 H110"></path>
+      <path d="M280 176 L330 140 H350"></path>
+      <path d="M480 262 L500 210 H510"></path>
+    </g>
+    <g class="notes">
+      <text x="106" y="34" text-anchor="end">DOM</text>
+      <text x="354" y="144">SKARPA</text>
+      <text x="514" y="214">BRDA</text>
+    </g>
+  </svg>
+  {podpis && <figcaption>Położenie na skarpie nad rzeką. Rysunek poglądowy, nie projekt.</figcaption>}
+</figure>
+
+<style>
+  .view svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .ground {
+    fill: var(--beige);
+    stroke: var(--navy);
+    stroke-width: 1.4;
+  }
+
+  .water {
+    fill: rgba(32, 58, 95, 0.14);
+    stroke: none;
+  }
+
+  .wave {
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 1;
+    opacity: 0.5;
+  }
+
+  .ink rect,
+  .ink path {
+    fill: var(--deep);
+    stroke: var(--navy);
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+  }
+
+  .ink .thin {
+    fill: none;
+    stroke-width: 1;
+  }
+
+  .ink .glass {
+    fill: rgba(32, 58, 95, 0.08);
+    stroke-width: 1;
+  }
+
+  .ink .deck {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.6;
+  }
+
+  .ink .cornice {
+    stroke-width: 5;
+    stroke-linecap: square;
+  }
+
+  .sight path {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.2;
+    stroke-dasharray: 4 5;
+  }
+
+  .leaders path {
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 1;
+  }
+
+  .notes text {
+    font: 600 12px var(--note);
+    letter-spacing: 1.4px;
+    fill: var(--navy);
+  }
+
+  figcaption {
+    margin-top: 10px;
+    font: 500 0.875rem/1.4 var(--note);
+    letter-spacing: 0.03em;
+    color: #4a5f7d;
+  }
+</style>
