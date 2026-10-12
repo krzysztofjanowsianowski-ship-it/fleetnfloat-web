@@ -15,7 +15,7 @@ Astro (statyczna strona, wybór użytkownika). Kod w `fleetnfloat-web/` w repozy
 Potwierdzone przez użytkownika (10.2026): grupa występuje jako **F&F GROUP** („Grupa F&F”), marka i logo FLEET&FLOAT bez zmian. Działy mają własne nazwy:
 
 - **F&F LEASE**: najem okazjonalny (od 1 dnia, z kalendarzem dostępności), krótkoterminowy (do 12 miesięcy), długoterminowy oraz leasing na 2 do 5 lat. Flota do najmu okazjonalnego (10.2026): Lexus LC 500 (czerwony), Lexus RX 350 z 2023 r. (miedziany), Mercedes-Benz GLC z 2018 r. (biały z czarnym dachem). Nazwy modeli do potwierdzenia przez użytkownika (podane jako „CL500” i „X350”). Lexus LC 500 rocznik 2018. Cennik najmu okazjonalnego (netto za dobę, wszystkie auta): 1–3 doby 500 zł, 4–8 dób 450 zł, od 9 dób 400 zł (progi „>4 do 8” i „>8” zinterpretowane jako 4–8 i 9+). Ceny pozostałych form ustalane indywidualnie.
-- **F&F.IT**: oprogramowanie (narzędzia biurowe, CRM, integracje, platformy szkoleniowe).
+- **F&F.IT**: oprogramowanie do biura z użyciem AI. Specjalizacje: automatyzacja procesów, integracja środowisk, systemy zarządzania, kontroling, AI marketing; od najmniejszych automatyzacji po rozbudowane CRM. Realizacje: program do rozliczania czasu pracy kierowców, CRM dla agencji pracy z modułem kadrowym, program księgowy, system e-learningowy z symulatorem tachografu (kursy.fleetnfloat.com).
 - **F&F HOMES**: sprzedaż houseboatów i domów jako dealer BYGGA.
 - **F&F HR**: wsparcie kadrowe i administracyjne.
 

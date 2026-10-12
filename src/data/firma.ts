@@ -38,7 +38,7 @@ export const dzialy: Dzial[] = [
     marka: "F&F.IT",
     sufiks: ".IT",
     nazwa: "Oprogramowanie dla firm",
-    krotko: "Narzędzia biurowe, systemy CRM, integracje i platformy szkoleniowe.",
+    krotko: "Oprogramowanie do biura z użyciem AI: automatyzacje, integracje, systemy zarządzania, kontroling i AI marketing.",
     akcja: "Umów rozmowę",
     href: "/it/",
   },
