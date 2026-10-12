@@ -62,8 +62,7 @@ Jedna firma, cztery niezależne specjalizacje pod wspólną marką i hasłem „
 - Nazwa: FLEET&FLOAT. Hasło: „Usługi dla Twojego biznesu”.
 - Logo (wiążące, nie przerysowywać): `public/brand/logo.svg` (pełne z hasłem), `logo-bez-hasla.svg`, `logo-granat.svg` (granat jednokolorowe), `logo-czarne.svg`, `ikona-aplikacji.svg` (zaokrąglony kwadrat w granacie).
 - Sygnet: ampersand z ozdobnymi zakończeniami w podwójnym okręgu (gruby granatowy pierścień, cienki złoty wewnętrzny). Logotyp: wersaliki szeryfowe w szerokim rozstrzeleniu, złoty ampersand między słowami; hasło bezszeryfowe.
-- Decyzja użytkownika (10.2026): na stronie granat zastąpiono ciemnym brązem espresso `#3B2F26` dopasowanym do beżowych teł; warianty logo w tym kolorze są w `public/brand/braz/`, oryginały bez zmian w `public/brand/`.
-- Kolory z oryginalnych plików logo: granat `#203A5F`, złoto na jasnym tle `#B8925A`, złoto na granacie `#D2B07A`, ciemne złoto hasła `#8A6A36`. Wersje na granacie: biały logotyp, złote hasło i sygnet.
+- Kolory z plików logo: granat `#203A5F`, złoto na jasnym tle `#B8925A`, złoto na granacie `#D2B07A`, ciemne złoto hasła `#8A6A36`. Wersje na granacie: biały logotyp, złote hasło i sygnet.
 
 ## Evidence on Hand
 

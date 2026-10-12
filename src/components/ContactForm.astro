@@ -117,7 +117,7 @@ const { wybrany } = Astro.props;
   .tb {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border: 1.5px solid var(--brown);
+    border: 1.5px solid var(--navy);
     background: var(--paper);
   }
 
@@ -146,21 +146,21 @@ const { wybrany } = Astro.props;
 
   .cell:focus-within {
     background: var(--deep);
-    box-shadow: inset 0 0 0 1.5px var(--brown);
+    box-shadow: inset 0 0 0 1.5px var(--navy);
   }
 
   label {
     font: 600 0.75rem/1.2 var(--note);
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--brown);
+    color: var(--navy);
   }
 
   label span {
     letter-spacing: 0.05em;
     text-transform: none;
     font-weight: 500;
-    color: #6b5a4a;
+    color: #4a5f7d;
   }
 
   input:not([type="checkbox"]),
@@ -172,13 +172,13 @@ const { wybrany } = Astro.props;
     border: 0;
     background: transparent;
     font: 400 1.125rem/1.4 var(--sans);
-    color: var(--brown-ink);
+    color: var(--navy-ink);
     outline: none;
   }
 
   select {
     font: 500 1.25rem/1.3 var(--serif);
-    color: var(--brown);
+    color: var(--navy);
     cursor: pointer;
   }
 
@@ -232,7 +232,7 @@ const { wybrany } = Astro.props;
 
   .status {
     font: 500 1rem/1.45 var(--note);
-    color: var(--brown);
+    color: var(--navy);
     max-width: 52ch;
   }
 

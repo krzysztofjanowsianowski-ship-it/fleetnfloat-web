@@ -24,7 +24,7 @@ Wszystkie miejsca do uzupełnienia są w `src/data/firma.ts`. Pole ustawione na 
 
 ## Materiały
 
-- `public/brand/`: oryginalne logo od klienta (granat); `public/brand/braz/` to te same pliki w brązie espresso #3B2F26, używane na stronie; `logo-na-granacie.svg` to wersja na granatowe tło, przekolorowana z `logo.svg` zgodnie z arkuszem znaku.
+- `public/brand/`: logo w wariantach od klienta; `logo-na-granacie.svg` to wersja na granatowe tło, przekolorowana z `logo.svg` zgodnie z arkuszem znaku.
 - `public/realizacje/kursy-symulator.webp`: zrzut ekranu z platformy kursy.fleetnfloat.com; pochodzenie zapisane w pliku `.json` obok.
 - `PRODUCT.md`: potwierdzone fakty o firmie i ograniczenia treści (bez cen BYGGA, bez wymyślonych liczb i opinii).
 - `.impeccable/surfaces/`: kierunek wizualny strony głównej (wizytówka F&F GROUP).

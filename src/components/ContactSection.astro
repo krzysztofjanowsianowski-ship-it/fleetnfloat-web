@@ -22,7 +22,7 @@ const {
     <div class="grid">
       <ContactForm wybrany={wybrany} />
       <aside class="firm" aria-label="Dane firmy">
-        <img src="/brand/braz/logo-bez-hasla.svg" alt="FLEET&FLOAT" width="2075" height="496" />
+        <img src="/brand/logo-bez-hasla.svg" alt="FLEET&FLOAT" width="2075" height="496" />
         <dl>
           <div><dt>Adres</dt><dd>{firma.adres ?? <span class="draft">[adres do uzupełnienia]</span>}</dd></div>
           <div><dt>NIP</dt><dd>{firma.nip ?? <span class="draft">[NIP do uzupełnienia]</span>}</dd></div>
@@ -45,13 +45,13 @@ const {
     font: 500 clamp(1.75rem, 3vw, 2.5rem) / 1.15 var(--serif);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--brown);
+    color: var(--navy);
   }
 
   .intro {
     margin-top: 14px;
     max-width: 40em;
-    color: #4a3b2f;
+    color: #2b4466;
   }
 
   .grid {
@@ -63,7 +63,7 @@ const {
   }
 
   .firm {
-    border-top: 1.5px solid var(--brown);
+    border-top: 1.5px solid var(--navy);
     padding-top: 22px;
   }
 
@@ -88,7 +88,7 @@ const {
     font: 600 0.75rem/1.6 var(--sans);
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--brown);
+    color: var(--navy);
   }
 
   dd {
