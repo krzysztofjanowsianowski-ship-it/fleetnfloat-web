@@ -10,10 +10,12 @@ colors:
   navy-quiet: "#4a5f7d"
   gold: "#b8925a"
   gold-on-navy: "#d2b07a"
-  deep: "#f7f9fb"
+  deep: "#f4eee4"
+  beige: "#ece2d1"
+  paper: "#fffdf9"
   sheet-white: "#ffffff"
-  rule: "rgba(32, 58, 95, 0.28)"
-  rule-soft: "rgba(32, 58, 95, 0.14)"
+  rule: "rgba(84, 66, 40, 0.24)"
+  rule-soft: "rgba(84, 66, 40, 0.14)"
   signal-rust: "#9a3b1f"
 typography:
   display:
@@ -139,7 +141,7 @@ components:
 
 **Creative North Star: "The Brand-Sheet Calling Card"**
 
-The site is a printed calling card for a group of four divisions, composed entirely from the FLEET&FLOAT identity sheet. Every name is set the way the logo sets it: Bodoni Moda capitals spaced wide, with an italic gold ampersand between the two Fs. Navy and gold come straight from the logo files. A navy band opens every page with the white mark and the sygnet (white ring, gold inner ring, gold ampersand). Below it the ground turns pale and cool, and content sits on white sheets edged with a thin navy rule.
+The site is a printed calling card for a group of four divisions, composed entirely from the FLEET&FLOAT identity sheet. Every name is set the way the logo sets it: Bodoni Moda capitals spaced wide, with an italic gold ampersand between the two Fs. Navy and gold come straight from the logo files. A navy band opens every page with the white mark and the sygnet (white ring, gold inner ring, gold ampersand). Below it the ground turns warm beige, taken from the gold of the logo, and content sits on warm-white paper sheets edged with a thin warm rule.
 
 Density is calm and orderly, like good stationery. Sections are separated by a generous fluid step and by hairline rules, not by colour blocks. Each division is a white tile carrying its own mark, a one-line description and a navy line drawing of what it offers (vehicles, a screen, a houseboat, an office). Depth stays quiet: corners are square, surfaces sit flat at rest, and lift appears only when a tile is approached or a raster screenshot needs to read as an object.
 
@@ -148,7 +150,7 @@ The brand assets are binding: the logo and sygnet are used as supplied and never
 **Key Characteristics:**
 - Names always appear in logo notation: F&F + division in spaced serif capitals with a gold italic ampersand.
 - A navy hero band with the white mark and the sygnet opens the home page and every division page; a navy footer closes them.
-- Pale cool ground (deep), white sheets, thin navy rules; square corners everywhere.
+- Warm beige ground (deep), deeper beige bands (beige) for contact and "Pozostałe działy", warm-white paper sheets, thin warm rules; square corners everywhere.
 - Navy line drawings in one stroke family illustrate each division and are labelled as illustrative.
 - One signature motion: the tile's gold top line draws in from the left while its arrow slides forward.
 
@@ -165,7 +167,7 @@ Two inks from the logo sheet, navy and gold, on a pale cool paper, with navy tin
 - **Gold on Navy** (gold-on-navy): the logo's gold for dark grounds. Used for the ampersand in hero marks, the sygnet's inner ring and ampersand, footer column headings and footer link underlines.
 
 ### Neutral
-- **Pale Deep** (deep): the page ground, the contact section, the hover fill of light buttons and division links, the focus fill of form cells, and the paper fill inside line drawings.
+- **Beige** (deep, #f4eee4): the page ground. **Deep Beige** (beige, #ece2d1): the contact section and the other-divisions strip. **Paper** (paper, #fffdf9): header, tiles, form, screenshot frame and light buttons. The beige ground also carries the hover fill of light buttons and division links, the focus fill of form cells, and the paper fill inside line drawings.
 - **Sheet White** (sheet-white): the header bar, tiles, form, screenshot frame, and all text and marks on navy (lead copy at 88% opacity, secondary footer copy at 70–78%).
 - **Prose Navy** (navy-text): running text in prose blocks, leads and tile descriptions on white and pale grounds.
 - **Muted Navy** (navy-muted): table column heads and fine print.

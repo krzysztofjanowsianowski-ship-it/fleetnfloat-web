@@ -115,8 +115,8 @@ const pozostale = dzialy.filter((d) => d.id !== id);
 
   .button.light {
     color: var(--navy);
-    background: #fff;
-    box-shadow: inset 0 0 0 4px #fff, inset 0 0 0 5px var(--navy);
+    background: var(--paper);
+    box-shadow: inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--navy);
   }
 
   .button.light:hover {
@@ -134,6 +134,7 @@ const pozostale = dzialy.filter((d) => d.id !== id);
 
   .others {
     padding: clamp(48px, 6vw, 80px) 0;
+    background: var(--beige);
     border-top: 1px solid var(--rule-soft);
   }
 
@@ -169,7 +170,7 @@ const pozostale = dzialy.filter((d) => d.id !== id);
   }
 
   .others a:hover {
-    background: var(--deep);
+    background: var(--paper);
   }
 
   .others :global(.o-mark) {

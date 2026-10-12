@@ -157,12 +157,12 @@
       "rule": {
         "role": "neutral",
         "displayName": "Rule",
-        "canonical": "rgba(32, 58, 95, 0.28)"
+        "canonical": "rgba(84, 66, 40, 0.24)"
       },
       "rule-soft": {
         "role": "neutral",
         "displayName": "Soft Rule",
-        "canonical": "rgba(32, 58, 95, 0.14)"
+        "canonical": "rgba(84, 66, 40, 0.14)"
       },
       "signal-rust": {
         "role": "signal",
