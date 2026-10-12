@@ -1,6 +1,7 @@
-// Dane firmy. Pola ustawione na null nie zostały jeszcze przekazane:
+// Dane grupy. Pola ustawione na null nie zostały jeszcze przekazane:
 // strona pokazuje je jako pola do uzupełnienia, nigdy jako wymyślone wartości.
 export const firma = {
+  grupa: "F&F GROUP",
   nazwa: "FLEET&FLOAT",
   haslo: "Usługi dla Twojego biznesu",
   adres: null as string | null,
@@ -12,51 +13,52 @@ export const firma = {
 };
 
 export type Dzial = {
-  id: "houseboaty" | "pojazdy" | "oprogramowanie" | "kadry";
+  id: "lease" | "it" | "homes" | "hr";
+  marka: string;
+  sufiks: string;
   nazwa: string;
-  miejsce: string;
-  opis: string;
-  km: string;
-  woda: boolean;
+  krotko: string;
   akcja: string;
+  href: string;
 };
 
+// Kolejność jak w briefie: F&F LEASE, F&F.IT, F&F HOMES, F&F HR.
 export const dzialy: Dzial[] = [
   {
-    id: "houseboaty",
-    nazwa: "Houseboaty i domy BYGGA",
-    miejsce: "Przystań",
-    opis: "dealer producenta",
-    km: "2,4",
-    woda: true,
-    akcja: "Umów oględziny",
-  },
-  {
-    id: "pojazdy",
+    id: "lease",
+    marka: "F&F LEASE",
+    sufiks: " LEASE",
     nazwa: "Wynajem pojazdów",
-    miejsce: "Baza",
-    opis: "ciężarowe i osobowe",
-    km: "7,9",
-    woda: false,
+    krotko: "Samochody ciężarowe i osobowe na wynajem dla firm.",
     akcja: "Zapytaj o termin",
+    href: "/lease/",
   },
   {
-    id: "oprogramowanie",
-    nazwa: "Oprogramowanie",
-    miejsce: "Pracownia",
-    opis: "CRM, integracje, szkolenia",
-    km: "12,3",
-    woda: false,
+    id: "it",
+    marka: "F&F.IT",
+    sufiks: ".IT",
+    nazwa: "Oprogramowanie dla firm",
+    krotko: "Narzędzia biurowe, systemy CRM, integracje i platformy szkoleniowe.",
     akcja: "Umów rozmowę",
+    href: "/it/",
   },
   {
-    id: "kadry",
+    id: "homes",
+    marka: "F&F HOMES",
+    sufiks: " HOMES",
+    nazwa: "Houseboaty i domy BYGGA",
+    krotko: "Sprzedaż houseboatów i domów modułowych jako dealer producenta BYGGA.",
+    akcja: "Umów oględziny",
+    href: "/homes/",
+  },
+  {
+    id: "hr",
+    marka: "F&F HR",
+    sufiks: " HR",
     nazwa: "Kadry i administracja",
-    miejsce: "Biuro",
-    opis: "wsparcie przedsiębiorstw",
-    km: "15,0",
-    woda: false,
+    krotko: "Wsparcie przedsiębiorstw w sprawach kadrowych i administracyjnych.",
     akcja: "Zapytaj o ofertę",
+    href: "/hr/",
   },
 ];
 

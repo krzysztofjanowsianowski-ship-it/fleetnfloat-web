@@ -1,0 +1,57 @@
+---
+import Division from "../layouts/Division.astro";
+import External from "../components/External.astro";
+---
+
+<Division id="it" lead="Tworzymy narzędzia biurowe, systemy CRM, integracje między programami i platformy szkoleniowe dla firm.">
+  <div class="split">
+    <div class="prose">
+      <h2 class="h-sec">Realizacja: platforma kursów dla kierowców</h2>
+      <ul class="checklist">
+        <li>Kursy obsługi tachografu cyfrowego i czasu pracy kierowcy.</li>
+        <li>Interaktywny symulator tachografu VDO i Stoneridge z filmami instruktażowymi i lektorem.</li>
+        <li>Panel firmy do zarządzania kierowcami i miesięczne rozliczenia.</li>
+      </ul>
+      <p><a class="action" href="https://kursy.fleetnfloat.com" rel="noopener" target="_blank">kursy.fleetnfloat.com <External /><span class="visually-hidden"> (nowe okno)</span></a></p>
+    </div>
+    <figure class="shot">
+      <img
+        src="/realizacje/kursy-symulator.webp"
+        width="1600"
+        height="778"
+        decoding="async"
+        alt="Ekran symulatora tachografu VDO DTCO 4.1a na platformie kursów: wyświetlacz, przyciski, sloty kart, liczniki jazdy i przerwy."
+      />
+      <figcaption>Zrzut ekranu z platformy w trybie podglądu.</figcaption>
+    </figure>
+  </div>
+</Division>
+
+<style>
+  .split {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+
+  .shot {
+    border: 1px solid var(--rule);
+    background: #fff;
+    box-shadow: 0 18px 40px -26px rgba(26, 48, 80, 0.5);
+  }
+
+  .shot img {
+    width: 100%;
+    height: auto;
+  }
+
+  .shot figcaption {
+    margin: 0;
+    padding: 10px 14px;
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  @media (max-width: 900px) {
+    .split {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

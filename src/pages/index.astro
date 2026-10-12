@@ -1,1092 +1,395 @@
 ---
 import Base from "../layouts/Base.astro";
-import ChartMap from "../components/ChartMap.astro";
-import Legend from "../components/Legend.astro";
-import Leg from "../components/Leg.astro";
+import Mark from "../components/Mark.astro";
+import Arrow from "../components/Arrow.astro";
+import External from "../components/External.astro";
+import ContactSection from "../components/ContactSection.astro";
 import HouseboatProfile from "../components/HouseboatProfile.astro";
 import VehiclesProfile from "../components/VehiclesProfile.astro";
 import OfficeProfile from "../components/OfficeProfile.astro";
-import Seal from "../components/Seal.astro";
-import ContactForm from "../components/ContactForm.astro";
-import Arrow from "../components/Arrow.astro";
-import External from "../components/External.astro";
-import { firma, dzialy, modeleBygga } from "../data/firma";
+import ScreenProfile from "../components/ScreenProfile.astro";
+import { dzialy } from "../data/firma";
+import { ampersand } from "../data/ampersand";
 
-const rok = new Date().getFullYear();
-const dzial = Object.fromEntries(dzialy.map((d) => [d.id, d]));
+const rysunki = {
+  lease: VehiclesProfile,
+  it: ScreenProfile,
+  homes: HouseboatProfile,
+  hr: OfficeProfile,
+};
 ---
 
 <Base
-  title="FLEET&FLOAT · Houseboaty BYGGA, wynajem pojazdów, oprogramowanie, kadry"
-  description="FLEET&FLOAT: dealer houseboatów i domów BYGGA, wynajem pojazdów ciężarowych i osobowych, oprogramowanie dla firm oraz wsparcie kadrowe i administracyjne."
+  title="F&F GROUP · FLEET&FLOAT · F&F LEASE, F&F.IT, F&F HOMES, F&F HR"
+  description="Grupa F&F (FLEET&FLOAT): wynajem pojazdów, oprogramowanie dla firm, houseboaty i domy BYGGA oraz kadry i administracja."
 >
-  <div class="sheet">
-    <header class="masthead">
-      <a class="brand" href="/" aria-label="FLEET&FLOAT, strona główna">
-        <img src="/brand/logo.svg" alt="" width="2075" height="496" />
-      </a>
-      <nav aria-label="Główna">
-        <a class="hide-sm" href="#dzialy">Działy</a>
-        <a class="hide-sm" href="#realizacje">Realizacje</a>
-        <a class="cta" href="#kontakt">Kontakt</a>
-      </nav>
-    </header>
-
-    <main class="route" data-route>
-      <div class="rail" aria-hidden="true" data-rail><span class="rail-ghost"></span><span class="rail-fill" data-rail-fill></span></div>
-
-      <section class="hero" aria-labelledby="tytul">
-        <div class="hero-copy">
-          <div class="hero-head">
-            <span class="kmark" aria-hidden="true"><span class="km-unit">km </span>0,0</span>
-            <h1 id="tytul">Cztery usługi dla firm. <em>Jedna trasa,</em> ta sama solidność.</h1>
-          </div>
-          <p class="lede">
-            Sprzedajemy houseboaty i domy BYGGA, wynajmujemy pojazdy, tworzymy oprogramowanie i wspieramy firmy w
-            kadrach i administracji. Wybierz przystanek i przejdź od razu do konkretu.
-          </p>
-          <Legend />
-        </div>
-        <div class="hero-map">
-          <ChartMap />
-        </div>
-      </section>
-
-      <Leg id="houseboaty" km={dzial.houseboaty.km} title={dzial.houseboaty.nazwa} water tint="water">
-        <div class="leg-grid wide-text">
-          <div class="leg-text">
-            <p class="lead">
-              Jesteśmy dealerem BYGGA, producenta houseboatów i domów modułowych z Bydgoszczy, działającego od 2017 roku.
-              Pomożemy dobrać model do miejsca i celu, a potem umówimy oględziny.
-            </p>
-            <table class="spis">
-              <caption>Wybrane modele według producenta</caption>
-              <thead>
-                <tr><th scope="col">Model</th><th scope="col">Rodzaj</th><th scope="col">Część mieszkalna</th><th scope="col">Wymiary</th></tr>
-              </thead>
-              <tbody>
-                {
-                  modeleBygga.map((m) => (
-                    <tr>
-                      <th scope="row"><a href={m.url} rel="noopener" target="_blank">{m.model}<span class="visually-hidden"> (karta modelu u producenta, nowe okno)</span></a></th>
-                      <td>{m.rodzaj}</td>
-                      <td>{m.mieszkalna}</td>
-                      <td>{m.wymiary}</td>
-                    </tr>
-                  ))
-                }
-              </tbody>
-            </table>
-            <p class="fine">Dane z kart modeli na bygga.pl. Cenę, dostępność i transport potwierdzamy przy zapytaniu.</p>
-            <div class="acts">
-              <a class="button" href="#kontakt" data-zapytanie="houseboaty">{dzial.houseboaty.akcja} <Arrow /></a>
-              <a class="action" href="https://www.bygga.pl/" rel="noopener" target="_blank">Pełna oferta producenta <External /><span class="visually-hidden"> (nowe okno)</span></a>
-            </div>
-          </div>
-          <div class="leg-figure sticky"><HouseboatProfile /></div>
-        </div>
-      </Leg>
-
-      <Leg id="pojazdy" km={dzial.pojazdy.km} title={dzial.pojazdy.nazwa} tint="land">
-        <div class="leg-grid">
-          <div class="leg-text">
-            <p class="lead">Samochody ciężarowe i osobowe na wynajem dla firm.</p>
-            <h3>Do wyceny wystarczy nam</h3>
-            <ul class="checklist">
-              <li><b>Rodzaj pojazdu.</b> Ciężarowy czy osobowy, i ile sztuk.</li>
-              <li><b>Termin.</b> Od kiedy i na jak długo.</li>
-              <li><b>Miejsce odbioru.</b> Gdzie pojazd ma na Ciebie czekać.</li>
-              <li><b>Cel.</b> Przewóz towaru, auto dla pracownika albo zastępstwo we flocie.</li>
-            </ul>
-            <div class="acts">
-              <a class="button" href="#kontakt" data-zapytanie="pojazdy">{dzial.pojazdy.akcja} <Arrow /></a>
-            </div>
-          </div>
-          <div class="leg-figure"><VehiclesProfile /></div>
-        </div>
-      </Leg>
-
-      <Leg id="oprogramowanie" km={dzial.oprogramowanie.km} title={dzial.oprogramowanie.nazwa} tint="deep">
-        <div class="leg-grid soft">
-          <div class="leg-text">
-            <p class="lead">
-              Tworzymy narzędzia biurowe, systemy CRM, integracje między programami i platformy szkoleniowe dla firm.
-            </p>
-            <div class="case" id="realizacje">
-              <h3>Realizacja: platforma kursów dla kierowców</h3>
-              <ul class="facts">
-                <li>Kursy obsługi tachografu cyfrowego i czasu pracy kierowcy.</li>
-                <li>Interaktywny symulator tachografu VDO i Stoneridge z filmami instruktażowymi i lektorem.</li>
-                <li>Panel firmy do zarządzania kierowcami i miesięczne rozliczenia.</li>
-              </ul>
-              <a class="action" href="https://kursy.fleetnfloat.com" rel="noopener" target="_blank">kursy.fleetnfloat.com <External /><span class="visually-hidden"> (nowe okno)</span></a>
-            </div>
-            <div class="acts">
-              <a class="button" href="#kontakt" data-zapytanie="oprogramowanie">{dzial.oprogramowanie.akcja} <Arrow /></a>
-            </div>
-          </div>
-          <figure class="inset">
-            <div class="inset-bar"><span>Wstawka</span><span>kursy.fleetnfloat.com · symulator</span></div>
-            <img
-              src="/realizacje/kursy-symulator.webp"
-              width="1600"
-              height="778"
-              loading="lazy"
-              decoding="async"
-              alt="Ekran symulatora tachografu VDO DTCO 4.1a na platformie kursów: wyświetlacz, przyciski, sloty kart, liczniki jazdy i przerwy."
-            />
-            <figcaption>Zrzut ekranu z platformy w trybie podglądu.</figcaption>
-          </figure>
-        </div>
-      </Leg>
-
-      <Leg id="kadry" km={dzial.kadry.km} title={dzial.kadry.nazwa} tint="land">
-        <div class="leg-grid">
-          <div class="leg-text">
-            <p class="lead">Wspieramy przedsiębiorstwa w sprawach kadrowych i administracyjnych.</p>
-            <p class="scope">Zakres usług: <span class="draft">[zakres usług do uzupełnienia]</span></p>
-            <h3>Żeby przygotować propozycję, napisz nam</h3>
-            <ul class="checklist">
-              <li><b>Czego dotyczy sprawa.</b> Jedna konkretna rzecz czy stałe wsparcie.</li>
-              <li><b>Ile osób pracuje w firmie.</b> Wystarczy przybliżona liczba.</li>
-              <li><b>Jak pracujecie dziś.</b> Samodzielnie, z biurem rachunkowym czy z innym partnerem.</li>
-              <li><b>Od kiedy.</b> Termin, od którego potrzebujesz pomocy.</li>
-            </ul>
-            <div class="acts">
-              <a class="button" href="#kontakt" data-zapytanie="kadry">{dzial.kadry.akcja} <Arrow /></a>
-            </div>
-          </div>
-          <div class="leg-figure"><OfficeProfile /></div>
-        </div>
-      </Leg>
-
-      <section class="contact" id="kontakt" aria-labelledby="kontakt-tytul" data-leg>
-        <div class="leg-inner">
-          <div class="contact-head">
-            <span class="kmark end" aria-hidden="true"><span class="km">meta</span><span class="stop"><i class="dot"></i><Seal size={32} class="stop-seal" /></span></span>
-            <h2 id="kontakt-tytul">Kontakt</h2>
-            <p>Wybierz dział i napisz kilka zdań. Odpowiemy na podany e-mail albo telefon.</p>
-          </div>
-          <div class="contact-grid">
-            <ContactForm />
-            <aside class="firm" aria-label="Dane firmy">
-              <img src="/brand/logo-bez-hasla.svg" alt="FLEET&FLOAT" width="2075" height="496" />
-              <dl>
-                <div><dt>Adres</dt><dd>{firma.adres ?? <span class="draft">[adres do uzupełnienia]</span>}</dd></div>
-                <div><dt>NIP</dt><dd>{firma.nip ?? <span class="draft">[NIP do uzupełnienia]</span>}</dd></div>
-                <div><dt>Telefon</dt><dd>{firma.telefon ? <a href={`tel:${firma.telefon.replace(/\s/g, "")}`}>{firma.telefon}</a> : <span class="draft">[telefon do uzupełnienia]</span>}</dd></div>
-                <div><dt>E-mail</dt><dd>{firma.email ? <a href={`mailto:${firma.email}`}>{firma.email}</a> : <span class="draft">[e-mail do uzupełnienia]</span>}</dd></div>
-              </dl>
-            </aside>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="foot">
-      <div class="foot-inner">
-        <img src="/brand/logo-na-granacie.svg" alt="FLEET&FLOAT" width="2075" height="496" />
-        <nav aria-label="Działy w stopce">
-          {dzialy.map((d) => <a href={`#${d.id}`}>{d.nazwa}</a>)}
-        </nav>
-        <p class="foot-line">
-          <span>© {rok} {firma.nazwa}</span>
-          <span>{firma.haslo}</span>
-          <span>Arkusz 1 · strona główna</span>
+  <section class="hero" aria-labelledby="tytul">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1 id="tytul"><Mark sufiks=" GROUP" /></h1>
+        <p class="lead">
+          Grupa F&F prowadzi działania w czterech obszarach: wynajem pojazdów, oprogramowanie dla firm, sprzedaż
+          houseboatów i domów BYGGA oraz wsparcie kadrowe i administracyjne. Każdym zajmuje się osobny dział, a łączy je
+          jedna marka i ten sam standard pracy.
         </p>
+        <div class="hero-acts">
+          <a class="button light" href="#dzialy">Przejdź do odpowiedniego działu <Arrow /></a>
+          <a class="hero-link" href="#kontakt">Kontakt</a>
+        </div>
       </div>
-    </footer>
-  </div>
+      <svg class="sygnet" viewBox="0 0 400 400" aria-hidden="true">
+        <circle cx="200" cy="200" r="190" fill="none" stroke="#fff" stroke-width="14"></circle>
+        <circle cx="200" cy="200" r="164" fill="none" stroke="var(--gold-on-navy)" stroke-width="2.5"></circle>
+        <path fill="var(--gold-on-navy)" d={ampersand}></path>
+      </svg>
+    </div>
+  </section>
+
+  <section class="divisions" id="dzialy" aria-labelledby="dzialy-tytul">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="dzialy-tytul">W skład grupy należą</h2>
+        <p>Przejdź do odpowiedniego działu.</p>
+      </div>
+      <ul class="tiles">
+        {
+          dzialy.map((d) => {
+            const Rysunek = rysunki[d.id];
+            return (
+              <li>
+                <a class="tile" href={d.href}>
+                  <Mark sufiks={d.sufiks} class="t-mark" />
+                  <span class="t-name">{d.nazwa}</span>
+                  <span class="t-text">{d.krotko}</span>
+                  <span class="t-art" aria-hidden="true">
+                    <Rysunek podpis={false} />
+                  </span>
+                  <span class="t-go">
+                    Przejdź do działu <Arrow />
+                  </span>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+      <p class="note">Rysunki są poglądowe.</p>
+    </div>
+  </section>
+
+  <section class="case" aria-labelledby="realizacja-tytul">
+    <div class="wrap case-grid">
+      <div>
+        <p class="case-mark"><Mark sufiks=".IT" /></p>
+        <h2 id="realizacja-tytul">Realizacja: platforma kursów dla kierowców</h2>
+        <p>
+          Kursy obsługi tachografu cyfrowego i czasu pracy kierowcy, interaktywny symulator tachografu z filmami
+          instruktażowymi i lektorem, panel firmy oraz miesięczne rozliczenia.
+        </p>
+        <a class="action" href="https://kursy.fleetnfloat.com" rel="noopener" target="_blank">kursy.fleetnfloat.com <External /><span class="visually-hidden"> (nowe okno)</span></a>
+      </div>
+      <figure class="shot">
+        <img
+          src="/realizacje/kursy-symulator.webp"
+          width="1600"
+          height="778"
+          loading="lazy"
+          decoding="async"
+          alt="Ekran symulatora tachografu VDO DTCO 4.1a na platformie kursów: wyświetlacz, przyciski, sloty kart, liczniki jazdy i przerwy."
+        />
+        <figcaption>Zrzut ekranu z platformy w trybie podglądu.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <ContactSection />
 </Base>
 
-<script>
-  const order = ["houseboaty", "pojazdy", "oprogramowanie", "kadry"];
-  const chart = document.querySelector<HTMLElement>("[data-chart]");
-  const segs = chart ? [...chart.querySelectorAll<SVGGElement>(".seg")] : [];
-  const stations = chart ? [...chart.querySelectorAll<SVGAElement>(".station")] : [];
-  const rows = [...document.querySelectorAll<HTMLElement>(".legend .row")];
-  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  // Rysuje trasę do wybranego działu; bez wyboru cała trasa jest złota.
-  function reach(id: string | null) {
-    const k = id ? order.indexOf(id) : -1;
-    segs.forEach((s, i) => s.classList.toggle("is-off", k >= 0 && i > k));
-    stations.forEach((st, i) => {
-      st.classList.toggle("is-active", i === k);
-      st.classList.toggle("is-ghost", k >= 0 && i > k);
-    });
-    rows.forEach((r, i) => r.classList.toggle("is-active", i === k));
-  }
-
-  function bind(el: Element, id: string) {
-    el.addEventListener("pointerenter", () => reach(id));
-    el.addEventListener("pointerleave", (e) => {
-      // Na ekranie dotykowym wybór zostaje do następnego stuknięcia.
-      if ((e as PointerEvent).pointerType === "mouse") reach(null);
-    });
-    el.addEventListener("focusin", () => reach(id));
-    el.addEventListener("focusout", () => reach(null));
-  }
-
-  rows.forEach((r) => bind(r, r.dataset.dzial ?? ""));
-  stations.forEach((s) => bind(s, s.dataset.dzial ?? ""));
-
-  if (chart && !calm) {
-    chart.classList.add("is-intro");
-    segs.forEach((s) => s.classList.add("is-off"));
-    requestAnimationFrame(() =>
-      requestAnimationFrame(() => {
-        segs.forEach((s) => s.classList.remove("is-off"));
-        setTimeout(() => chart.classList.remove("is-intro"), 2600);
-      }),
-    );
-  }
-
-  // Szyna na marginesie: trasa zaczyna się przy km 0,0 i rośnie razem z przewijaniem;
-  // przystanek, do którego dotarła, dostaje pieczęć.
-  const route = document.querySelector<HTMLElement>("[data-route]");
-  const rail = document.querySelector<HTMLElement>("[data-rail]");
-  const fill = document.querySelector<HTMLElement>("[data-rail-fill]");
-  const legs = [...document.querySelectorAll<HTMLElement>("[data-leg]")];
-  const startMark = document.querySelector<HTMLElement>(".hero-head .kmark");
-  const endStop = document.querySelector<HTMLElement>("#kontakt .stop");
-  let start = 0;
-  let total = 0;
-  let stops: number[] = [];
-  let ticking = false;
-
-  const docY = (el: Element) => {
-    const r = el.getBoundingClientRect();
-    return r.top + r.height / 2 + scrollY;
-  };
-
-  function measure() {
-    if (!route || !rail || !startMark || !endStop) return;
-    const top = route.getBoundingClientRect().top + scrollY;
-    start = docY(startMark);
-    total = Math.max(0, docY(endStop) - start);
-    rail.style.top = `${start - top}px`;
-    rail.style.bottom = "auto";
-    rail.style.height = `${total}px`;
-    stops = legs.map((l) => docY(l.querySelector(".stop") ?? l));
-    onScroll();
-  }
-
-  function onScroll() {
-    ticking = false;
-    if (!fill) return;
-    const room = Math.max(1, document.documentElement.scrollHeight - innerHeight);
-    const pace = Math.max(1, total / room);
-    const len = Math.min(total, Math.max(0, scrollY * pace));
-    fill.style.height = `${len}px`;
-    const head = start + len;
-    let current = -1;
-    stops.forEach((y, i) => {
-      if (y <= head + 2) current = i;
-    });
-    legs.forEach((l, i) => {
-      l.classList.toggle("is-current", i === current);
-      l.classList.toggle("is-ahead", i > current);
-    });
-  }
-
-  addEventListener(
-    "scroll",
-    () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(onScroll);
-      }
-    },
-    { passive: true },
-  );
-  addEventListener("resize", measure);
-  addEventListener("load", measure);
-  document.fonts?.ready.then(measure);
-  measure();
-
-  // Akcje działów wybierają dział w formularzu.
-  const select = document.querySelector<HTMLSelectElement>("#f-dzial");
-  document.querySelectorAll<HTMLElement>("[data-zapytanie]").forEach((a) =>
-    a.addEventListener("click", () => {
-      if (select && a.dataset.zapytanie) select.value = a.dataset.zapytanie;
-    }),
-  );
-  const fromUrl = new URLSearchParams(location.search).get("dzial");
-  if (select && fromUrl && order.includes(fromUrl)) select.value = fromUrl;
-
-  // Walidacja i wysyłka formularza.
-  const form = document.querySelector<HTMLFormElement>("[data-form]");
-  const status = document.querySelector<HTMLElement>("[data-status]");
-
-  function check(input: HTMLInputElement | HTMLTextAreaElement, ok: boolean) {
-    const err = document.getElementById(input.getAttribute("aria-describedby") ?? "");
-    input.setAttribute("aria-invalid", ok ? "false" : "true");
-    if (err) err.hidden = ok;
-    return ok;
-  }
-
-  form?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const name = form.querySelector<HTMLInputElement>("#f-imie")!;
-    const email = form.querySelector<HTMLInputElement>("#f-email")!;
-    const msg = form.querySelector<HTMLTextAreaElement>("#f-wiad")!;
-    const consent = form.querySelector<HTMLInputElement>("#f-zgoda")!;
-    const results = [
-      check(name, name.value.trim().length > 1),
-      check(email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())),
-      check(msg, msg.value.trim().length > 4),
-      check(consent, consent.checked),
-    ];
-    if (results.includes(false)) {
-      form.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
-      if (status) status.textContent = "Uzupełnij zaznaczone pola i wyślij ponownie.";
-      return;
-    }
-    const endpoint = form.dataset.endpoint;
-    if (!status) return;
-    if (!endpoint) {
-      status.textContent =
-        "To wersja robocza strony: formularz zostanie podłączony do skrzynki firmy przed publikacją. Nic nie zostało wysłane.";
-      return;
-    }
-    status.textContent = "Wysyłamy…";
-    try {
-      const res = await fetch(endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
-      if (!res.ok) throw new Error(String(res.status));
-      form.reset();
-      status.textContent = `Dziękujemy. Zapytanie dotarło, odpowiemy na adres ${email.value.trim()}.`;
-    } catch {
-      status.textContent = "Nie udało się wysłać zapytania. Spróbuj ponownie za chwilę albo zadzwoń do nas.";
-    }
-  });
-</script>
-
 <style>
-  .sheet {
-    position: relative;
-    margin: var(--frame);
-    border: 1.5px solid var(--navy);
-    background: var(--deep);
-  }
-
-  .sheet::before {
-    content: "";
-    position: absolute;
-    inset: 5px;
-    z-index: 4;
-    border: 1px solid var(--navy);
-    pointer-events: none;
-    background:
-      repeating-linear-gradient(90deg, var(--navy) 0 48px, transparent 48px 96px) top / 100% 5px no-repeat,
-      repeating-linear-gradient(90deg, var(--navy) 0 48px, transparent 48px 96px) bottom / 100% 5px no-repeat,
-      repeating-linear-gradient(180deg, var(--navy) 0 48px, transparent 48px 96px) left / 5px 100% no-repeat,
-      repeating-linear-gradient(180deg, var(--navy) 0 48px, transparent 48px 96px) right / 5px 100% no-repeat;
-  }
-
-  .masthead {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    height: clamp(72px, 7vw, 96px);
-    margin: 12px 12px 0;
-    padding: 0 var(--gutter) 0 calc(var(--rail) + var(--gutter) - 12px);
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .brand img {
-    width: auto;
-    height: clamp(40px, 4.2vw, 58px);
-  }
-
-  .masthead nav {
-    display: flex;
-    align-items: center;
-    gap: clamp(18px, 2.4vw, 32px);
-    font: 600 0.9375rem/1 var(--note);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .masthead nav a {
-    color: var(--navy);
-    text-decoration: none;
-  }
-
-  .masthead nav a:not(.cta):hover {
-    text-decoration: underline;
-    text-decoration-color: rgba(32, 58, 95, 0.5);
-  }
-
-  .masthead .cta {
-    padding: 13px 18px;
-    border: 1.5px solid var(--navy);
-    transition: background-color 0.2s, color 0.2s;
-  }
-
-  .masthead .cta:hover {
+  .hero {
     background: var(--navy);
     color: #fff;
   }
 
-  .route {
-    position: relative;
-    margin: 0 12px 0;
-  }
-
-  .rail {
-    position: absolute;
-    left: var(--rail);
-    top: 0;
-    bottom: 0;
-    width: 0;
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  /* Szyna to dalszy ciąg trasy z mapy: przerywany duch przed nami,
-     złota wstęga z białymi kropkami za nami. */
-  .rail-ghost {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -0.6px;
-    width: 1.2px;
-    background: repeating-linear-gradient(180deg, var(--navy) 0 3px, transparent 3px 10px);
-    opacity: 0.45;
-  }
-
-  .rail-fill {
-    position: absolute;
-    top: 0;
-    left: -2.5px;
-    width: 5px;
-    height: 0;
-    border-radius: 3px;
-    background:
-      radial-gradient(circle at center, #fff 0 0.8px, transparent 1.15px) center 11px / 5px 22px repeat-y,
-      var(--gold);
-  }
-
-  .hero {
-    position: relative;
+  .hero-grid {
     display: grid;
-    grid-template-columns: minmax(0, calc(var(--rail) + var(--gutter) * 2 + 34rem)) minmax(0, 1fr);
-    min-height: clamp(620px, calc(100svh - 120px), 860px);
-  }
-
-  .hero-copy {
-    position: relative;
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    padding: clamp(32px, 4vw, 56px) var(--gutter) clamp(32px, 4vw, 48px) calc(var(--rail) + var(--gutter));
-  }
-
-  .hero-head {
-    position: relative;
-  }
-
-  .kmark {
-    position: absolute;
-    left: calc(-1 * (var(--rail) + var(--gutter)));
-    width: var(--rail);
-    padding-right: 14px;
-    text-align: right;
-    font: 500 0.8125rem/1 var(--note);
-    letter-spacing: 0.04em;
-    color: var(--navy);
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-
-  .hero-head .kmark {
-    top: 0.9em;
-    line-height: 0;
-  }
-
-  .hero-head .kmark::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 50%;
-    width: 10px;
-    height: 1px;
-    background: var(--navy);
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+    gap: clamp(32px, 6vw, 96px);
+    align-items: center;
+    padding-top: clamp(56px, 8vw, 120px);
+    padding-bottom: clamp(56px, 8vw, 120px);
   }
 
   h1 {
-    font: 600 clamp(2.5rem, 4vw, 3.5rem) / 1.05 var(--serif);
-    letter-spacing: -0.012em;
-    color: var(--navy);
-    text-wrap: balance;
+    font-size: clamp(2.25rem, 6.6vw, 5.75rem);
+    line-height: 1;
+    color: #fff;
   }
 
-  h1 em {
-    font-style: italic;
-    font-weight: 500;
-  }
-
-  .lede {
-    margin: 20px 0 clamp(24px, 3vw, 36px);
-    max-width: 34em;
-    font-size: 1.125rem;
-    line-height: 1.55;
-    color: #2b4466;
-  }
-
-  .hero-map {
-    position: relative;
-    border-left: 1px solid var(--rule);
-  }
-
-  .hero-map :global(.chart) {
-    position: absolute;
-    inset: 0;
-  }
-
-  /* Odcinki działów */
-  .leg-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-    gap: clamp(32px, 5vw, 88px);
-    align-items: start;
-  }
-
-  .leg-grid.wide-text {
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
-  }
-
-  .leg-figure.sticky {
-    position: sticky;
-    top: 32px;
-  }
-
-  .leg-grid.soft {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  }
-
-  .leg-text {
-    max-width: 40rem;
+  h1 :global(.amp) {
+    color: var(--gold-on-navy);
   }
 
   .lead {
-    font-size: clamp(1.1875rem, 1.6vw, 1.375rem);
-    line-height: 1.5;
-    color: var(--navy-ink);
+    margin-top: clamp(24px, 3vw, 36px);
     max-width: 36em;
+    font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.88);
   }
 
-  .leg-figure {
-    padding-top: 8px;
-  }
-
-  .acts {
+  .hero-acts {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 18px 28px;
-    margin-top: clamp(28px, 3vw, 40px);
+    margin-top: clamp(28px, 3.4vw, 44px);
   }
 
-  .spis {
-    width: 100%;
-    margin-top: 32px;
-    border-collapse: collapse;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .spis caption {
-    text-align: left;
-    padding-bottom: 10px;
-    font: 600 0.8125rem/1.2 var(--note);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+  .button.light {
     color: var(--navy);
+    background: #fff;
+    box-shadow: inset 0 0 0 4px #fff, inset 0 0 0 5px var(--navy);
   }
 
-  .spis th,
-  .spis td {
-    padding: 11px 14px 11px 0;
-    text-align: left;
-    vertical-align: baseline;
-    border-bottom: 1px solid var(--rule);
+  .button.light:hover {
+    background: var(--deep);
+    box-shadow: inset 0 0 0 4px var(--deep), inset 0 0 0 5px var(--navy);
   }
 
-  .spis thead th {
-    white-space: nowrap;
-    font: 600 0.75rem/1.2 var(--note);
+  .hero-link {
+    font: 600 0.9375rem/1 var(--sans);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #3d5373;
-    border-bottom: 1.5px solid var(--navy);
-  }
-
-  .spis tbody th {
-    font: italic 500 1.125rem/1.3 var(--serif);
-  }
-
-  .spis tbody th a {
-    color: var(--navy);
-    text-decoration-color: rgba(32, 58, 95, 0.45);
-  }
-
-  .spis td:nth-child(3),
-  .spis td:nth-child(4) {
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .spis td {
-    font: 500 0.9375rem/1.35 var(--note);
-    color: var(--navy-ink);
-  }
-
-  .fine {
-    margin-top: 12px;
-    font: 500 0.875rem/1.45 var(--note);
-    letter-spacing: 0.02em;
-    color: #3d5373;
-  }
-
-  h3 {
-    margin-top: 32px;
-    font: 600 0.875rem/1.2 var(--note);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--navy);
-  }
-
-  .checklist {
-    margin-top: 14px;
-    padding: 0;
-    list-style: none;
-    border-top: 1.5px solid var(--navy);
-  }
-
-  .checklist li {
-    position: relative;
-    padding: 14px 0 14px 34px;
-    border-bottom: 1px solid var(--rule);
-    font-size: 1.0625rem;
-    line-height: 1.5;
-  }
-
-  .checklist li::before {
-    content: "";
-    position: absolute;
-    left: 2px;
-    top: 1.55em;
-    width: 16px;
-    height: 1.5px;
-    background: var(--navy);
-  }
-
-  .checklist b {
-    font-weight: 600;
-    color: var(--navy);
-  }
-
-  .case {
-    margin-top: 32px;
-    padding-top: 4px;
-  }
-
-  .case h3 {
-    margin-top: 0;
-    font: italic 500 1.5rem/1.25 var(--serif);
-    letter-spacing: 0;
-    text-transform: none;
-  }
-
-  .facts {
-    margin: 16px 0 20px;
-    padding: 0;
-    list-style: none;
-  }
-
-  .facts li {
-    position: relative;
-    padding: 10px 0 10px 24px;
-    border-bottom: 1px solid var(--rule-soft);
-    line-height: 1.5;
-  }
-
-  .facts li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 1.05em;
-    width: 12px;
-    height: 1.5px;
-    background: var(--navy);
-  }
-
-  .inset {
-    border: 1.5px solid var(--navy);
-    background: #fff;
-    box-shadow: 0 18px 40px -24px rgba(26, 48, 80, 0.45);
-  }
-
-  .inset-bar {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--navy);
-    font: 600 0.75rem/1.2 var(--note);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--navy);
-  }
-
-  .inset img {
-    width: 100%;
-    height: auto;
-  }
-
-  .inset figcaption {
-    padding: 10px 14px;
-    border-top: 1px solid var(--rule);
-    font: 500 0.875rem/1.4 var(--note);
-    color: #3d5373;
-  }
-
-  .scope {
-    margin-top: 14px;
-    font-size: 1.0625rem;
-  }
-
-  .leg-quiet {
-    max-width: 46rem;
-  }
-
-  .leg-quiet .lead {
-    font: 500 clamp(1.5rem, 2.4vw, 2rem) / 1.35 var(--serif);
-    color: var(--navy);
-  }
-
-  /* Kontakt: koniec trasy */
-  .contact {
-    position: relative;
-    padding: var(--step) 0 calc(var(--step) * 0.8);
-    border-top: 1.2px solid var(--navy);
-    background: var(--deep);
-  }
-
-  .contact .leg-inner {
-    padding: 0 var(--gutter) 0 calc(var(--rail) + var(--gutter));
-  }
-
-  .contact-head {
-    position: relative;
-    margin-bottom: clamp(28px, 3.4vw, 44px);
-  }
-
-  .contact-head h2 {
-    font: 500 clamp(1.75rem, 3.4vw, 3rem) / 1.1 var(--serif);
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--navy);
-  }
-
-  .contact-head p {
-    margin-top: 14px;
-    max-width: 38em;
-    font-size: 1.1875rem;
-  }
-
-  .contact-head .kmark {
-    z-index: 3;
-    top: 0.75em;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 0;
-  }
-
-  .contact-head .km {
-    padding-right: 24px;
-    font-size: 0.75rem;
-  }
-
-  .contact-head .stop {
-    position: relative;
-    width: 0;
-    height: 0;
-  }
-
-  .contact-head .dot,
-  .contact-head .stop > :global(.stop-seal) {
-    position: absolute;
-    left: 0;
-    top: 0;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.35s;
-  }
-
-  .contact-head .dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--deep);
-    box-shadow: 0 0 0 1.5px var(--navy), 0 0 0 5px var(--deep);
-  }
-
-  .contact-head .stop > :global(.stop-seal) {
-    opacity: 0;
-  }
-
-  .contact.is-current .stop > :global(.stop-seal) {
-    opacity: 1;
-  }
-
-  .contact.is-current .dot {
-    opacity: 0;
-  }
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.8fr);
-    gap: clamp(28px, 4vw, 64px);
-    align-items: start;
-  }
-
-  .firm {
-    border-top: 1.5px solid var(--navy);
-    padding-top: 22px;
-  }
-
-  .firm img {
-    width: min(300px, 100%);
-    height: auto;
-  }
-
-  .firm dl {
-    margin-top: 22px;
-  }
-
-  .firm dl div {
-    display: grid;
-    grid-template-columns: 6.5rem 1fr;
-    gap: 12px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .firm dt {
-    font: 600 0.75rem/1.6 var(--note);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--navy);
-  }
-
-  .firm dd {
-    margin: 0;
-    font-size: 1rem;
-  }
-
-  /* Stopka: tabliczka arkusza */
-  .foot {
-    margin: 0 12px 12px;
-    background: var(--navy);
     color: #fff;
-  }
-
-  .foot-inner {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 28px 48px;
-    align-items: center;
-    padding: clamp(36px, 4vw, 56px) var(--gutter) clamp(28px, 3vw, 40px) calc(var(--rail) + var(--gutter));
-  }
-
-  .foot img {
-    width: clamp(220px, 22vw, 320px);
-    height: auto;
-  }
-
-  .foot nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 14px 32px;
-    font: 600 0.9375rem/1.2 var(--note);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .foot nav a {
-    color: #fff;
+    padding-bottom: 4px;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.6);
     text-decoration: none;
   }
 
-  .foot nav a:hover {
-    text-decoration: underline;
-    text-underline-offset: 0.3em;
+  .hero-link:hover {
+    border-color: #fff;
   }
 
-  .foot-line {
-    grid-column: 1 / -1;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 8px 24px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    font: 500 0.8125rem/1.4 var(--note);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.78);
-  }
-
-  .foot :focus-visible {
+  .hero :focus-visible {
     outline-color: #fff;
   }
 
-  @media (max-width: 1100px) {
-    .hero {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
-    }
+  .sygnet {
+    width: 100%;
+    max-width: 360px;
+    justify-self: end;
+  }
 
-    .leg-grid,
-    .leg-grid.soft,
-    .leg-grid.wide-text,
-    .contact-grid {
+  .divisions {
+    padding: var(--step) 0;
+  }
+
+  .sec-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px 32px;
+    padding-bottom: 22px;
+    border-bottom: 1.5px solid var(--navy);
+  }
+
+  .sec-head h2 {
+    font: 500 clamp(1.75rem, 3vw, 2.5rem) / 1.15 var(--serif);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  .sec-head p {
+    font-size: 1.125rem;
+    color: #2b4466;
+  }
+
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(16px, 2vw, 28px);
+    margin: clamp(28px, 3vw, 40px) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tile {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+    grid-template-rows: auto auto 1fr auto;
+    column-gap: 24px;
+    height: 100%;
+    padding: clamp(24px, 3vw, 36px);
+    background: #fff;
+    border: 1px solid var(--rule);
+    color: var(--navy);
+    text-decoration: none;
+    transition: border-color 0.25s, box-shadow 0.3s, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tile::before {
+    content: "";
+    position: absolute;
+    left: -1px;
+    right: -1px;
+    top: -1px;
+    height: 3px;
+    background: var(--navy);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tile:hover {
+    border-color: var(--navy);
+    box-shadow: 0 18px 36px -24px rgba(26, 48, 80, 0.45);
+    transform: translateY(-2px);
+  }
+
+  .tile:hover::before,
+  .tile:focus-visible::before {
+    transform: scaleX(1);
+  }
+
+  .tile :global(.t-mark) {
+    grid-column: 1 / -1;
+    font-size: clamp(1.5rem, 2.4vw, 2.125rem);
+  }
+
+  .t-name {
+    grid-column: 1;
+    margin-top: 14px;
+    font: 600 1.125rem/1.3 var(--sans);
+    color: var(--navy);
+  }
+
+  .t-text {
+    grid-column: 1;
+    margin-top: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #2b4466;
+  }
+
+  .t-art {
+    grid-column: 2;
+    grid-row: 2 / 4;
+    align-self: end;
+  }
+
+  .t-go {
+    grid-column: 1 / -1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule-soft);
+    font: 600 0.9375rem/1 var(--sans);
+    letter-spacing: 0.06em;
+    color: var(--navy);
+  }
+
+  .t-go :global(svg) {
+    width: 1.1em;
+    height: 1.1em;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tile:hover .t-go :global(svg) {
+    transform: translateX(4px);
+  }
+
+  .note {
+    margin-top: 14px;
+    font-size: 0.8125rem;
+    color: #4a5f7d;
+  }
+
+  .case {
+    padding: var(--step) 0;
+    background: var(--deep);
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  .case-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(32px, 5vw, 80px);
+    align-items: center;
+  }
+
+  .case-mark {
+    font-size: 1.125rem;
+    color: var(--navy);
+  }
+
+  .case h2 {
+    margin-top: 12px;
+    font: 500 clamp(1.75rem, 2.8vw, 2.375rem) / 1.15 var(--serif);
+    color: var(--navy);
+    text-wrap: balance;
+  }
+
+  .case-grid > div > p:not(.case-mark) {
+    margin: 18px 0 24px;
+    max-width: 36em;
+    color: #2b4466;
+  }
+
+  .shot {
+    border: 1px solid var(--rule);
+    background: #fff;
+    box-shadow: 0 18px 40px -26px rgba(26, 48, 80, 0.5);
+  }
+
+  .shot img {
+    width: 100%;
+    height: auto;
+  }
+
+  .shot figcaption {
+    padding: 10px 14px;
+    border-top: 1px solid var(--rule-soft);
+    font-size: 0.875rem;
+    color: #3d5373;
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid,
+    .case-grid {
       grid-template-columns: minmax(0, 1fr);
     }
 
-    .leg-figure.sticky {
-      position: static;
+    .sygnet {
+      display: none;
     }
 
-    .leg-figure,
-    .inset {
-      max-width: 44rem;
+    .tiles {
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 
-  @media (max-width: 760px) {
-    .hide-sm {
-      display: none;
-    }
-
-    .masthead {
-      margin: 8px 8px 0;
-      padding: 0 16px;
-      height: 68px;
-    }
-
-    .route {
-      margin: 0 8px;
-    }
-
-    .hero {
+  @media (max-width: 560px) {
+    .tile {
       grid-template-columns: minmax(0, 1fr);
-      min-height: 0;
     }
 
-    .hero-copy {
-      padding: 28px 16px 28px calc(var(--rail) + 14px);
+    .t-art {
+      grid-column: 1;
+      grid-row: auto;
+      margin-top: 18px;
+      max-width: 280px;
     }
 
-    .hero-head .kmark {
-      left: calc(-1 * (var(--rail) + 14px));
-      padding-right: 12px;
-      font-size: 0.75rem;
-      letter-spacing: 0;
-    }
-
-    .hero-head .km-unit {
-      display: none;
-    }
-
-    .hero-head .kmark::after {
-      width: 7px;
-    }
-
-    .hero-map {
-      border-left: 0;
-      border-top: 1px solid var(--rule);
-      margin-left: var(--rail);
-      padding: 6px 12px 6px 0;
-      background: var(--land);
-    }
-
-    .hero-map :global(.chart) {
-      position: relative;
-      inset: auto;
-    }
-
-    .leg-inner,
-    .contact .leg-inner {
-      padding: 0 16px 0 calc(var(--rail) + 14px);
-    }
-
-    .contact-head .kmark {
-      left: calc(-1 * (var(--rail) + 14px));
-    }
-
-    .contact-head .km {
-      padding-right: 13px;
-      font-size: 0.7rem;
-    }
-
-    .contact-head h2 {
-      font-size: 1.6rem;
-      letter-spacing: 0.02em;
-    }
-
-    .lead {
-      font-size: 1.125rem;
-    }
-
-    .spis thead {
-      display: none;
-    }
-
-    .spis caption {
-      display: block;
-    }
-
-    .spis,
-    .spis tbody,
-    .spis tr,
-    .spis th,
-    .spis td {
-      display: block;
-    }
-
-    .spis tr {
-      padding: 12px 0;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .spis th,
-    .spis td {
-      padding: 2px 0;
-      border: 0;
-    }
-
-    .firm dl div {
-      grid-template-columns: 1fr;
-      gap: 2px;
-    }
-
-    .foot {
-      margin: 0 8px 8px;
-    }
-
-    .foot-inner {
-      grid-template-columns: 1fr;
-      padding: 32px 16px 24px calc(var(--rail) + 14px);
-    }
-
-    .foot nav {
-      justify-content: flex-start;
-      flex-direction: column;
+    .button.light {
+      font-size: 0.9375rem;
+      letter-spacing: 0.04em;
+      padding: 0 18px;
     }
   }
 </style>

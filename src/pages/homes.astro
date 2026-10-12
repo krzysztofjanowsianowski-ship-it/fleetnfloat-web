@@ -1,0 +1,37 @@
+---
+import Division from "../layouts/Division.astro";
+import HouseboatProfile from "../components/HouseboatProfile.astro";
+import External from "../components/External.astro";
+import { modeleBygga } from "../data/firma";
+---
+
+<Division
+  id="homes"
+  lead="Jesteśmy dealerem BYGGA, producenta houseboatów i domów modułowych z Bydgoszczy, działającego od 2017 roku. Pomożemy dobrać model do miejsca i celu, a potem umówimy oględziny."
+>
+  <div class="split">
+    <div class="prose">
+      <h2 class="h-sec">Wybrane modele według producenta</h2>
+      <table class="spis">
+        <thead>
+          <tr><th scope="col">Model</th><th scope="col">Rodzaj</th><th scope="col">Część mieszkalna</th><th scope="col">Wymiary</th></tr>
+        </thead>
+        <tbody>
+          {
+            modeleBygga.map((m) => (
+              <tr>
+                <th scope="row"><a href={m.url} rel="noopener" target="_blank">{m.model}<span class="visually-hidden"> (karta modelu u producenta, nowe okno)</span></a></th>
+                <td>{m.rodzaj}</td>
+                <td>{m.mieszkalna}</td>
+                <td>{m.wymiary}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+      <p class="fine">Dane z kart modeli na bygga.pl. Cenę, dostępność i transport potwierdzamy przy zapytaniu.</p>
+      <p><a class="action" href="https://www.bygga.pl/" rel="noopener" target="_blank">Pełna oferta producenta <External /><span class="visually-hidden"> (nowe okno)</span></a></p>
+    </div>
+    <div class="side"><HouseboatProfile /></div>
+  </div>
+</Division>

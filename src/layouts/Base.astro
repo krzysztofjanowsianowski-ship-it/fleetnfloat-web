@@ -8,6 +8,8 @@ import "@fontsource/barlow/600.css";
 import "@fontsource/barlow-semi-condensed/500.css";
 import "@fontsource/barlow-semi-condensed/600.css";
 import "../styles/global.css";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
 
 interface Props {
   title: string;
@@ -35,6 +37,27 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={canonical} />
   </head>
   <body>
-    <slot />
+    <a class="skip" href="#tresc">Przejdź do treści</a>
+    <SiteHeader />
+    <main id="tresc">
+      <slot />
+    </main>
+    <SiteFooter />
   </body>
 </html>
+
+<style is:global>
+  .skip {
+    position: absolute;
+    left: 12px;
+    top: -60px;
+    z-index: 50;
+    padding: 10px 14px;
+    background: var(--navy);
+    color: #fff;
+  }
+
+  .skip:focus {
+    top: 12px;
+  }
+</style>

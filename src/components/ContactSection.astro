@@ -1,0 +1,111 @@
+---
+import ContactForm from "./ContactForm.astro";
+import { firma } from "../data/firma";
+
+interface Props {
+  wybrany?: string;
+  tytul?: string;
+  opis?: string;
+}
+
+const {
+  wybrany,
+  tytul = "Kontakt",
+  opis = "Wybierz dział i napisz kilka zdań. Odpowiemy na podany e-mail albo telefon.",
+} = Astro.props;
+---
+
+<section class="contact" id="kontakt" aria-labelledby="kontakt-tytul">
+  <div class="wrap">
+    <h2 id="kontakt-tytul">{tytul}</h2>
+    <p class="intro">{opis}</p>
+    <div class="grid">
+      <ContactForm wybrany={wybrany} />
+      <aside class="firm" aria-label="Dane firmy">
+        <img src="/brand/logo-bez-hasla.svg" alt="FLEET&FLOAT" width="2075" height="496" />
+        <dl>
+          <div><dt>Adres</dt><dd>{firma.adres ?? <span class="draft">[adres do uzupełnienia]</span>}</dd></div>
+          <div><dt>NIP</dt><dd>{firma.nip ?? <span class="draft">[NIP do uzupełnienia]</span>}</dd></div>
+          <div><dt>Telefon</dt><dd>{firma.telefon ? <a href={`tel:${firma.telefon.replace(/\s/g, "")}`}>{firma.telefon}</a> : <span class="draft">[telefon do uzupełnienia]</span>}</dd></div>
+          <div><dt>E-mail</dt><dd>{firma.email ? <a href={`mailto:${firma.email}`}>{firma.email}</a> : <span class="draft">[e-mail do uzupełnienia]</span>}</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding: var(--step) 0;
+    background: var(--deep);
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  h2 {
+    font: 500 clamp(1.75rem, 3vw, 2.5rem) / 1.15 var(--serif);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  .intro {
+    margin-top: 14px;
+    max-width: 40em;
+    color: #2b4466;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.8fr);
+    gap: clamp(28px, 4vw, 64px);
+    align-items: start;
+    margin-top: clamp(28px, 3.4vw, 44px);
+  }
+
+  .firm {
+    border-top: 1.5px solid var(--navy);
+    padding-top: 22px;
+  }
+
+  .firm img {
+    width: min(280px, 100%);
+    height: auto;
+  }
+
+  dl {
+    margin: 22px 0 0;
+  }
+
+  dl div {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  dt {
+    font: 600 0.75rem/1.6 var(--sans);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  dd {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    dl div {
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+  }
+</style>

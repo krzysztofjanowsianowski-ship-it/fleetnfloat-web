@@ -1,0 +1,20 @@
+---
+import Division from "../layouts/Division.astro";
+import VehiclesProfile from "../components/VehiclesProfile.astro";
+---
+
+<Division id="lease" lead="Samochody ciężarowe i osobowe na wynajem dla firm. Napisz, czego i na kiedy potrzebujesz, a przygotujemy propozycję.">
+  <div class="split">
+    <div class="prose">
+      <h2 class="h-sec">Do wyceny wystarczy nam</h2>
+      <ul class="checklist">
+        <li><b>Rodzaj pojazdu.</b> Ciężarowy czy osobowy, i ile sztuk.</li>
+        <li><b>Termin.</b> Od kiedy i na jak długo.</li>
+        <li><b>Miejsce odbioru.</b> Gdzie pojazd ma na Ciebie czekać.</li>
+        <li><b>Cel.</b> Przewóz towaru, auto dla pracownika albo zastępstwo we flocie.</li>
+      </ul>
+      <p class="fine">Listę dostępnych pojazdów opublikujemy wkrótce.</p>
+    </div>
+    <div class="side"><VehiclesProfile /></div>
+  </div>
+</Division>

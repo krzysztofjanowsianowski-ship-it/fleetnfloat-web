@@ -10,6 +10,17 @@ web
 
 Astro (statyczna strona, wybór użytkownika). Kod w `fleetnfloat-web/` w repozytorium E-Learning-CPK. Docelowy hosting: firmowy VPS Hetzner pod fleetnfloat.com, do potwierdzenia przy wdrożeniu (domena główna i sposób publikacji).
 
+## Brand Architecture
+
+Potwierdzone przez użytkownika (10.2026): grupa występuje jako **F&F GROUP** („Grupa F&F”), marka i logo FLEET&FLOAT bez zmian. Działy mają własne nazwy:
+
+- **F&F LEASE**: wynajem pojazdów ciężarowych i osobowych.
+- **F&F.IT**: oprogramowanie (narzędzia biurowe, CRM, integracje, platformy szkoleniowe).
+- **F&F HOMES**: sprzedaż houseboatów i domów jako dealer BYGGA.
+- **F&F HR**: wsparcie kadrowe i administracyjne.
+
+Kolejność z briefu: LEASE, IT, HOMES, HR. Strona główna to profesjonalna wizytówka grupy z kaflami prowadzącymi do stron działów (`/lease/`, `/it/`, `/homes/`, `/hr/`).
+
 ## Users
 
 Głównie firmy, przede wszystkim małe i średnie przedsiębiorstwa, które szukają wynajmu pojazdów, oprogramowania na zamówienie albo wsparcia kadrowo-administracyjnego. Houseboaty i domki letniskowe kupują głównie inwestorzy i firmy. Osoby prywatne nie są główną grupą docelową.
