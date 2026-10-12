@@ -2,14 +2,13 @@
 import Base from "../layouts/Base.astro";
 import Mark from "../components/Mark.astro";
 import Arrow from "../components/Arrow.astro";
-import External from "../components/External.astro";
 import ContactSection from "../components/ContactSection.astro";
 import HouseboatProfile from "../components/HouseboatProfile.astro";
 import VehiclesProfile from "../components/VehiclesProfile.astro";
 import OfficeProfile from "../components/OfficeProfile.astro";
 import ScreenProfile from "../components/ScreenProfile.astro";
 import { dzialy } from "../data/firma";
-import { ampersand } from "../data/ampersand";
+import Sygnet from "../components/Sygnet.astro";
 
 const rysunki = {
   lease: VehiclesProfile,
@@ -26,6 +25,7 @@ const rysunki = {
   <section class="hero" aria-labelledby="tytul">
     <div class="wrap hero-grid">
       <div class="hero-copy">
+        <Sygnet class="hero-sygnet-sm" />
         <h1 id="tytul"><Mark sufiks=" GROUP" /></h1>
         <p class="lead">
           Grupa F&F prowadzi działania w czterech obszarach: wynajem pojazdów, oprogramowanie dla firm, sprzedaż
@@ -37,11 +37,7 @@ const rysunki = {
           <a class="hero-link" href="#kontakt">Kontakt</a>
         </div>
       </div>
-      <svg class="sygnet" viewBox="0 0 400 400" aria-hidden="true">
-        <circle cx="200" cy="200" r="190" fill="none" stroke="#fff" stroke-width="14"></circle>
-        <circle cx="200" cy="200" r="164" fill="none" stroke="var(--gold-on-navy)" stroke-width="2.5"></circle>
-        <path fill="var(--gold-on-navy)" d={ampersand}></path>
-      </svg>
+      <Sygnet class="hero-sygnet" />
     </div>
   </section>
 
@@ -74,31 +70,6 @@ const rysunki = {
         }
       </ul>
       <p class="note">Rysunki są poglądowe.</p>
-    </div>
-  </section>
-
-  <section class="case" aria-labelledby="realizacja-tytul">
-    <div class="wrap case-grid">
-      <div>
-        <p class="case-mark"><Mark sufiks=".IT" /></p>
-        <h2 id="realizacja-tytul">Realizacja: platforma kursów dla kierowców</h2>
-        <p>
-          Kursy obsługi tachografu cyfrowego i czasu pracy kierowcy, interaktywny symulator tachografu z filmami
-          instruktażowymi i lektorem, panel firmy oraz miesięczne rozliczenia.
-        </p>
-        <a class="action" href="https://kursy.fleetnfloat.com" rel="noopener" target="_blank">kursy.fleetnfloat.com <External /><span class="visually-hidden"> (nowe okno)</span></a>
-      </div>
-      <figure class="shot">
-        <img
-          src="/realizacje/kursy-symulator.webp"
-          width="1600"
-          height="778"
-          loading="lazy"
-          decoding="async"
-          alt="Ekran symulatora tachografu VDO DTCO 4.1a na platformie kursów: wyświetlacz, przyciski, sloty kart, liczniki jazdy i przerwy."
-        />
-        <figcaption>Zrzut ekranu z platformy w trybie podglądu.</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -175,10 +146,19 @@ const rysunki = {
     outline-color: #fff;
   }
 
-  .sygnet {
+  .hero :global(.hero-sygnet) {
     width: 100%;
     max-width: 360px;
     justify-self: end;
+  }
+
+  .hero :global(.hero-sygnet-sm) {
+    display: none;
+  }
+
+  .t-art :global(.notes),
+  .t-art :global(.leaders) {
+    display: none;
   }
 
   .divisions {
@@ -192,7 +172,7 @@ const rysunki = {
     justify-content: space-between;
     gap: 12px 32px;
     padding-bottom: 22px;
-    border-bottom: 1.5px solid var(--navy);
+    border-bottom: 1px solid var(--gold);
   }
 
   .sec-head h2 {
@@ -238,7 +218,7 @@ const rysunki = {
     right: -1px;
     top: -1px;
     height: 3px;
-    background: var(--navy);
+    background: var(--gold);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -310,63 +290,19 @@ const rysunki = {
     color: #4a5f7d;
   }
 
-  .case {
-    padding: var(--step) 0;
-    background: var(--deep);
-    border-top: 1px solid var(--rule-soft);
-  }
-
-  .case-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    gap: clamp(32px, 5vw, 80px);
-    align-items: center;
-  }
-
-  .case-mark {
-    font-size: 1.125rem;
-    color: var(--navy);
-  }
-
-  .case h2 {
-    margin-top: 12px;
-    font: 500 clamp(1.75rem, 2.8vw, 2.375rem) / 1.15 var(--serif);
-    color: var(--navy);
-    text-wrap: balance;
-  }
-
-  .case-grid > div > p:not(.case-mark) {
-    margin: 18px 0 24px;
-    max-width: 36em;
-    color: #2b4466;
-  }
-
-  .shot {
-    border: 1px solid var(--rule);
-    background: #fff;
-    box-shadow: 0 18px 40px -26px rgba(26, 48, 80, 0.5);
-  }
-
-  .shot img {
-    width: 100%;
-    height: auto;
-  }
-
-  .shot figcaption {
-    padding: 10px 14px;
-    border-top: 1px solid var(--rule-soft);
-    font-size: 0.875rem;
-    color: #3d5373;
-  }
-
   @media (max-width: 900px) {
-    .hero-grid,
-    .case-grid {
+    .hero-grid {
       grid-template-columns: minmax(0, 1fr);
     }
 
-    .sygnet {
+    .hero :global(.hero-sygnet) {
       display: none;
+    }
+
+    .hero :global(.hero-sygnet-sm) {
+      display: block;
+      width: 88px;
+      margin-bottom: 24px;
     }
 
     .tiles {

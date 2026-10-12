@@ -3,6 +3,7 @@
 import Base from "./Base.astro";
 import Mark from "../components/Mark.astro";
 import Arrow from "../components/Arrow.astro";
+import Sygnet from "../components/Sygnet.astro";
 import ContactSection from "../components/ContactSection.astro";
 import { dzialy, firma } from "../data/firma";
 
@@ -19,11 +20,15 @@ const pozostale = dzialy.filter((d) => d.id !== id);
 <Base title={`${dzial.marka} · ${dzial.nazwa} · ${firma.grupa}`} description={`${dzial.marka}: ${dzial.krotko}`}>
   <section class="intro">
     <div class="wrap">
-      <nav class="crumbs" aria-label="Okruszki"><a href="/">{firma.grupa}</a><span aria-hidden="true">/</span><span>{dzial.marka}</span></nav>
-      <p class="mark-line"><Mark sufiks={dzial.sufiks} /></p>
-      <h1>{dzial.nazwa}</h1>
-      <p class="lead">{lead}</p>
-      <a class="button" href="#kontakt">{dzial.akcja} <Arrow /></a>
+      <div class="intro-grid">
+        <div>
+          <nav class="crumbs" aria-label="Okruszki"><a href="/">{firma.grupa}</a><span aria-hidden="true">/</span><span>{dzial.marka}</span></nav>
+          <h1><Mark sufiks={dzial.sufiks} /></h1>
+          <p class="lead"><strong>{dzial.nazwa}.</strong> {lead}</p>
+          <a class="button light" href="#kontakt">{dzial.akcja} <Arrow /></a>
+        </div>
+        <Sygnet class="intro-sygnet" />
+      </div>
     </div>
   </section>
 
@@ -57,34 +62,42 @@ const pozostale = dzialy.filter((d) => d.id !== id);
 
 <style>
   .intro {
-    padding: clamp(40px, 6vw, 88px) 0 clamp(48px, 6vw, 80px);
-    background: var(--deep);
-    border-bottom: 1px solid var(--rule-soft);
+    padding: clamp(36px, 5vw, 72px) 0 clamp(48px, 6vw, 80px);
+    background: var(--navy);
+    color: #fff;
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .intro :global(.intro-sygnet) {
+    width: clamp(140px, 16vw, 220px);
   }
 
   .crumbs {
     display: flex;
     gap: 10px;
     font-size: 0.875rem;
-    color: #3d5373;
+    color: rgba(255, 255, 255, 0.75);
   }
 
   .crumbs a {
-    color: var(--navy);
-  }
-
-  .mark-line {
-    margin-top: clamp(28px, 4vw, 48px);
-    font-size: clamp(1.125rem, 1.8vw, 1.5rem);
-    color: var(--navy);
+    color: #fff;
   }
 
   h1 {
-    margin-top: 10px;
-    font: 500 clamp(2.5rem, 5.4vw, 4.5rem) / 1.04 var(--serif);
-    letter-spacing: -0.01em;
-    color: var(--navy);
-    text-wrap: balance;
+    margin-top: clamp(24px, 3.4vw, 40px);
+    font-size: clamp(2.25rem, 5.4vw, 4.5rem);
+    line-height: 1.04;
+    color: #fff;
+  }
+
+  h1 :global(.amp) {
+    color: var(--gold-on-navy);
   }
 
   .lead {
@@ -92,7 +105,27 @@ const pozostale = dzialy.filter((d) => d.id !== id);
     max-width: 38em;
     font-size: clamp(1.125rem, 1.5vw, 1.3125rem);
     line-height: 1.55;
-    color: #2b4466;
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .lead strong {
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .button.light {
+    color: var(--navy);
+    background: #fff;
+    box-shadow: inset 0 0 0 4px #fff, inset 0 0 0 5px var(--navy);
+  }
+
+  .button.light:hover {
+    background: var(--deep);
+    box-shadow: inset 0 0 0 4px var(--deep), inset 0 0 0 5px var(--navy);
+  }
+
+  .intro :focus-visible {
+    outline-color: #fff;
   }
 
   .body {
@@ -118,7 +151,7 @@ const pozostale = dzialy.filter((d) => d.id !== id);
     margin: 22px 0 0;
     padding: 0;
     list-style: none;
-    border-top: 1.5px solid var(--navy);
+    border-top: 1px solid var(--gold);
   }
 
   .others li + li a {
@@ -162,6 +195,15 @@ const pozostale = dzialy.filter((d) => d.id !== id);
   }
 
   @media (max-width: 760px) {
+    .intro-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .intro :global(.intro-sygnet) {
+      grid-row: 1;
+      width: 80px;
+    }
+
     .others ul {
       grid-template-columns: 1fr;
     }
