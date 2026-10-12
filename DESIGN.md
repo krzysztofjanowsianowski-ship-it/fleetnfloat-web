@@ -1,278 +1,311 @@
 ---
-name: FLEET&FLOAT
-description: Usługi dla Twojego biznesu. One company, four departments, drawn as one route chart printed in two inks.
+name: F&F GROUP
+description: The FLEET&FLOAT group's corporate site, a white, ruled group portal in navy and gold, with division names set in the logo's own notation.
 colors:
   navy: "#203a5f"
   navy-ink: "#1a3050"
   navy-soft: "#3a5274"
+  navy-text: "#2b4466"
   navy-muted: "#3d5373"
   navy-quiet: "#4a5f7d"
+  slate-statement: "#5b6b80"
   gold: "#b8925a"
   gold-on-navy: "#d2b07a"
-  land: "#ebddc2"
-  shoal: "#d6e0ea"
-  deep: "#f7f9fb"
-  sheet-white: "#ffffff"
-  rule: "rgba(32, 58, 95, 0.28)"
-  rule-soft: "rgba(32, 58, 95, 0.14)"
+  gold-deep-text: "#735828"
+  gold-tagline: "#8a6a36"
+  deep: "#ffffff"
+  paper: "#ffffff"
+  beige: "#f2f3f5"
+  rule: "rgba(32, 58, 95, 0.2)"
+  rule-soft: "rgba(32, 58, 95, 0.12)"
   signal-rust: "#9a3b1f"
 typography:
   display:
     fontFamily: "Bodoni Moda, Bodoni 72, Didot, serif"
-    fontSize: "clamp(2.5rem, 4vw, 3.5rem)"
+    fontSize: "clamp(2.25rem, 5vw, 4rem)"
+    fontWeight: 500
+    lineHeight: 1.04
+    letterSpacing: "0.14em"
+  headline:
+    fontFamily: "Bodoni Moda, Bodoni 72, Didot, serif"
+    fontSize: "clamp(1.75rem, 3vw, 2.5rem)"
+    fontWeight: 500
+    lineHeight: 1.15
+    letterSpacing: "0.08em"
+  headline-page:
+    fontFamily: "Barlow, system-ui, sans-serif"
+    fontSize: "clamp(1.625rem, 2.4vw, 2rem)"
+    fontWeight: 500
+    lineHeight: 1.2
+  mark-small:
+    fontFamily: "Bodoni Moda, Bodoni 72, Didot, serif"
+    fontSize: "1.125rem"
+    fontWeight: 500
+    lineHeight: 1
+    letterSpacing: "0.12em"
+  statement:
+    fontFamily: "Barlow, system-ui, sans-serif"
+    fontSize: "clamp(1.0625rem, 1.4vw, 1.1875rem)"
     fontWeight: 600
-    lineHeight: 1.05
-    letterSpacing: "-0.012em"
-  headline-water:
-    fontFamily: "Bodoni Moda, Bodoni 72, Didot, serif"
-    fontSize: "clamp(2.25rem, 4.4vw, 3.75rem)"
-    fontWeight: 500
-    lineHeight: 1.05
-    letterSpacing: "-0.01em"
-  headline-land:
-    fontFamily: "Bodoni Moda, Bodoni 72, Didot, serif"
-    fontSize: "clamp(1.75rem, 3.4vw, 3rem)"
-    fontWeight: 500
-    lineHeight: 1.1
-    letterSpacing: "0.09em"
-  title:
-    fontFamily: "Bodoni Moda, Bodoni 72, Didot, serif"
-    fontSize: "1.3125rem"
-    fontWeight: 500
-    lineHeight: 1.22
+    lineHeight: 1.55
   lead:
     fontFamily: "Barlow, system-ui, sans-serif"
-    fontSize: "clamp(1.1875rem, 1.6vw, 1.375rem)"
+    fontSize: "clamp(1.0625rem, 1.4vw, 1.25rem)"
     fontWeight: 400
-    lineHeight: 1.5
+    lineHeight: 1.6
+  nav:
+    fontFamily: "Barlow, system-ui, sans-serif"
+    fontSize: "clamp(1rem, 1.3vw, 1.1875rem)"
+    fontWeight: 500
+    lineHeight: 1.2
   body:
     fontFamily: "Barlow, system-ui, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 400
     lineHeight: 1.55
     fontFeature: "\"lnum\" 1"
+  caption:
+    fontFamily: "Barlow, system-ui, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 400
   label:
+    fontFamily: "Barlow, system-ui, sans-serif"
+    fontSize: "0.8125rem"
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: "0.16em"
+  label-field:
     fontFamily: "Barlow Semi Condensed, Barlow, system-ui, sans-serif"
     fontSize: "0.75rem"
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "0.14em"
-  annotation:
-    fontFamily: "Barlow Semi Condensed, Barlow, system-ui, sans-serif"
-    fontSize: "0.8125rem"
-    fontWeight: 500
-    lineHeight: 1
-    letterSpacing: "0.04em"
-    fontFeature: "\"tnum\" 1"
-  note:
-    fontFamily: "Barlow Semi Condensed, Barlow, system-ui, sans-serif"
-    fontSize: "0.875rem"
-    fontWeight: 500
-    lineHeight: 1.45
-    letterSpacing: "0.02em"
-  action:
-    fontFamily: "Barlow Semi Condensed, Barlow, system-ui, sans-serif"
-    fontSize: "1rem"
-    fontWeight: 600
-    lineHeight: 1
-    letterSpacing: "0.05em"
   button:
     fontFamily: "Barlow Semi Condensed, Barlow, system-ui, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 600
     lineHeight: 1
     letterSpacing: "0.08em"
+  action:
+    fontFamily: "Barlow Semi Condensed, Barlow, system-ui, sans-serif"
+    fontSize: "1rem"
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: "0.05em"
 rounded:
   none: "0px"
-  stop: "50%"
 spacing:
-  frame: "clamp(8px, 1.4vw, 18px)"
-  rail: "clamp(44px, 6vw, 84px)"
-  gutter: "clamp(20px, 3vw, 40px)"
-  step: "clamp(72px, 9vw, 128px)"
+  gutter: "clamp(20px, 4vw, 48px)"
+  section: "clamp(72px, 9vw, 128px)"
+  container: "1240px"
+  sidebar: "240px"
+  tile-gap: "28px"
 components:
   button-primary:
     backgroundColor: "{colors.navy}"
-    textColor: "{colors.sheet-white}"
+    textColor: "{colors.paper}"
     typography: "{typography.button}"
     rounded: "{rounded.none}"
     padding: "0 22px"
     height: "52px"
   button-primary-hover:
     backgroundColor: "{colors.navy-ink}"
-    textColor: "{colors.sheet-white}"
-  action-link:
+  nav-link:
     textColor: "{colors.navy}"
-    typography: "{typography.action}"
-    padding: "0 0 4px"
-  nav-cta:
+    typography: "{typography.nav}"
+    padding: "6px 0"
+  nav-link-current:
+    textColor: "{colors.gold-deep-text}"
+  sidebar-link:
     textColor: "{colors.navy}"
+    padding: "9px 12px"
+  sidebar-link-hover:
+    backgroundColor: "{colors.beige}"
+  area-tile-image:
+    backgroundColor: "{colors.beige}"
     rounded: "{rounded.none}"
-    padding: "13px 18px"
-  nav-cta-hover:
+  area-tile-bar:
     backgroundColor: "{colors.navy}"
-    textColor: "{colors.sheet-white}"
-  legend:
-    backgroundColor: "{colors.sheet-white}"
-    textColor: "{colors.navy}"
+    textColor: "{colors.paper}"
     rounded: "{rounded.none}"
-  legend-row:
-    padding: "10px 18px"
-    height: "76px"
-  legend-row-active:
-    backgroundColor: "rgba(32, 58, 95, 0.05)"
+    padding: "12px 14px 12px 18px"
+  area-tile-bar-hover:
+    backgroundColor: "{colors.navy-ink}"
   form-cell:
-    backgroundColor: "{colors.sheet-white}"
+    backgroundColor: "{colors.paper}"
     textColor: "{colors.navy-ink}"
+    typography: "{typography.body}"
+    rounded: "{rounded.none}"
     padding: "12px 16px"
-  form-cell-focus:
-    backgroundColor: "{colors.deep}"
-  footer-plate:
-    backgroundColor: "{colors.navy}"
-    textColor: "{colors.sheet-white}"
 ---
 
-# Design System: FLEET&FLOAT
+# Design System: F&F GROUP
 
 ## Overview
 
-**Creative North Star: "Locja szlaku" (the route chart)**
+**Creative North Star: "The Group Portal in Brand Ink"**
 
-The site is one sheet of a pilot chart printed in two inks. A single gold route ties four department stops into one journey, and every surface is a part of that chart: a framed sheet with an alternating scale border, grounds tinted as land, shoal and deep water, a kilometre rail down the left margin, a legend that doubles as navigation, and a title-block form at the end of the route. Solidity is shown through drafting discipline: hairline navy rules, exact annotations, tabular figures, nothing soft or decorative that a chart would not carry.
+The site works like a capital group's corporate portal: a white page with a two-row header, breadcrumbs, a section sidebar, and content laid out in plain ruled blocks. What makes it FLEET&FLOAT is the ink. Navy and gold come straight from the logo files, and every division name in a brand position is set the way the logo sets it, in Bodoni Moda capitals spaced wide with an italic gold ampersand. Explanatory text is plain Barlow.
 
-Density is that of a working document: generous section steps, but tight, ruled internal structure (tables, checklists, legend rows, form cells). Line drawings stand in for photography and are labelled as illustrative. Motion has one meaning: the route being drawn. The chart draws its gold segments on load, hovering or focusing a department draws the route to its stop and moves the seal there, and scrolling fills the margin rail in gold through the four legs to the contact stop.
+Density is orderly and informational rather than theatrical. Grounds are white, light grey bands (#f2f3f5) hold the contact section, the other-divisions strip, the footer's legal row and the tile image fields, and hairline navy-tinted rules separate everything else. The signature object is the group diagram on the home page: four quarter-circle segments in navy and gold tones around the light-ground sygnet, with text set around the ring. Depth is almost absent. Corners are square, surfaces stay flat, and interaction shows as a change of tone, position or scale rather than as lift.
 
-Inactive things stay visible as quiet signs (dashed ghost routes, hollow stops, 45% opacity labels); nothing is hidden to signal state.
+The brand assets are binding: the logo files and the sygnet are used as supplied, in the colours of their ground.
 
 **Key Characteristics:**
-- Two inks on chart paper: navy for everything drawn or written, gold only for the route.
-- Hydrographic lettering: water names in Bodoni Moda italic, land names in spaced Bodoni capitals, annotations in Barlow Semi Condensed, running text in Barlow.
-- The kilometre rail is the page's axis; every section head hangs its km mark and stop on it.
-- The seal (double ring with the logo ampersand) is the only state emblem.
-- Flat, ruled, square-cornered; circles belong only to stops and the seal.
+- Corporate portal frame: utility links row, logo plus main menu row, breadcrumbs, a 240px section sidebar on group pages.
+- White ground, light grey (#f2f3f5) bands, navy-tinted hairline rules; square corners everywhere.
+- Division marks in logo notation: spaced Bodoni capitals with the italic gold ampersand.
+- Group diagram: four quarters around the sygnet that slide outward and brighten on hover.
+- Area tiles: a grey drawing field over a navy name bar; on hover the drawing zooms in, the bar darkens and the chevron slides.
 
 ## Colors
 
-A two-ink print on tinted chart paper: one deep navy does all the drawing and writing, one muted brass gold marks the route, and three pale grounds map land, shoal and deep water.
+Two inks from the logo sheet, navy and gold, on white and pale grey, with navy tints doing all secondary text work.
 
 ### Primary
-- **Chart Navy** (navy): every line, letter, link, border, focus ring, stop and state on the page; also the button fill and the footer plate. Taken from the logo.
-- **Ink Navy** (navy-ink): running body text and the button hover fill; a hair darker than Chart Navy so long text reads as ink rather than line.
+- **Sheet Navy** (navy): the brand navy. Fills the primary button and the area tile bar. Sets marks, links, menu items, the 1.5px emphasis lines, the focus ring and line drawings. It is also the page's `accent-color`, `caret-color` and selection fill.
+- **Ink Navy** (navy-ink): body text, page headings, and the hover tone of the primary button and tile bar.
 
 ### Secondary
-- **Route Gold** (gold): only the route. The chart's route segments, the margin rail fill, and the seal's thin inner ring. Never type, links, buttons, borders or backgrounds.
-- **Gold on Navy** (gold-on-navy): brand colour of the logo variants on navy; present in the logo files, not used as a drawn colour in code.
+- **Logo Gold** (gold): the ampersand in marks on light grounds, the current menu item's underline, the other-divisions strip's top rule, checklist dashes, the sygnet's inner ring on light grounds, and the outer diagram ring.
+- **Gold on Navy** (gold-on-navy): the logo's gold on navy. Used for the ampersand and chevron in tile bars, the ampersand on the navy diagram quarters, and the on-navy sygnet.
+- **Deep Gold Text** (gold-deep-text): gold that has to be read as text on a light ground (the current menu item, the active sidebar link). It passes 4.5:1 on white.
+- **Tagline Gold** (gold-tagline): the logo's tagline gold. It also fills the HOMES quarter of the group diagram.
 
 ### Neutral
-- **Deep Water** (deep): the default ground of the sheet and of open-water sections; also the road fill on the chart and the knockout ring around stops.
-- **Land Tint** (land): ground for land legs (always with the contour drawing `/chart/warstwice.svg` at 20% navy) and for the chart's land mass.
-- **Shoal** (shoal): ground of the water leg, closed above and below by 1.2px navy shorelines.
-- **Sheet White** (sheet-white): cut-out paper for objects laid on the chart: the legend, the form, the inset figure, the seal's centre; also type on the navy plate.
-- **Muted Navy** (navy-muted) and **Quiet Navy** (navy-quiet): secondary annotation text (table column heads, fine print, captions, legend sub-lines, optional-field hints).
-- **Soft Navy** (navy-soft): scrollbar thumb only.
-- **Rule** (rule) and **Soft Rule** (rule-soft): hairline dividers between rows, cells and sections; soft rule for list items inside a block.
+- **White** (deep, paper): both tokens resolve to white. `deep` is the page ground and the fill inside line drawings. `paper` is the sheet fill for the form, the screenshot frame and the hover of other-division cells.
+- **Band Grey** (beige, #f2f3f5): contact section, other-divisions strip, footer legal row, the "Marki grupy" label, tile image fields and sidebar link hover. The token keeps its old name.
+- **Prose Navy** (navy-text): prose paragraphs, leads, contact intro and the home mission paragraph.
+- **Muted Navy** (navy-muted): table heads, fine print, the footer legal row, the tile hint.
+- **Quiet Navy** (navy-quiet): captions, the "Rysunki są poglądowe" note and optional-field hints.
+- **Statement Slate** (slate-statement): the bold centred statement under "W skrócie" only.
+- **Scrollbar Navy** (navy-soft): scrollbar thumb only.
+- **Rule** and **Soft Rule** (rule, rule-soft): navy-tinted hairlines. Rule draws the header bottom, crumbs, sidebar rows, table and checklist rows, form cells and tile-section dividers. Soft Rule draws band tops (contact, other divisions) and the screenshot caption divider.
 
-### Functional
-- **Signal Rust** (signal-rust): form error messages and invalid field text only. It is the single functional exception to the two-ink print.
+### Signal
+- **Signal Rust** (signal-rust): form error messages and invalid field text only.
 
-### Named Rules
-**The Two Inks Rule.** Navy draws and writes; gold is the route. If an element is not part of the route (chart segments, rail fill, seal inner ring), it is not gold. Error rust is the only other ink, and only for validation.
+**The Two Inks Rule.** Navy and gold are the only chromatic families. Gold marks, underlines and rings. Navy carries what you read. The diagram's extra tones (a lighter navy and two dark golds) belong to those families and are confined to the diagram.
 
-**The Ground Is Geography Rule.** A section's background says where the route is: shoal for water, land tint with contours for land, deep for open water and the contact stop. Grounds are never chosen for variety.
+**The Ground-Matched Gold Rule.** Use gold on white and grey, gold-on-navy on navy fills, and gold-deep-text whenever gold has to be read as text on a light ground. Don't swap them.
 
 ## Typography
 
-**Display Font:** Bodoni Moda (with Bodoni 72, Didot, serif)
-**Body Font:** Barlow (with system-ui, sans-serif)
-**Label/Mono Font:** Barlow Semi Condensed (with Barlow, system-ui, sans-serif)
+**Display Font:** Bodoni Moda 500 / 500 italic / 600 (fallback Bodoni 72, Didot, serif)
+**Body Font:** Barlow 400 / 500 / 600 (fallback system-ui, sans-serif)
+**Label Font:** Barlow Semi Condensed 500 / 600 (buttons, action links, form labels, errors, status text, drawing notes)
 
-**Character:** Hydrographic lettering. A high-contrast Didone names places the way a chart does, with italics for water and spaced capitals for land; a condensed grotesque carries the surveyor's annotations, and an open grotesque carries the plain, businesslike prose. Lining figures in body, tabular figures in every km mark and data column.
+**Character:** The Didone appears only where the brand speaks: marks and a few uppercase headlines. Everything that explains, navigates or labels is a sturdy grotesque with lining numerals, as you would expect on a corporate portal.
 
 ### Hierarchy
-- **Display** (Bodoni Moda 600, clamp(2.5rem, 4vw, 3.5rem), 1.05): the single sheet title; an `em` inside switches to italic 500 for the water phrase.
-- **Headline, water** (Bodoni Moda italic 500, clamp(2.25rem, 4.4vw, 3.75rem), 1.05): heading of a leg that is on water (houseboats). 2.125rem on mobile.
-- **Headline, land** (Bodoni Moda 500, clamp(1.75rem, 3.4vw, 3rem), 1.1, 0.09em, uppercase): heading of a land leg and of Kontakt. 1.6rem and 0.02em on mobile.
-- **Title** (Bodoni Moda 500, 1.3125rem, 1.22): department names in the legend (italic when water), the form's department select (1.25rem), case titles (italic 1.5rem), model names in tables (italic 1.125rem).
-- **Lead** (Barlow 400, clamp(1.1875rem, 1.6vw, 1.375rem), 1.5, max 36em): the opening paragraph of a leg.
-- **Body** (Barlow 400, 1.125rem, 1.55, lining figures): running text; lists at 1.0625rem; measure capped at 34 to 40em.
-- **Label** (Barlow Semi Condensed 600, 0.75 to 0.875rem, 0.14em, uppercase): form field labels, table captions and column heads, definition terms, block subheads, the legend's title strip, the inset's title bar.
-- **Annotation** (Barlow Semi Condensed 500, 0.8125rem, 0.04em, tabular): km marks on the rail and chart notes.
-- **Note** (Barlow Semi Condensed 500, 0.875rem, 1.45): fine print and captions in muted navy.
+- **Display** (Bodoni 500, clamp(2.25rem, 5vw, 4rem), 1.04, 0.14em, uppercase): the division mark heading on each division page.
+- **Headline** (Bodoni 500, clamp(1.75rem, 3vw, 2.5rem), 1.15, 0.08em, uppercase): the contact section heading.
+- **Headline Page** (Barlow 500, clamp(1.625rem, 2.4vw, 2rem), 1.2): portal section headings on the home page ("W skrócie", "Obszary działalności").
+- **Mark Small** (Bodoni 500, 1.125rem, 0.12em): division marks in the footer brand row and the other-divisions strip. Tile bars use 1.0625rem, and diagram quarters use 21px in SVG.
+- **Statement** (Barlow 600, clamp(1.0625rem, 1.4vw, 1.1875rem), 1.55): the centred summary under "W skrócie", max 44em. It is left-aligned below 600px.
+- **Lead** (Barlow 400, clamp(1.0625rem, 1.4vw, 1.25rem), 1.6): the division intro paragraph, max 40em, opening with the division name in 600.
+- **Nav** (Barlow 500, clamp(1rem, 1.3vw, 1.1875rem), 1.2): main menu items. They drop to 0.9375rem below 900px.
+- **Body** (Barlow 400, 1.125rem, 1.55, lining numerals): running text, prose max 38em. Tables run at 0.9375rem with tabular numerals. Sidebar links run at 0.9375rem.
+- **Caption** (Barlow 400, 0.875rem): crumbs, utility links, figure captions, fine print.
+- **Label** (Barlow 600, 0.8125rem, 0.16em, uppercase): in-page section heads in division prose and the other-divisions heading. Table heads use 0.75rem at 0.1em, and firm-detail terms use 0.75rem at 0.14em.
+- **Label Field** (Barlow Semi Condensed 600, 0.75rem, 0.14em, uppercase): form field labels at the top of each cell.
+- **Button** (Barlow Semi Condensed 600, 1.0625rem, 0.08em, uppercase): the primary button.
+- **Action** (Barlow Semi Condensed 600, 1rem, 0.05em, mixed case): underlined text actions.
 
-### Named Rules
-**The Hydrographic Convention Rule.** Water names are Bodoni italic; land names are Bodoni capitals with open tracking. A department's name keeps its convention everywhere it appears: chart label, legend, leg heading.
+**The Logo Notation Rule.** A division or group mark (page heading, tile bar, diagram quarter, footer brand row, other-divisions strip, form division select) is set in Bodoni capitals at 0.12–0.14em spacing, with an italic ampersand in the ground-matched gold. Never set a mark's ampersand roman.
 
-**The Annotation Voice Rule.** Barlow Semi Condensed is the chart's annotation hand: km marks, labels, actions, buttons, nav, notes. Bodoni never annotates and Barlow never names places.
+**The Serif Speaks for the Brand Rule.** Bodoni is reserved for marks, the uppercase contact headline, table row heads and the form's division select. Page headings, navigation, explanation, labels and controls are Barlow.
 
 ## Layout
 
-The page is one framed sheet: an outer frame margin (frame), a 1.5px navy border, and inside it at 5px a 1px navy neatline carrying an alternating 48px scale border on all four sides. Masthead, route and footer plate sit 12px inside the frame (8px on mobile).
+There is one centred container (1240px max) with a fluid gutter (clamp(20px, 4vw, 48px)). Bands run full-bleed: a white header, white content, a grey contact band, then the footer (a white brand row over a grey legal row). Major bands are spaced by one fluid step (clamp(72px, 9vw, 128px)).
 
-The kilometre rail is the axis. It sits at a fixed left offset (rail) inside the route; every block's left padding is rail + gutter, and every section head hangs its km mark (right-aligned, tabular, with a 10px tick) and its stop dot on the rail line. The rail is a dashed navy ghost (1.2px, 3/10 dash, 45% opacity) with a 5px gold fill growing over it on scroll, studded with white dots every 22px.
+- **Header:** two rows. A right-aligned utility row (caption size) sits above the logo (clamp(44px, 4.4vw, 58px) high) and the main menu, closed by a rule. Below 900px the logo and menu stack and the utility row aligns left.
+- **Crumbs:** a caption-size row with "»" separators between rules, directly under the header.
+- **Group page:** a 240px sidebar beside the content (gap clamp(32px, 4vw, 56px)). The sidebar hides below 900px.
+- **Home content:** headline, centred statement, the group diagram (max 600px, centred), an italic mission paragraph (max 46em), then a rule and the areas grid.
+- **Area tiles:** a 2-column grid with a 28px gap that becomes one column below 600px.
+- **Division intro:** white, with crumbs, the mark heading, lead and primary button on the left, and the light-ground sygnet (clamp(120px, 13vw, 180px)) on the right. The sygnet hides below 760px.
+- **Split:** division content at 1.2fr / 0.8fr with a sticky side figure (top 112px). It becomes one column below 900px with the figure capped at 36rem. The IT page reweights it to 0.9fr / 1.1fr for its screenshot.
+- **Other divisions:** a grey band with a three-cell strip under a gold top rule and rule dividers. It stacks below 760px.
+- **Contact:** form and firm details at 1.5fr / 0.8fr, stacking below 900px.
+- **Footer:** a brand row (grey "Marki grupy" label plus division marks) over a three-part legal row. Both stack below 860px.
 
-Hero: two columns, copy at rail + 2 gutters + 34rem, chart filling the rest behind a 1px rule; min-height clamp(620px, 100svh - 120px, 860px). Legs: vertical padding of one step; two-column grids at 1.05fr/1fr, 1.25fr/0.75fr or 0.9fr/1.1fr with clamp(32px, 5vw, 88px) gaps; a figure may stick at 32px from the top. Inner content caps at 1440px.
-
-Breakpoints: at 1100px every leg and the contact grid collapse to one column (figures cap at 44rem); at 760px the hero stacks, the chart moves below the legend on a land ground, nav keeps only Kontakt, km units drop the word "km", the legend action moves under the name, and tables reflow to stacked rows.
+**The Portal Frame Rule.** Group-level pages keep the corporate frame: two-row header, breadcrumbs, and the section sidebar on the left.
 
 ## Elevation & Depth
 
-Flat. Depth is conveyed by ground tint and by laying white paper objects on the chart with a 1.5px navy border, never by lifting. The single exception is the inset figure (a screenshot pasted on the chart), which carries one soft drop beneath it. Ring effects on stops, buttons and focused form cells are drawn with inset or spread box-shadows as lines, not as elevation.
+The system is flat. Depth comes only from ground changes (white versus grey band, navy fills) and hairline rules. One soft shadow exists, and it frames a raster screenshot so it reads as an object. The button's double ring and the form cell's focus edge are inset strokes drawn with box-shadow. They are not elevation.
 
 ### Shadow Vocabulary
-- **Pasted inset** (`box-shadow: 0 18px 40px -24px rgba(26, 48, 80, 0.45)`): only under an inset figure that holds a raster.
+- **Proof Frame** (`box-shadow: 0 18px 40px -26px rgba(26, 48, 80, 0.5)`): a framed raster screenshot inside division content.
+- **Double Ring** (`box-shadow: inset 0 0 0 4px var(--navy), inset 0 0 0 5px rgba(255, 255, 255, 0.7)`): the primary button's inner keyline, echoing the sygnet's two rings. It turns solid white over ink navy on hover.
+- **Cell Focus** (`box-shadow: inset 0 0 0 1.5px var(--navy)`): the focused form cell.
 
-### Named Rules
-**The Paper On Paper Rule.** Objects on the chart are cut paper: white, square, framed with a 1.5px navy line. They do not float.
+**The Tone, Not Lift Rule.** Hover is shown by darkening (tile bar, button), tinting (sidebar links, other-division cells), moving (diagram quarters by 6px outward, chevrons and arrows by 3–4px) or scaling inside a clipped field (tile drawing to 1.05). Surfaces never rise.
 
 ## Shapes
 
-Square corners everywhere (0px) on sheet, legend, form, buttons, inset and plate. Circles are reserved for the route's vocabulary: the stop (14px navy dot with a 4px deep knockout and a 1px navy ring; hollow when ahead), the seal, and the legend symbol (7px dot inside an 11px ring, in a 30px box). The only other curve is the 3px end on the rail fill.
+Corners are square (0px) on every interface surface: header, bands, tiles, buttons, form and screenshot frame. Shape comes from line weight: 1px rules for structure, 1.5px navy lines for emphasis (form frame, checklist top, table head, firm-details top, action underline), and a 2px gold underline for the current menu item. Circles belong to the brand: the sygnet's two rings and the group diagram, which is built from four quarter-circle segments separated by 9px gaps inside two concentric rings. Line drawings use one stroke family (1.5px outlines, 1px detail, round joins) on a white fill. The only rounded corners belong to icons and drawings.
 
-Line weights form a ladder: 1px for rules and rings, 1.2px for shorelines and ghost routes, 1.5px for frames, object borders and drawing outlines, 5px for the gold route. Icons are drawn arrows on a 20px grid at 1.6px stroke with round caps.
+**The Square Sheet Rule.** No border-radius on any interface surface. Rounding is allowed only inside the supplied app icon, line drawings and small stroke icons.
 
 ## Components
 
 ### Buttons
-Plaque-like and confident: a navy tablet with a fine white inner keyline, like a chart's title plate.
-- **Shape:** square corners (0px), min-height 52px, 22px side padding.
-- **Primary:** navy fill, white uppercase Barlow Semi Condensed 600 at 0.08em, drawn arrow after the text; keyline as `inset 0 0 0 4px navy, inset 0 0 0 5px rgba(255,255,255,0.7)`.
-- **Hover / Focus:** fill deepens to navy-ink and the keyline goes fully white (0.2s); focus is the global 2px navy outline at 3px offset.
-- **Action link (secondary):** navy text with a 1.5px navy underline border 4px below; hover thickens it to 3px and nudges the arrow 3px right on an expo-out curve. Used for each department's action in the legend and for external links.
+A solid navy badge with an inner keyline, like an embossed seal.
+- **Shape:** square, min-height 52px, padding 0 22px, condensed uppercase label with the drawn arrow at 1.1em.
+- **Primary:** navy fill, white text, Double Ring. On hover it shifts to ink navy and the keyline turns solid white (0.2s). Used for the division intro CTA and the form submit.
+- **Focus:** a 2px navy outline at a 3px offset, site-wide.
+
+### Action Link
+- A navy condensed link with a 1.5px underline border. On hover the underline thickens to 3px and the icon slides 3px (0.25s, cubic-bezier(0.16, 1, 0.3, 1)).
 
 ### Navigation
-- **Masthead:** full logo left (40 to 58px tall), uppercase Barlow Semi Condensed 600 links at 0.1em right; plain links underline at 50% navy on hover; Kontakt is an outlined 1.5px navy box that fills navy on hover.
-- **Legend (signature):** the map legend is the department navigation. A white framed panel with a 40px uppercase title strip, then one 76px row per department: symbol, Bodoni name with a muted annotation line, and the department's action. The row's km mark sits outside the panel on the rail. Hover or focus tints the row 5% navy and swaps the symbol for the seal.
-- **Footer plate:** navy plate with the on-navy logo, uppercase white department links, and a title-block line (copyright, tagline, "Arkusz 1") at 78% white above a 30% white rule.
+- **Utility row:** caption-size navy links, underlined on hover.
+- **Main menu:** Barlow 500 navy items with a 2px transparent underline. On hover the underline shows in rule colour. The current item turns gold-deep-text with a gold underline.
+- **Sidebar:** rule-separated rows at 0.9375rem (9px 12px padding). Hover fills them with band grey, and the active row is gold-deep-text 600. Division sub-items are indented 28px, in Bodoni at 0.875rem and 0.08em. Below the list sits a ruled contact box with a 32px stroke envelope icon. Its border turns navy on hover.
+- **Footer brand row:** division marks in Mark Small, underlined in gold on hover.
+
+### Area Tile (signature)
+- **Structure:** a 16:9 band-grey field holding the division's line drawing (notes and leaders hidden), over a navy bar with the mark (white, ampersand in gold-on-navy), the plain name at 0.8125rem in white at 82%, and a gold-on-navy double chevron (26px, stroke 2.4).
+- **Hover:** the drawing scales to 1.05 (0.5s, cubic-bezier(0.16, 1, 0.3, 1)), the bar darkens to ink navy (0.25s), and the chevron slides 4px.
+- **Shape:** square, no border, no shadow.
+
+### Group Diagram (signature)
+- **Structure:** a 640-unit SVG, max 600px wide. Four quarter segments, clockwise from top left: LEASE navy (#203A5F) and IT lighter navy (#35598A), both with gold-on-navy ampersands, then HOMES tagline gold (#8A6A36) and HR dark gold (#6E5427), both with cream ampersands (#F1E2C6). Each segment carries a white Bodoni mark and a short Barlow name. The centre is a white disc with the light-ground sygnet (6px navy ring, 1.4px gold inner ring, navy ampersand). Around it are an inner rule ring and an outer gold ring at 60% opacity, with Barlow 500 uppercase ring text at 6px tracking.
+- **Hover / Focus:** a segment translates 6px outward and brightens to 1.12 (0.35s, cubic-bezier(0.16, 1, 0.3, 1)). Focus adds a 3px gold stroke. Below 560px segment names hide and marks enlarge.
 
 ### Inputs / Fields
-- **Style:** a drafting title block. The form is a white 1.5px-framed grid of cells divided by hairline rules; each cell has an uppercase label in its corner and a borderless, transparent field below (Barlow 1.125rem; the department select is Bodoni 1.25rem).
-- **Focus:** the whole cell takes the deep ground and an inset 1.5px navy frame.
-- **Error:** message in signal rust Barlow Semi Condensed 500 below the field; invalid field text also turns rust.
+- **Style:** the form is one white sheet in a 1.5px navy frame, split into cells by rule hairlines (two columns, one below 760px). Each cell has a field label at the top and a borderless, transparent input in Barlow 1.125rem. The division select is Bodoni 500 at 1.25rem.
+- **Focus:** the cell gets the Cell Focus inset navy edge. The input itself has no outline.
+- **Error:** a signal-rust message under the field in condensed 500 at 0.9375rem, and invalid text turns rust. A polite status line sits beside the submit button.
 
-### Draft field
-Unknown company data is shown, never invented: bracketed text in Barlow Semi Condensed 500 with a 1px dashed navy underline.
+### Checklist
+- A list under a 1.5px navy top rule. Each row is closed by a rule hairline and led by a 14px gold dash. Lead-in words are bold navy.
 
-### Seal (signature)
-The logo ampersand inside a heavy navy ring and a thin gold inner ring on white. It marks the one current thing: the active chart stop, the leg the rail has reached, the hovered legend row, the contact stop on arrival. It replaces the stop with a 0.35s crossfade.
+### Specification Table
+- Rows separated by rules under a 1.5px navy head line. Heads are uppercase muted, row heads are Bodoni and linked in navy, and numerals are tabular. Below 560px the table collapses to stacked blocks.
 
-### Route chart (signature)
-Line-drawn map on land tint: navy shores, contours at 28%, italic soundings and water name, a lock, a cased road, hatched blocks, north arrow and scale bar. Each segment is a dashed navy ghost under a 5px gold stroke with white dots; segments draw in sequence on load (0.7s each, 0.42s stagger) and redraw to the chosen stop on hover or focus (0.55s, cubic-bezier(0.16, 1, 0.3, 1)). Stops past the selection go hollow and their labels drop to 45%. Reduced motion removes the drawing transitions.
+### Line Drawing
+- Navy outline drawings on white fill, with optional condensed uppercase notes and leader lines, captioned in quiet navy condensed. The houseboat's water uses shoal blue (#d6e0ea). Drawings are always marked as illustrative.
+
+### Draft Marker
+- A missing fact is shown as a visible placeholder in condensed navy with a dashed navy underline, never as invented data.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** draw every line, letter, link and state in navy (#203a5f), and keep gold (#b8925a) on the route, the rail fill and the seal's inner ring only.
-- **Do** hang every new section's km mark and stop on the rail, with content starting at rail + gutter.
-- **Do** name water places in Bodoni Moda italic and land places in spaced Bodoni capitals, and keep each department's convention wherever it appears.
-- **Do** set ground by geography: shoal for water, land tint with contours for land, deep for open water.
-- **Do** keep inactive departments, segments and stops visible as quiet signs (dashed ghost, hollow stop, 45% label).
-- **Do** show missing company data as a dashed draft field, and label line drawings as illustrative.
-- **Do** lay new objects on the chart as white, square, 1.5px navy-framed paper.
+- **Do** keep the portal frame on group pages: two-row header, breadcrumbs, 240px section sidebar.
+- **Do** set every division and group mark in Bodoni capitals at 0.12–0.14em with the italic ampersand in the ground-matched gold.
+- **Do** build on white with band grey (#f2f3f5) for secondary bands, and separate content with rule and rule-soft hairlines.
+- **Do** use gold-deep-text, not gold, when gold has to be read as text on a light ground.
+- **Do** show hover as tone, offset or clipped scale (tile bar to ink navy, diagram quarter 6px outward, drawing to 1.05), never as lift.
+- **Do** mark illustrative drawings as such and show missing facts with the draft marker.
 
 ### Don't:
-- **Don't** use gold outside the route: no gold text, links, buttons, borders, backgrounds or hover states (the logo files keep their own gold).
-- **Don't** introduce a second state emblem, badge or highlight colour; the seal is the only one.
-- **Don't** round rectangles; circles belong to stops, the seal and the legend symbol.
-- **Don't** add drop shadows to cards, panels or buttons; the pasted-inset shadow is only for an inset holding a raster.
-- **Don't** hide inactive departments or collapse them out of view to show state.
-- **Don't** set place names in Barlow or annotations in Bodoni.
+- **Don't** redraw or recolour the logo files. Use the variant that matches the ground.
+- **Don't** round corners on any interface surface.
+- **Don't** set running text in gold or add a chromatic family beyond navy and gold. Rust is for errors only.
+- **Don't** put shadows on surfaces, except the Proof Frame around a raster screenshot.
+- **Don't** set a mark's ampersand roman or in the wrong gold for its ground.

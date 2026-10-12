@@ -1,5 +1,10 @@
 ---
 // Widok od strony wody, jak rysunek brzegu w locji. Rysunek poglądowy, nie konkretny model.
+interface Props {
+  podpis?: boolean;
+}
+
+const { podpis = true } = Astro.props;
 ---
 
 <figure class="view">
@@ -43,7 +48,7 @@
       <text x="126" y="264" text-anchor="end">PŁYWAKI</text>
     </g>
   </svg>
-  <figcaption>Widok od strony wody. Rysunek poglądowy, nie konkretny model.</figcaption>
+  {podpis && <figcaption>Widok od strony wody. Rysunek poglądowy, nie konkretny model.</figcaption>}
 </figure>
 
 <style>

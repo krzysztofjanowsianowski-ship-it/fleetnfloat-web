@@ -4,19 +4,21 @@
   --navy-soft: #3a5274;
   --gold: #b8925a;
   --gold-on-navy: #d2b07a;
-  --land: #ebddc2;
+  --gold-deep-text: #735828; /* złoto do tekstu na jasnym tle (≥4,5:1) */
   --shoal: #d6e0ea;
-  --deep: #f7f9fb;
-  --rule: rgba(32, 58, 95, 0.28);
-  --rule-soft: rgba(32, 58, 95, 0.14);
+  --deep: #ffffff; /* tło strony */
+  --beige: #f2f3f5; /* jasnoszary: pasy kontaktu, stopka */
+  --paper: #ffffff;
+  --grey: #e6e8ec; /* linie i tła kafli */
+  --rule: rgba(32, 58, 95, 0.2);
+  --rule-soft: rgba(32, 58, 95, 0.12);
 
   --serif: "Bodoni Moda", "Bodoni 72", Didot, serif;
   --sans: "Barlow", system-ui, sans-serif;
   --note: "Barlow Semi Condensed", "Barlow", system-ui, sans-serif;
 
-  --frame: clamp(8px, 1.4vw, 18px);
-  --rail: clamp(44px, 6vw, 84px);
-  --gutter: clamp(20px, 3vw, 40px);
+  --max: 1240px;
+  --gutter: clamp(20px, 4vw, 48px);
   --step: clamp(72px, 9vw, 128px);
 
   color-scheme: light;
@@ -96,8 +98,7 @@ a {
   white-space: nowrap;
 }
 
-/* Akcja działu: granatowy podkreślony link w notacji mapy.
-   Złoto należy tylko do trasy i pieczęci. */
+/* Akcja: granatowy podkreślony link. */
 .action {
   display: inline-flex;
   align-items: center;
@@ -162,4 +163,169 @@ a {
   letter-spacing: 0.04em;
   color: var(--navy);
   border-bottom: 1px dashed var(--navy);
+}
+
+/* Kontener treści. */
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* Treść stron działów */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: clamp(32px, 5vw, 88px);
+  align-items: start;
+}
+
+.split > figure,
+.split > .side {
+  position: sticky;
+  top: 112px;
+}
+
+.h-sec {
+  font: 600 0.8125rem/1.2 var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+.prose p + p,
+.prose p + .h-sec,
+.prose ul + .h-sec,
+.prose table + .h-sec {
+  margin-top: 28px;
+}
+
+.prose .h-sec + * {
+  margin-top: 14px;
+}
+
+.prose > p {
+  max-width: 38em;
+  color: #2b4466;
+}
+
+.spis {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.spis th,
+.spis td {
+  padding: 12px 14px 12px 0;
+  text-align: left;
+  vertical-align: baseline;
+  border-bottom: 1px solid var(--rule);
+}
+
+.spis thead th {
+  white-space: nowrap;
+  font: 600 0.75rem/1.2 var(--sans);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #3d5373;
+  border-bottom: 1.5px solid var(--navy);
+}
+
+.spis tbody th {
+  font: 500 1.0625rem/1.3 var(--serif);
+}
+
+.spis tbody th a {
+  color: var(--navy);
+  text-decoration-color: rgba(32, 58, 95, 0.45);
+}
+
+.spis td {
+  font-size: 0.9375rem;
+}
+
+.spis td:nth-child(3),
+.spis td:nth-child(4) {
+  white-space: nowrap;
+}
+
+.fine {
+  margin-top: 12px;
+  font-size: 0.875rem;
+  color: #3d5373;
+}
+
+.checklist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1.5px solid var(--navy);
+  max-width: 40em;
+}
+
+.checklist li {
+  position: relative;
+  padding: 14px 0 14px 30px;
+  border-bottom: 1px solid var(--rule);
+  line-height: 1.5;
+}
+
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 1.55em;
+  width: 14px;
+  height: 1.5px;
+  background: var(--gold);
+}
+
+.checklist b {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.side figcaption,
+.split figcaption {
+  margin-top: 10px;
+  font-size: 0.875rem;
+  color: #4a5f7d;
+}
+
+@media (max-width: 900px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .split > figure,
+  .split > .side {
+    position: static;
+    max-width: 36rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .spis thead {
+    display: none;
+  }
+
+  .spis,
+  .spis tbody,
+  .spis tr,
+  .spis th,
+  .spis td {
+    display: block;
+  }
+
+  .spis tr {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .spis th,
+  .spis td {
+    padding: 2px 0;
+    border: 0;
+  }
 }

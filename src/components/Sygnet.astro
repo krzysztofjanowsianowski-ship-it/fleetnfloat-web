@@ -1,0 +1,16 @@
+---
+// Sygnet FLEET&FLOAT w wersji na granat: biały pierścień, złoty pierścień, złoty ampersand.
+import { ampersand } from "../data/ampersand";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<svg class:list={["sygnet", className]} viewBox="0 0 400 400" aria-hidden="true">
+  <circle cx="200" cy="200" r="190" fill="none" stroke="#fff" stroke-width="14"></circle>
+  <circle cx="200" cy="200" r="164" fill="none" stroke="var(--gold-on-navy)" stroke-width="2.5"></circle>
+  <path fill="var(--gold-on-navy)" d={ampersand}></path>
+</svg>

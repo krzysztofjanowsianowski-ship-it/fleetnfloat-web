@@ -1,0 +1,111 @@
+---
+// Menu boczne sekcji „O grupie”, jak w serwisach korporacyjnych.
+import { dzialy } from "../data/firma";
+import Arrow from "./Arrow.astro";
+---
+
+<aside class="sidebar" aria-label="Menu sekcji">
+  <ul>
+    <li><a href="#w-skrocie" aria-current="true">W skrócie</a></li>
+    <li>
+      <a href="#obszary">Obszary działalności</a>
+      <ul>
+        {dzialy.map((d) => <li><a href={d.href}>{d.marka}</a></li>)}
+      </ul>
+    </li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a class="box" href="#kontakt">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="8" width="26" height="17" rx="1.5"></rect><path d="M3 9l13 9 13-9"></path></svg>
+    <span><b>Masz pytanie do grupy?</b> Napisz, przekażemy je do właściwego działu.</span>
+    <span class="go">Napisz do nas <Arrow /></span>
+  </a>
+</aside>
+
+<style>
+  .sidebar > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li a {
+    display: block;
+    padding: 9px 12px;
+    font-size: 0.9375rem;
+    color: var(--navy);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  li a:hover {
+    background: var(--beige);
+  }
+
+  li a[aria-current] {
+    color: var(--gold-deep-text);
+    font-weight: 600;
+  }
+
+  ul ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul ul a {
+    padding-left: 28px;
+    font-family: var(--serif);
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+  }
+
+  .box {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 6px 14px;
+    margin-top: 24px;
+    padding: 16px;
+    border: 1px solid var(--rule);
+    color: var(--navy);
+    text-decoration: none;
+    font-size: 0.875rem;
+    line-height: 1.45;
+  }
+
+  .box:hover {
+    border-color: var(--navy);
+  }
+
+  .box svg {
+    width: 32px;
+    height: 32px;
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 1.4;
+  }
+
+  .box b {
+    display: block;
+  }
+
+  .go {
+    grid-column: 2;
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+  }
+
+  .go :global(svg) {
+    width: 1em;
+    height: 1em;
+  }
+
+  @media (max-width: 900px) {
+    .sidebar {
+      display: none;
+    }
+  }
+</style>

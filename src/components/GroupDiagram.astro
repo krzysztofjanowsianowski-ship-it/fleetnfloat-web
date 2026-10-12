@@ -1,0 +1,137 @@
+---
+// Diagram grupy: cztery działy jako ćwiartki koła wokół sygnetu, z napisem na pierścieniu.
+// Każda ćwiartka prowadzi do strony działu.
+import { dzialy } from "../data/firma";
+import { ampersand } from "../data/ampersand";
+
+const C = 320;
+const R = 236;
+const G = 9;
+// Kolejność zgodnie z ruchem wskazówek zegara od lewej górnej: LEASE, IT, HOMES, HR.
+const tla: Record<string, { fill: string; amp: string }> = {
+  lease: { fill: "#203A5F", amp: "#D2B07A" },
+  it: { fill: "#35598A", amp: "#D2B07A" },
+  homes: { fill: "#8A6A36", amp: "#F1E2C6" },
+  hr: { fill: "#6E5427", amp: "#F1E2C6" },
+};
+const krotko: Record<string, string> = {
+  lease: "Wynajem pojazdów",
+  it: "Oprogramowanie",
+  homes: "Houseboaty i domy",
+  hr: "Praca i kadry",
+};
+const cwiartki = [
+  { d: `M${C - G} ${C - G} V${C - R} A${R - G} ${R - G} 0 0 0 ${C - R} ${C - G} Z`, lx: C - 112, ly: C - 96, dx: -1, dy: -1 },
+  { d: `M${C + G} ${C - G} H${C + R} A${R - G} ${R - G} 0 0 0 ${C + G} ${C - R} Z`, lx: C + 112, ly: C - 96, dx: 1, dy: -1 },
+  { d: `M${C + G} ${C + G} V${C + R} A${R - G} ${R - G} 0 0 0 ${C + R} ${C + G} Z`, lx: C + 112, ly: C + 112, dx: 1, dy: 1 },
+  { d: `M${C - G} ${C + G} H${C - R} A${R - G} ${R - G} 0 0 0 ${C - G} ${C + R} Z`, lx: C - 112, ly: C + 112, dx: -1, dy: 1 },
+];
+---
+
+<figure class="diagram">
+  <svg viewBox="0 0 640 640" role="group" aria-label="Działy Grupy F&F">
+    <defs>
+      <path id="luk-gora" d={`M${C - 288} ${C} A288 288 0 0 1 ${C + 288} ${C}`}></path>
+      <path id="luk-dol" d={`M${C - 300} ${C} A300 300 0 0 0 ${C + 300} ${C}`}></path>
+    </defs>
+    <circle class="ring" cx={C} cy={C} r="268"></circle>
+    <circle class="ring thin" cx={C} cy={C} r="312"></circle>
+    <text class="ring-text"><textPath href="#luk-gora" startOffset="50%" text-anchor="middle">USŁUGI DLA TWOJEGO BIZNESU</textPath></text>
+    <text class="ring-text"><textPath href="#luk-dol" startOffset="50%" text-anchor="middle">CZTERY DZIAŁY · JEDNA GRUPA</textPath></text>
+
+    {
+      dzialy.map((d, i) => {
+        const q = cwiartki[i];
+        const t = tla[d.id];
+        return (
+          <a href={d.href} class="petal" style={`--dx:${q.dx * 6}px;--dy:${q.dy * 6}px`} aria-label={`${d.marka}: ${d.nazwa}`}>
+            <path d={q.d} fill={t.fill} />
+            <text class="p-mark" x={q.lx} y={q.ly} text-anchor="middle">
+              F<tspan fill={t.amp} font-style="italic">&amp;</tspan>F{d.sufiks}
+            </text>
+            <text class="p-name" x={q.lx} y={q.ly + 26} text-anchor="middle">{krotko[d.id]}</text>
+          </a>
+        );
+      })
+    }
+
+    <circle cx={C} cy={C} r="82" fill="#fff"></circle>
+    <circle cx={C} cy={C} r="70" fill="none" stroke="var(--navy)" stroke-width="6"></circle>
+    <circle cx={C} cy={C} r="60" fill="none" stroke="var(--gold)" stroke-width="1.4"></circle>
+    <path fill="var(--navy)" d={ampersand} transform={`translate(${C} ${C}) scale(0.29) translate(-200 -200)`}></path>
+  </svg>
+</figure>
+
+<style>
+  .diagram {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .ring {
+    fill: none;
+    stroke: var(--rule);
+    stroke-width: 1.2;
+  }
+
+  .ring.thin {
+    stroke: var(--gold);
+    stroke-width: 0.8;
+    opacity: 0.6;
+  }
+
+  .ring-text {
+    font: 500 15px var(--sans);
+    letter-spacing: 6px;
+    fill: var(--navy);
+  }
+
+  .petal {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s;
+    outline: none;
+  }
+
+  .petal:hover,
+  .petal:focus-visible {
+    transform: translate(var(--dx), var(--dy));
+    filter: brightness(1.12);
+  }
+
+  .petal:focus-visible path {
+    stroke: var(--gold);
+    stroke-width: 3;
+  }
+
+  .p-mark {
+    font: 500 21px var(--serif);
+    letter-spacing: 2px;
+    fill: #fff;
+  }
+
+  .p-name {
+    font: 500 14px var(--sans);
+    fill: rgba(255, 255, 255, 0.92);
+  }
+
+  @media (max-width: 560px) {
+    .p-mark {
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+
+    .p-name {
+      display: none;
+    }
+
+    .ring-text {
+      font-size: 18px;
+      letter-spacing: 4px;
+    }
+  }
+</style>

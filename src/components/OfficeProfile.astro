@@ -1,5 +1,10 @@
 ---
 // Widok od ulicy: budynek biura z mapy (zabudowa przy przystanku „Biuro”). Rysunek poglądowy.
+interface Props {
+  podpis?: boolean;
+}
+
+const { podpis = true } = Astro.props;
 ---
 
 <figure class="view">
@@ -41,7 +46,7 @@
       <text x="76" y="44" text-anchor="end">PIĘTRA</text>
     </g>
   </svg>
-  <figcaption>Widok od ulicy. Rysunek poglądowy.</figcaption>
+  {podpis && <figcaption>Widok od ulicy. Rysunek poglądowy.</figcaption>}
 </figure>
 
 <style>

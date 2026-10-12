@@ -1,0 +1,216 @@
+---
+import Division from "../layouts/Division.astro";
+import Arrow from "../components/Arrow.astro";
+import { obszaryHr, porownanie } from "../data/hr";
+---
+
+<Division
+  id="hr"
+  lead="Działamy w trzech obszarach: agencja pracy tymczasowej, outsourcing pracowniczy oraz usługi kadrowe i rozliczeniowe."
+>
+  <section aria-labelledby="obszary-hr-tytul">
+    <h2 id="obszary-hr-tytul" class="h-sec">Obszary F&F HR</h2>
+    <ul class="areas">
+      {
+        obszaryHr.map((o) => (
+          <li>
+            <a href={`#${o.id}`}>
+              <span class="num">{o.numer}</span>
+              <span class="a-name">{o.nazwa}</span>
+              <span class="a-short">{o.krotko}</span>
+              <span class="a-go">Szczegóły <Arrow /></span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  {
+    obszaryHr.map((o) => (
+      <section id={o.id} class="area" aria-labelledby={`${o.id}-tytul`}>
+        <div class="area-head">
+          <span class="num">{o.numer}</span>
+          <h2 id={`${o.id}-tytul`}>{o.nazwa}</h2>
+        </div>
+        <div class="area-body">
+          <p class="area-desc">{o.opis}</p>
+          <ul class="checklist">
+            {o.punkty.map((p) => (
+              <li>{p}</li>
+            ))}
+          </ul>
+          {o.id === "praca-tymczasowa" && (
+            <p class="fine">
+              Numer wpisu do rejestru agencji zatrudnienia (KRAZ): <span class="draft">[numer KRAZ do uzupełnienia]</span>
+            </p>
+          )}
+          {o.id === "kadry" && <p class="fine">Przykładowy zakres. Dokładny zakres obsługi ustalamy z każdą firmą.</p>}
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="compare" aria-labelledby="porownanie-tytul">
+    <h2 id="porownanie-tytul" class="h-sec">Praca tymczasowa czy outsourcing?</h2>
+    <table class="spis">
+      <thead>
+        <tr><th scope="col"></th><th scope="col">Praca tymczasowa</th><th scope="col">Outsourcing pracowniczy</th></tr>
+      </thead>
+      <tbody>
+        {
+          porownanie.map((r) => (
+            <tr>
+              <th scope="row">{r.cecha}</th>
+              <td data-label="Praca tymczasowa">{r.tymczasowa}</td>
+              <td data-label="Outsourcing">{r.outsourcing}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </section>
+
+  <section class="brief" aria-labelledby="brief-tytul">
+    <h2 id="brief-tytul" class="h-sec">Żeby przygotować propozycję, napisz nam</h2>
+    <ul class="checklist cols">
+      <li><b>Którego obszaru dotyczy sprawa.</b> Praca tymczasowa, outsourcing czy obsługa kadrowa.</li>
+      <li><b>Ilu osób dotyczy.</b> Wystarczy przybliżona liczba.</li>
+      <li><b>Jakie to stanowiska lub zadania.</b> Kilka słów o rodzaju pracy.</li>
+      <li><b>Od kiedy i na jak długo.</b> Termin rozpoczęcia i przewidywany czas.</li>
+    </ul>
+  </section>
+</Division>
+
+<style>
+  .areas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .areas a {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    height: 100%;
+    padding: 22px 22px 24px;
+    text-decoration: none;
+    color: var(--navy);
+    background: var(--beige);
+    border-top: 3px solid var(--navy);
+    transition: background-color 0.25s, border-color 0.25s;
+  }
+
+  .areas a:hover {
+    background: #e8ebef;
+    border-top-color: var(--gold);
+  }
+
+  .num {
+    font: 500 1rem/1 var(--serif);
+    letter-spacing: 0.08em;
+    color: var(--gold-deep-text);
+  }
+
+  .a-name {
+    font: 600 1.1875rem/1.25 var(--sans);
+    color: var(--navy-ink);
+  }
+
+  .a-short {
+    color: #2b4466;
+    line-height: 1.55;
+  }
+
+  .a-go {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    font: 600 0.875rem/1 var(--sans);
+    letter-spacing: 0.06em;
+  }
+
+  .a-go :global(svg) {
+    width: 1em;
+    height: 1em;
+  }
+
+  .area {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(24px, 4vw, 56px);
+    margin-top: clamp(48px, 6vw, 72px);
+    padding-top: 28px;
+    border-top: 1px solid var(--gold);
+    scroll-margin-top: 24px;
+  }
+
+  .area-head {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+  }
+
+  .area h2 {
+    font: 500 clamp(1.5rem, 2.4vw, 2rem) / 1.2 var(--serif);
+    color: var(--navy-ink);
+  }
+
+  .area-desc {
+    margin-bottom: 16px;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: #2b4466;
+  }
+
+  .compare,
+  .brief {
+    margin-top: clamp(56px, 7vw, 88px);
+  }
+
+  .compare .spis {
+    margin-top: 16px;
+  }
+
+  .compare .spis tbody th {
+    font: 600 0.9375rem/1.3 var(--sans);
+    color: var(--navy-ink);
+  }
+
+  .compare .spis td {
+    white-space: normal;
+  }
+
+  .cols {
+    columns: 2;
+    column-gap: 40px;
+    margin-top: 16px;
+  }
+
+  .cols li {
+    break-inside: avoid;
+  }
+
+  @media (max-width: 900px) {
+    .areas,
+    .area {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cols {
+      columns: 1;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .compare .spis td[data-label]::before {
+      content: attr(data-label) ": ";
+      color: #4a5f7d;
+    }
+  }
+</style>

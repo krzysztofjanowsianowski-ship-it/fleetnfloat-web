@@ -1,0 +1,466 @@
+---
+// Kalendarz dostępności najmu okazjonalnego. Rezerwacje wczytuje z /rezerwacje.json,
+// więc firma może je aktualizować bez przebudowy strony. Wybrany termin trafia do formularza.
+import { flota, cennik } from "../data/flota";
+---
+
+<section class="cal" id="kalendarz" aria-labelledby="kalendarz-tytul" data-cal data-cennik={JSON.stringify(cennik)}>
+  <h2 id="kalendarz-tytul" class="h-sec">Kalendarz dostępności · najem okazjonalny</h2>
+  <p class="intro">Wybierz samochód, a potem kliknij pierwszy i ostatni dzień najmu. Najem okazjonalny jest możliwy już od jednego dnia.</p>
+
+  <div class="tabs" role="radiogroup" aria-label="Samochód">
+    {
+      flota.map((a, i) => (
+        <button type="button" role="radio" aria-checked={i === 0 ? "true" : "false"} data-auto={a.id} data-nazwa={a.nazwa}>
+          <span class="swatch" style={`background:${a.lakier};${a.dach ? `box-shadow: inset 0 6px 0 ${a.dach}, 0 0 0 1px rgba(32,58,95,.35)` : ""}`} />
+          {a.nazwa}
+        </button>
+      ))
+    }
+  </div>
+
+  <div class="frame">
+    <div class="nav">
+      <button type="button" class="arrow" data-prev aria-label="Poprzedni miesiąc">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4 6.5 10l6 6" /></svg>
+      </button>
+      <p class="range-label" data-range-label aria-live="polite"></p>
+      <button type="button" class="arrow" data-next aria-label="Następny miesiąc">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4l6 6-6 6" /></svg>
+      </button>
+    </div>
+    <div class="months" data-months>
+      <noscript><p class="fallback">Kalendarz wymaga JavaScriptu. Zapytaj o termin w formularzu poniżej.</p></noscript>
+    </div>
+    <ul class="legend" aria-label="Legenda">
+      <li><i class="lg free"></i>Wolny</li>
+      <li><i class="lg booked"></i>Zarezerwowany</li>
+      <li><i class="lg picked"></i>Wybrany termin</li>
+      <li><i class="lg today"></i>Dziś</li>
+    </ul>
+  </div>
+
+  <div class="summary">
+    <p data-summary aria-live="polite">Wybierz pierwszy dzień najmu.</p>
+    <button type="button" class="button" data-ask disabled>Zapytaj o ten termin</button>
+  </div>
+  <p class="fine">Kalendarz pokazuje potwierdzone rezerwacje. Termin i cenę potwierdzamy po otrzymaniu zapytania. Ceny netto, do których należy doliczyć VAT.</p>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-cal]");
+  if (root) {
+    const MIES = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
+    const MIES_D = ["stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca", "lipca", "sierpnia", "września", "października", "listopada", "grudnia"];
+    const DNI = ["pn", "wt", "śr", "cz", "pt", "sb", "nd"];
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>("[data-auto]")];
+    const monthsEl = root.querySelector<HTMLElement>("[data-months]")!;
+    const label = root.querySelector<HTMLElement>("[data-range-label]")!;
+    const summary = root.querySelector<HTMLElement>("[data-summary]")!;
+    const ask = root.querySelector<HTMLButtonElement>("[data-ask]")!;
+    const cennik: { od: number; do: number | null; cena: number }[] = JSON.parse(root.dataset.cennik ?? "[]");
+    const pln = (n: number) => n.toLocaleString("pl-PL") + " zł";
+    const stawka = (n: number) => cennik.find((c) => n >= c.od && (c.do === null || n <= c.do))?.cena ?? 0;
+    const doby = (n: number) => (n === 1 ? "doba" : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? "doby" : "dób");
+    const wycena = (n: number) => `${n} × ${pln(stawka(n))} = ${pln(n * stawka(n))} netto`;
+
+    type Okres = { od: string; do: string };
+    let rezerwacje: Record<string, Okres[]> = {};
+    let blad = false;
+    let auto = tabs[0]?.dataset.auto ?? "";
+    let start: string | null = null;
+    let end: string | null = null;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    let view = new Date(today.getFullYear(), today.getMonth(), 1);
+
+    const iso = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    const fromIso = (s: string) => {
+      const [y, m, d] = s.split("-").map(Number);
+      return new Date(y, m - 1, d);
+    };
+    const fmt = (s: string) => {
+      const d = fromIso(s);
+      return `${d.getDate()} ${MIES_D[d.getMonth()]} ${d.getFullYear()}`;
+    };
+    const nazwa = () => tabs.find((t) => t.dataset.auto === auto)?.dataset.nazwa ?? "";
+    const booked = (s: string) => (rezerwacje[auto] ?? []).some((o) => s >= o.od && s <= o.do);
+    const days = (a: string, b: string) => Math.round((fromIso(b).getTime() - fromIso(a).getTime()) / 86400000) + 1;
+    const rangeBooked = (a: string, b: string) => {
+      for (let d = fromIso(a); iso(d) <= b; d.setDate(d.getDate() + 1)) if (booked(iso(d))) return true;
+      return false;
+    };
+
+    function month(first: Date) {
+      const wrap = document.createElement("div");
+      wrap.className = "month";
+      const h = document.createElement("h3");
+      h.textContent = `${MIES[first.getMonth()]} ${first.getFullYear()}`;
+      wrap.append(h);
+      const grid = document.createElement("div");
+      grid.className = "grid";
+      grid.setAttribute("role", "grid");
+      DNI.forEach((d) => {
+        const c = document.createElement("span");
+        c.className = "dow";
+        c.textContent = d;
+        grid.append(c);
+      });
+      const offset = (first.getDay() + 6) % 7;
+      for (let i = 0; i < offset; i++) grid.append(document.createElement("span"));
+      const count = new Date(first.getFullYear(), first.getMonth() + 1, 0).getDate();
+      for (let n = 1; n <= count; n++) {
+        const d = new Date(first.getFullYear(), first.getMonth(), n);
+        const s = iso(d);
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "day";
+        b.textContent = String(n);
+        b.dataset.date = s;
+        const past = d < today;
+        const isBooked = booked(s);
+        if (past) b.classList.add("past");
+        if (isBooked) b.classList.add("booked");
+        if (s === iso(today)) b.classList.add("today");
+        if (start && s === start) b.classList.add("edge");
+        if (end && s === end) b.classList.add("edge");
+        if (start && end && s > start && s < end) b.classList.add("in");
+        b.disabled = past || isBooked;
+        b.setAttribute("aria-pressed", start === s || end === s || (start && end && s > start && s < end) ? "true" : "false");
+        b.setAttribute("aria-label", `${fmt(s)}, ${isBooked ? "zarezerwowany" : past ? "dzień miniony" : "wolny"}`);
+        grid.append(b);
+      }
+      wrap.append(grid);
+      return wrap;
+    }
+
+    function render() {
+      monthsEl.replaceChildren(month(view), month(new Date(view.getFullYear(), view.getMonth() + 1, 1)));
+      const next = new Date(view.getFullYear(), view.getMonth() + 1, 1);
+      label.textContent = `${MIES[view.getMonth()]} – ${MIES[next.getMonth()]} ${next.getFullYear()}`;
+      root.querySelector<HTMLButtonElement>("[data-prev]")!.disabled =
+        view.getFullYear() === today.getFullYear() && view.getMonth() === today.getMonth();
+      if (blad) {
+        summary.textContent = "Nie udało się wczytać rezerwacji. Zapytaj o termin w formularzu poniżej.";
+      } else if (start && end) {
+        const n = days(start, end);
+        summary.innerHTML = `<b>${nazwa()}</b> · ${fmt(start)} – ${fmt(end)} · ${n} ${doby(n)}<br><span class="price">Szacunkowo: ${wycena(n)}</span>`;
+      } else if (start) {
+        summary.innerHTML = `<b>${nazwa()}</b> · od ${fmt(start)}. Kliknij ostatni dzień najmu (ten sam dzień = najem na 1 dzień).`;
+      } else {
+        summary.textContent = "Wybierz pierwszy dzień najmu.";
+      }
+      ask.disabled = !(start && end);
+    }
+
+    monthsEl.addEventListener("click", (e) => {
+      const b = (e.target as HTMLElement).closest<HTMLButtonElement>("button.day");
+      if (!b || b.disabled) return;
+      const s = b.dataset.date!;
+      if (!start || end || s < start) {
+        start = s;
+        end = null;
+      } else if (rangeBooked(start, s)) {
+        start = s;
+        end = null;
+        render();
+        summary.textContent = "W tym okresie samochód jest już zarezerwowany. Zaczynamy od klikniętego dnia; wybierz ostatni dzień najmu.";
+        return;
+      } else {
+        end = s;
+      }
+      render();
+    });
+
+    tabs.forEach((t) =>
+      t.addEventListener("click", () => {
+        auto = t.dataset.auto!;
+        tabs.forEach((x) => x.setAttribute("aria-checked", x === t ? "true" : "false"));
+        start = end = null;
+        render();
+      }),
+    );
+
+    root.querySelector("[data-prev]")!.addEventListener("click", () => {
+      view = new Date(view.getFullYear(), view.getMonth() - 1, 1);
+      render();
+    });
+    root.querySelector("[data-next]")!.addEventListener("click", () => {
+      view = new Date(view.getFullYear(), view.getMonth() + 1, 1);
+      render();
+    });
+
+    document.querySelectorAll<HTMLElement>("[data-wybierz-auto]").forEach((el) =>
+      el.addEventListener("click", () => tabs.find((t) => t.dataset.auto === el.dataset.wybierzAuto)?.click()),
+    );
+
+    ask.addEventListener("click", () => {
+      if (!start || !end) return;
+      const n = days(start, end);
+      const select = document.querySelector<HTMLSelectElement>("#f-dzial");
+      const msg = document.querySelector<HTMLTextAreaElement>("#f-wiad");
+      if (select) select.value = "lease";
+      if (msg) msg.value = `Najem okazjonalny: ${nazwa()}, ${fmt(start)} – ${fmt(end)} (${n} ${doby(n)}). Szacunkowo: ${wycena(n)}.\n${msg.value}`;
+      document.querySelector("#kontakt")?.scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => document.querySelector<HTMLInputElement>("#f-imie")?.focus({ preventScroll: true }), 500);
+    });
+
+    fetch("/rezerwacje.json", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then((d) => {
+        rezerwacje = d;
+      })
+      .catch(() => {
+        blad = true;
+      })
+      .finally(render);
+    render();
+  }
+</script>
+
+<style>
+  .intro {
+    margin-top: 10px;
+    max-width: 44em;
+    color: #2b4466;
+  }
+
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .tabs button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 0 16px;
+    font: 500 1rem/1 var(--sans);
+    color: var(--navy);
+    background: #fff;
+    border: 1px solid var(--rule);
+    cursor: pointer;
+  }
+
+  .tabs button[aria-checked="true"] {
+    border-color: var(--navy);
+    box-shadow: inset 0 -3px 0 var(--gold);
+    font-weight: 600;
+  }
+
+  .swatch {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(32, 58, 95, 0.35);
+  }
+
+  .frame {
+    margin-top: 18px;
+    padding: 20px clamp(14px, 2.4vw, 28px) 18px;
+    border: 1px solid var(--rule);
+    background: #fff;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .range-label {
+    font: 600 1rem/1 var(--sans);
+    color: var(--navy);
+    text-transform: capitalize;
+  }
+
+  .arrow {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid var(--rule);
+    cursor: pointer;
+  }
+
+  .arrow svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .arrow:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  .months {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(20px, 4vw, 48px);
+    margin-top: 16px;
+  }
+
+  .months :global(.month h3) {
+    margin-bottom: 10px;
+    font: 500 1.0625rem/1.2 var(--serif);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  .months :global(.grid) {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .months :global(.dow) {
+    padding: 4px 0;
+    text-align: center;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #4a5f7d;
+  }
+
+  .months :global(.day) {
+    height: 44px;
+    font: 500 0.9375rem/1 var(--sans);
+    font-variant-numeric: tabular-nums;
+    color: var(--navy);
+    background: var(--beige);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s;
+  }
+
+  .months :global(.day:hover:not(:disabled)) {
+    border-color: var(--navy);
+  }
+
+  .months :global(.day.past) {
+    color: #a3adbb;
+    background: transparent;
+    cursor: default;
+  }
+
+  .months :global(.day.booked) {
+    color: #5b6b80;
+    background: repeating-linear-gradient(135deg, #d5d9e0 0 5px, #e8eaee 5px 10px);
+    text-decoration: line-through;
+    cursor: not-allowed;
+  }
+
+  .months :global(.day.in) {
+    background: #efe3cc;
+  }
+
+  .months :global(.day.edge) {
+    color: #fff;
+    background: var(--navy);
+    box-shadow: inset 0 -3px 0 var(--gold-on-navy);
+  }
+
+  .months :global(.day.today) {
+    border-color: var(--gold);
+    font-weight: 700;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    margin: 18px 0 0;
+    padding: 14px 0 0;
+    list-style: none;
+    border-top: 1px solid var(--rule-soft);
+    font-size: 0.875rem;
+    color: #2b4466;
+  }
+
+  .legend li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .lg {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+  }
+
+  .lg.free {
+    background: var(--beige);
+  }
+
+  .lg.booked {
+    background: repeating-linear-gradient(135deg, #d5d9e0 0 3px, #e8eaee 3px 6px);
+    box-shadow: inset 0 0 0 1px #c3c8d0;
+  }
+
+  .lg.picked {
+    background: var(--navy);
+    box-shadow: inset 0 -3px 0 var(--gold-on-navy);
+  }
+
+  .lg.today {
+    border: 1px solid var(--gold);
+  }
+
+  .summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px 24px;
+    margin-top: 16px;
+    padding: 16px 18px;
+    background: var(--beige);
+  }
+
+  .summary p {
+    color: var(--navy);
+  }
+
+  .summary :global(.price) {
+    display: inline-block;
+    margin-top: 4px;
+    font-weight: 600;
+    color: var(--gold-deep-text);
+  }
+
+  .summary .button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .fallback {
+    grid-column: 1 / -1;
+    color: #2b4466;
+  }
+
+  @media (max-width: 700px) {
+    .months :global(.day) {
+      height: 40px;
+    }
+
+    .months {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .months :global(.month:nth-child(2)) {
+      display: none;
+    }
+  }
+</style>

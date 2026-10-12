@@ -1,0 +1,120 @@
+---
+// Nagłówek w układzie serwisu korporacyjnego: linki pomocnicze u góry,
+// logo i główne menu w drugim rzędzie.
+import { dzialy } from "../data/firma";
+
+const path = Astro.url.pathname;
+const menu = [{ href: "/", label: "O grupie" }, ...dzialy.map((d) => ({ href: d.href, label: d.marka }))];
+---
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="util">
+      <a href="/#obszary">Obszary działalności</a>
+      <a href="/#kontakt">Kontakt</a>
+    </div>
+    <div class="main">
+      <a class="brand" href="/" aria-label="F&F GROUP, strona główna">
+        <img src="/brand/logo.svg" alt="" width="2075" height="496" />
+      </a>
+      <nav aria-label="Menu główne">
+        <ul>
+          {
+            menu.map((m) => (
+              <li>
+                <a href={m.href} aria-current={(m.href === "/" ? path === "/" : path.startsWith(m.href)) ? "page" : undefined}>
+                  {m.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: #fff;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .util {
+    display: flex;
+    justify-content: flex-end;
+    gap: 28px;
+    padding-top: 14px;
+    font-size: 0.875rem;
+  }
+
+  .util a {
+    color: var(--navy);
+    text-decoration: none;
+  }
+
+  .util a:hover {
+    text-decoration: underline;
+  }
+
+  .main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 10px 0 18px;
+  }
+
+  .brand img {
+    width: auto;
+    height: clamp(44px, 4.4vw, 58px);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px clamp(18px, 2.4vw, 36px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul a {
+    display: block;
+    padding: 6px 0;
+    font: 500 clamp(1rem, 1.3vw, 1.1875rem) / 1.2 var(--sans);
+    color: var(--navy);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  ul a:hover {
+    border-color: var(--rule);
+  }
+
+  ul a[aria-current="page"] {
+    color: var(--gold-deep-text);
+    border-color: var(--gold);
+  }
+
+  @media (max-width: 900px) {
+    .main {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .util {
+      justify-content: flex-start;
+    }
+
+    ul {
+      gap: 4px 18px;
+    }
+
+    ul a {
+      font-size: 0.9375rem;
+    }
+  }
+</style>

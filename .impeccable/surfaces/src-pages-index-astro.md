@@ -2,42 +2,35 @@
 version: 1
 slug: "src-pages-index-astro"
 primary_target: "src/pages/index.astro"
-related_targets: []
+related_targets: ["src/pages/lease.astro","src/pages/it.astro","src/pages/homes.astro","src/pages/hr.astro"]
 ---
 
-# Strona główna
+# Strona główna F&F GROUP (układ serwisu grupy)
 
 ## Scope and mode
 
-Strona główna fleetnfloat.com (`src/pages/index.astro`). Tryb: Persuade. Odwiedzający to głównie firmy (MŚP), także inwestorzy zainteresowani houseboatami.
+Strona główna (`src/pages/index.astro`) jako wizytówka grupy oraz cztery strony działów (`src/pages/lease|it|homes|hr.astro`, układ `src/layouts/Division.astro`). Tryb: Persuade.
 
 ## Audience, job, action
 
-- Odwiedzający ma w kilka sekund zrozumieć, że FLEET&FLOAT to jedna firma z czterema równorzędnymi działami, i trafić do właściwego działu.
-- Każdy dział ma własną akcję: houseboaty i domy BYGGA: „Umów oględziny”; wynajem pojazdów: „Zapytaj o termin”; oprogramowanie: „Umów rozmowę”; kadry i administracja: „Zapytaj o ofertę”. Każda akcja prowadzi do formularza z wybranym działem.
-- Przekonanie: jakość i solidność. Unikamy: korporacyjnego chłodu i wrażenia zlepku usług.
-
-## Proof and content
-
-- Dane modeli BYGGA według producenta (bez cen), link do kart producenta.
-- Realizacja IT: platforma kursy.fleetnfloat.com (kurs tachografu, symulator z lektorem, panel firmy, rozliczenia).
-- Brak zdjęć i danych kontaktowych do czasu przekazania: rysunki poglądowe oznaczone jako takie, dane kontaktowe jako widoczne pola do uzupełnienia.
+- Firma ma w kilka sekund zrozumieć, czym jest Grupa F&F, i przejść do właściwego działu.
+- Główna akcja strony głównej: „Przejdź do odpowiedniego działu” (kafle). Na stronach działów: akcja działu prowadząca do formularza z wybranym działem.
+- Przekonanie: profesjonalizm, jakość i solidność. Unikamy: korporacyjnego chłodu i wrażenia zlepku usług.
 
 ## Direction contract
 
-THESIS: Strona jest jednym arkuszem locji, czyli mapy trasy: jedna złota trasa łączy cztery działy-przystanki w jedną całość. Odrzuca domyślny układ kategorii: zdjęcie w hero i cztery równe kafelki usług.
+THESIS: Strona główna w układzie korporacyjnego serwisu grupy kapitałowej (wzór wskazany przez użytkownika: grupapolsatplus.pl, „W skrócie” i „Obszary działalności”), wypełniony identyfikacją FLEET&FLOAT. Odrzuca stylizowane wizytówki i landing page; ma wyglądać jak rzetelny serwis grupy.
 
-OWN-WORLD: Papier mapy drukowany dwiema farbami. Granat #203A5F dla linii, pisma i wody, złoto #B8925A wyłącznie dla trasy i aktywnego przystanku. Ląd w płowym tincie, płycizna w bladym granacie, głęboka woda prawie biała. Brzeg arkusza z naprzemienną podziałką. Konwencja hydrograficzna: nazwy wodne kursywą Bodoni Moda, lądowe wersalikami Bodoni z rozstrzeleniem; adnotacje Barlow Semi Condensed, tekst Barlow. Przystanek to granatowa kropka z cienkim pierścieniem; aktywny przystanek przyjmuje podwójny pierścień pieczęci z logo.
+OWN-WORLD: Białe tło, jasnoszare pasy #F2F3F5, granat #203A5F i złoto z logo. Dwurzędowy nagłówek (linki pomocnicze, logo + menu), okruszki, menu boczne sekcji. Znaki działów w notacji logo: wersaliki Bodoni ze złotym kursywnym ampersandem; tekst Barlow.
 
-STORY: Firma widzi cztery działy na jednej trasie, rozumie, że to jedna solidna firma, i od razu wybiera akcję swojego działu z legendy albo z mapy; niżej trasa prowadzi przez cztery odcinki do kontaktu.
+STORY: Odwiedzający czyta krótkie „W skrócie”, widzi na diagramie cztery działy wokół sygnetu, czyta akapit o wspólnym standardzie, a w „Obszarach działalności” wybiera kafel działu.
 
-FIRST VIEWPORT: Arkusz z podziałką brzegu. U góry pełne logo po lewej, „Realizacje” i „Kontakt” po prawej. Lewa kolumna: skala kilometrów na marginesie, nagłówek Bodoni około 56 px, lead, pod nim legenda mapy z czterema działami i ich akcjami, wyrównana do skali. Prawa połowa: mapa z rzeką, śluzą, drogą i zabudową, start z pieczęcią, cztery przystanki, złota trasa. Akcje działów są widoczne w pierwszym ekranie.
+FIRST VIEWPORT: Nagłówek z logo i menu (O grupie, F&F LEASE, F&F.IT, F&F HOMES, F&F HR), okruszki, menu boczne po lewej; w treści „W skrócie”, pogrubiony szary akapit „Grupa F&F prowadzi działania…”, „W skład grupy należą:” i okrągły diagram: cztery ćwiartki w granacie i złocie z nazwami działów, sygnet w środku, napis na pierścieniu.
 
-FORM: Locja szlaku (mapa trasy), pozycja 6 z 7 na uporządkowanej liście, seed d45d10a1. Podniesienia: jedna nieprzerwana wstęga, przebyta trasa zostaje narysowana (od origami); oś kilometrów rządzi każdą linią tekstu na całej stronie (od nurkowania głębinowego); tylko dwie farby, granat i złoto (od prasy polarnej); aktywny przystanek przyjmuje pieczęć z logo jako jedyny emblemat stanu (od Googie); nieaktywne działy zostają widoczne jako ciche znaki, nigdy ukryte (od wyświetlacza siedmiosegmentowego). Interakcja sygnaturowa: najechanie lub fokus na dział w legendzie rysuje trasę do jego przystanku i przenosi tam pieczęć; przewijanie strony wypełnia złotem trasę na marginesie przez cztery odcinki aż do kontaktu.
+FORM: Serwis grupy kapitałowej, przypięty przez brief użytkownika (redesign po odrzuceniu wizytówki i wersji w brązie). Interakcja sygnaturowa: ćwiartka diagramu na najechanie wysuwa się na zewnątrz i rozjaśnia; kafel obszaru przybliża rysunek, ciemnieje pasek, strzałki się przesuwają.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 
 ## Unresolved
 
-- Zdjęcia houseboatów i domów, dane kontaktowe i rejestrowe, lista pojazdów, zakres usług kadrowych.
-- Podstrony działów (kolejny etap).
+- Dane kontaktowe i rejestrowe, zdjęcia BYGGA, lista pojazdów, zakres usług HR, endpoint formularza, polityka prywatności.

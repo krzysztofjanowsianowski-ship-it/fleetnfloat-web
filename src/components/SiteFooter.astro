@@ -1,0 +1,131 @@
+---
+import { dzialy, firma } from "../data/firma";
+
+const rok = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="brands">
+    <div class="wrap brands-row">
+      <p class="brands-label">Marki grupy</p>
+      <ul>
+        {
+          dzialy.map((d) => (
+            <li>
+              <a href={d.href}>
+                F<span class="amp">&amp;</span>F{d.sufiks}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="legal">
+    <div class="wrap legal-row">
+      <div class="who">
+        <img src="/brand/ikona-aplikacji.svg" alt="" width="44" height="44" />
+        <span>© {rok} {firma.grupa} · {firma.nazwa}</span>
+      </div>
+      <p class="data">
+        {firma.nazwa}, {firma.adres ?? <span class="draft">[adres do uzupełnienia]</span>}, NIP {firma.nip ?? <span class="draft">[do uzupełnienia]</span>}
+      </p>
+      <p class="links"><a href="/#kontakt">Kontakt</a> <span class="draft">[polityka prywatności do uzupełnienia]</span></p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .brands {
+    border-top: 1px solid var(--rule);
+    background: #fff;
+  }
+
+  .brands-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(20px, 4vw, 56px);
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
+  .brands-label {
+    flex: none;
+    padding: 12px 18px;
+    background: var(--beige);
+    font-size: 1.125rem;
+    color: var(--navy-ink);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px clamp(24px, 4vw, 56px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul a {
+    font: 500 1.125rem/1 var(--serif);
+    letter-spacing: 0.12em;
+    color: var(--navy);
+    text-decoration: none;
+  }
+
+  ul a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-underline-offset: 0.3em;
+  }
+
+  .amp {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .legal {
+    background: var(--beige);
+  }
+
+  .legal-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px 32px;
+    align-items: center;
+    padding-top: 26px;
+    padding-bottom: 26px;
+    font-size: 0.8125rem;
+    color: #3d5373;
+  }
+
+  .who {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    color: var(--navy-ink);
+  }
+
+  .who img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .links {
+    display: flex;
+    gap: 18px;
+  }
+
+  .links a {
+    color: var(--navy);
+  }
+
+  @media (max-width: 860px) {
+    .brands-row,
+    .legal-row {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

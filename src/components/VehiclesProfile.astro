@@ -1,5 +1,10 @@
 ---
 // Widok z drogi: samochód ciężarowy i osobowy. Rysunek poglądowy.
+interface Props {
+  podpis?: boolean;
+}
+
+const { podpis = true } = Astro.props;
 ---
 
 <figure class="view">
@@ -35,7 +40,7 @@
       <text x="524" y="66" text-anchor="end">OSOBOWE</text>
     </g>
   </svg>
-  <figcaption>Widok z drogi. Rysunek poglądowy; listę pojazdów pokażemy po jej przygotowaniu.</figcaption>
+  {podpis && <figcaption>Widok z drogi. Rysunek poglądowy; listę pojazdów pokażemy po jej przygotowaniu.</figcaption>}
 </figure>
 
 <style>
