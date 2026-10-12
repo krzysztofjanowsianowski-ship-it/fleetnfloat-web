@@ -1,10 +1,10 @@
 ---
 // Kalendarz dostępności najmu okazjonalnego. Rezerwacje wczytuje z /rezerwacje.json,
 // więc firma może je aktualizować bez przebudowy strony. Wybrany termin trafia do formularza.
-import { flota } from "../data/flota";
+import { flota, cennik } from "../data/flota";
 ---
 
-<section class="cal" id="kalendarz" aria-labelledby="kalendarz-tytul" data-cal>
+<section class="cal" id="kalendarz" aria-labelledby="kalendarz-tytul" data-cal data-cennik={JSON.stringify(cennik)}>
   <h2 id="kalendarz-tytul" class="h-sec">Kalendarz dostępności · najem okazjonalny</h2>
   <p class="intro">Wybierz samochód, a potem kliknij pierwszy i ostatni dzień najmu. Najem okazjonalny jest możliwy już od jednego dnia.</p>
 
@@ -44,7 +44,7 @@ import { flota } from "../data/flota";
     <p data-summary aria-live="polite">Wybierz pierwszy dzień najmu.</p>
     <button type="button" class="button" data-ask disabled>Zapytaj o ten termin</button>
   </div>
-  <p class="fine">Kalendarz pokazuje potwierdzone rezerwacje. Termin potwierdzamy po otrzymaniu zapytania.</p>
+  <p class="fine">Kalendarz pokazuje potwierdzone rezerwacje. Termin i cenę potwierdzamy po otrzymaniu zapytania. Ceny netto, do których należy doliczyć VAT.</p>
 </section>
 
 <script>
@@ -58,6 +58,11 @@ import { flota } from "../data/flota";
     const label = root.querySelector<HTMLElement>("[data-range-label]")!;
     const summary = root.querySelector<HTMLElement>("[data-summary]")!;
     const ask = root.querySelector<HTMLButtonElement>("[data-ask]")!;
+    const cennik: { od: number; do: number | null; cena: number }[] = JSON.parse(root.dataset.cennik ?? "[]");
+    const pln = (n: number) => n.toLocaleString("pl-PL") + " zł";
+    const stawka = (n: number) => cennik.find((c) => n >= c.od && (c.do === null || n <= c.do))?.cena ?? 0;
+    const doby = (n: number) => (n === 1 ? "doba" : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? "doby" : "dób");
+    const wycena = (n: number) => `${n} × ${pln(stawka(n))} = ${pln(n * stawka(n))} netto`;
 
     type Okres = { od: string; do: string };
     let rezerwacje: Record<string, Okres[]> = {};
@@ -139,7 +144,7 @@ import { flota } from "../data/flota";
         summary.textContent = "Nie udało się wczytać rezerwacji. Zapytaj o termin w formularzu poniżej.";
       } else if (start && end) {
         const n = days(start, end);
-        summary.innerHTML = `<b>${nazwa()}</b> · ${fmt(start)} – ${fmt(end)} · ${n} ${n === 1 ? "dzień" : "dni"}`;
+        summary.innerHTML = `<b>${nazwa()}</b> · ${fmt(start)} – ${fmt(end)} · ${n} ${doby(n)}<br><span class="price">Szacunkowo: ${wycena(n)}</span>`;
       } else if (start) {
         summary.innerHTML = `<b>${nazwa()}</b> · od ${fmt(start)}. Kliknij ostatni dzień najmu (ten sam dzień = najem na 1 dzień).`;
       } else {
@@ -195,7 +200,7 @@ import { flota } from "../data/flota";
       const select = document.querySelector<HTMLSelectElement>("#f-dzial");
       const msg = document.querySelector<HTMLTextAreaElement>("#f-wiad");
       if (select) select.value = "lease";
-      if (msg) msg.value = `Najem okazjonalny: ${nazwa()}, ${fmt(start)} – ${fmt(end)} (${n} ${n === 1 ? "dzień" : "dni"}).\n${msg.value}`;
+      if (msg) msg.value = `Najem okazjonalny: ${nazwa()}, ${fmt(start)} – ${fmt(end)} (${n} ${doby(n)}). Szacunkowo: ${wycena(n)}.\n${msg.value}`;
       document.querySelector("#kontakt")?.scrollIntoView({ behavior: "smooth" });
       setTimeout(() => document.querySelector<HTMLInputElement>("#f-imie")?.focus({ preventScroll: true }), 500);
     });
@@ -426,6 +431,13 @@ import { flota } from "../data/flota";
 
   .summary p {
     color: var(--navy);
+  }
+
+  .summary :global(.price) {
+    display: inline-block;
+    margin-top: 4px;
+    font-weight: 600;
+    color: var(--gold-deep-text);
   }
 
   .summary .button:disabled {

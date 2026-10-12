@@ -3,7 +3,7 @@ import Division from "../layouts/Division.astro";
 import CarIllustration from "../components/CarIllustration.astro";
 import AvailabilityCalendar from "../components/AvailabilityCalendar.astro";
 import Arrow from "../components/Arrow.astro";
-import { flota, formyNajmu } from "../data/flota";
+import { flota, formyNajmu, cennik } from "../data/flota";
 ---
 
 <Division
@@ -60,6 +60,26 @@ import { flota, formyNajmu } from "../data/flota";
       }
     </ul>
     <p class="fine">Ilustracje poglądowe. Zdjęcia samochodów pojawią się po sesji zdjęciowej.</p>
+  </section>
+
+  <section class="prices" aria-labelledby="cennik-tytul">
+    <h2 id="cennik-tytul" class="h-sec">Cennik najmu okazjonalnego</h2>
+    <table class="spis price-table">
+      <thead>
+        <tr><th scope="col">Długość najmu</th><th scope="col">Cena za dobę (netto)</th></tr>
+      </thead>
+      <tbody>
+        {
+          cennik.map((c) => (
+            <tr>
+              <th scope="row">{c.opis}</th>
+              <td>{c.cena} zł</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+    <p class="fine">Stawka obejmuje każdy z trzech samochodów i zależy od łącznej liczby dób najmu. Do cen netto należy doliczyć VAT. Ceny najmu krótko- i długoterminowego oraz leasingu ustalamy indywidualnie.</p>
   </section>
 
   <div class="cal-wrap">
@@ -166,6 +186,25 @@ import { flota, formyNajmu } from "../data/flota";
   .info dd {
     margin: 0;
     color: var(--navy-ink);
+  }
+
+  .prices {
+    margin-top: clamp(56px, 7vw, 88px);
+    max-width: 40rem;
+  }
+
+  .price-table {
+    margin-top: 16px;
+  }
+
+  .price-table td {
+    font: 600 1.0625rem/1.2 var(--sans);
+    color: var(--navy-ink);
+    text-align: right;
+  }
+
+  .price-table thead th:last-child {
+    text-align: right;
   }
 
   .cal-wrap {
