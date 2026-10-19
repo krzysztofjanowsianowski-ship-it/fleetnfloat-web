@@ -8,8 +8,9 @@ export const specjalizacje = [
   { nazwa: "AI marketing", opis: "Sztuczna inteligencja w przygotowaniu i prowadzeniu działań marketingowych." },
 ];
 
-export const realizacje = [
+export const realizacje: { nazwa: string; rodzaj: string; klient?: string }[] = [
   { nazwa: "Program do rozliczania czasu pracy kierowców", rodzaj: "Rozliczenia" },
   { nazwa: "CRM dla agencji pracy z modułem kadrowym", rodzaj: "CRM" },
   { nazwa: "Program księgowy", rodzaj: "Księgowość" },
+  { nazwa: "Program fakturowy", rodzaj: "Fakturowanie", klient: "DK.K Izabela Przybysz, wynajem drukarek" },
 ];

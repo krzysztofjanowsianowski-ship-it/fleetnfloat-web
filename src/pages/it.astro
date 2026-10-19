@@ -36,6 +36,7 @@ import { specjalizacje, realizacje } from "../data/it";
           <li class="work">
             <span class="kind">{r.rodzaj}</span>
             <h3>{r.nazwa}</h3>
+            {r.klient && <p class="client">Dla: {r.klient}</p>}
           </li>
         ))
       }
@@ -142,7 +143,7 @@ import { specjalizacje, realizacje } from "../data/it";
 
   .work-list {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 24px;
     margin: 16px 0 0;
     padding: 0;
@@ -163,6 +164,12 @@ import { specjalizacje, realizacje } from "../data/it";
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--gold-deep-text);
+  }
+
+  .client {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: #2b4466;
   }
 
   .work h3,
@@ -220,9 +227,20 @@ import { specjalizacje, realizacje } from "../data/it";
     }
   }
 
+  @media (max-width: 1100px) {
+    .work-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
   @media (max-width: 900px) {
-    .work-list,
     .featured {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .work-list {
       grid-template-columns: minmax(0, 1fr);
     }
   }
