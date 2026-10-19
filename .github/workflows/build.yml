@@ -1,0 +1,28 @@
+# Sprawdzenie, czy strona się buduje. Wdrożenie robi sam serwer: co 2 minuty pobiera nowy commit z main
+# (scripts/fnfgroup-autopull.sh). Czerwony wynik tutaj oznacza, że zmiana psuje budowanie i nie zostanie opublikowana.
+name: Budowanie strony
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Budowanie strony
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build
