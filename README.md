@@ -56,7 +56,7 @@ Strona jest statyczna i działa na serwerze Hetzner (91.107.222.145) obok kursy.
       curl -fsSL https://raw.githubusercontent.com/krzysztofjanowsianowski-ship-it/fleetnfloat-web/main/scripts/setup-autodeploy.sh | bash
       ```
       Skrypt tworzy osobny klucz SSH, który może wyłącznie podmienić pliki strony (`/usr/local/bin/fnfgroup-receive`), i wypisuje dwie wartości.
-   2. W GitHubie: *Settings → Secrets and variables → Actions → New repository secret*. Dodaj `DEPLOY_SSH_KEY` (cały klucz z liniami BEGIN/END) i `DEPLOY_KNOWN_HOSTS` (linia z `ssh-keyscan`).
+   2. W GitHubie: *Settings → Secrets and variables → Actions → New repository secret*. Dodaj `DEPLOY_SSH_KEY` (jedna długa linia base64; działa też cały blok klucza z liniami BEGIN/END) i `DEPLOY_KNOWN_HOSTS` (linia z `ssh-keyscan`).
    3. *Actions → Wdrożenie www.fnfgroup.pl → Run workflow*, żeby sprawdzić pierwsze wdrożenie.
 3. **Ręcznie z serwera** (bez GitHub Actions): `ssh root@91.107.222.145`, potem
    ```

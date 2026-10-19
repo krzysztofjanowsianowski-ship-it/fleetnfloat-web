@@ -16,11 +16,11 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
@@ -40,8 +40,18 @@ jobs:
             exit 1
           fi
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
-          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
-          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          # Klucz można wkleić jako blok BEGIN/END albo jako jedną linię base64 (wypisuje ją setup-autodeploy.sh).
+          KEY=$(printf '%s' "$DEPLOY_SSH_KEY" | tr -d '\r')
+          case "$KEY" in
+            *"BEGIN OPENSSH PRIVATE KEY"*) printf '%s\n' "$KEY" > ~/.ssh/deploy_key ;;
+            *) printf '%s' "$KEY" | tr -d ' \n\t' | base64 -d > ~/.ssh/deploy_key ;;
+          esac
+          chmod 600 ~/.ssh/deploy_key
+          if ! ssh-keygen -y -f ~/.ssh/deploy_key > /dev/null; then
+            echo "::error::Sekret DEPLOY_SSH_KEY nie jest poprawnym kluczem. Wklej go ponownie jako jedną linię base64 (README, Automatyczne wdrażanie)."
+            exit 1
+          fi
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" | tr -d '\r' > ~/.ssh/known_hosts
           tar -C dist -czf - . | ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes root@91.107.222.145
 
       - name: Sprawdzenie strony
