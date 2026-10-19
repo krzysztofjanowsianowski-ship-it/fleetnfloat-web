@@ -1,0 +1,242 @@
+---
+// Strona szczegółów auta F&F LEASE: galeria, parametry, historia modelu i zalety.
+// Powstaje dla każdego auta z flota.ts, które ma uzupełnione pole `opis`.
+import Division from "../../layouts/Division.astro";
+import Arrow from "../../components/Arrow.astro";
+import { flota, type Auto } from "../../data/flota";
+
+export function getStaticPaths() {
+  return flota.filter((a) => a.opis).map((a) => ({ params: { auto: a.id }, props: { auto: a } }));
+}
+
+const { auto } = Astro.props as { auto: Auto };
+const opis = auto.opis!;
+const zdjecia = auto.zdjecia ?? [];
+const [glowne, ...pozostale] = zdjecia;
+---
+
+<Division id="lease" podstrona={{ nazwa: auto.nazwa }} lead={opis.lead}>
+  {
+    glowne && (
+      <section class="gallery" aria-label={`Zdjęcia: ${auto.nazwa}`}>
+        <a class="g-main" href={glowne.plik}>
+          <img src={glowne.plik} alt={glowne.alt} width="1600" height="1000" decoding="async" />
+        </a>
+        {pozostale.length > 0 && (
+          <ul class="g-grid">
+            {pozostale.map((z) => (
+              <li>
+                <a href={z.plik}>
+                  <img src={z.plik} alt={z.alt} width="800" height="500" loading="lazy" decoding="async" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+        <p class="fine">Zdjęcia poglądowe: ten sam model w tym samym kolorze, ale nie nasz egzemplarz. Kliknij zdjęcie, aby je powiększyć.</p>
+      </section>
+    )
+  }
+
+  <div class="details">
+    <section class="about prose" aria-labelledby="opis-tytul">
+      <h2 id="opis-tytul" class="h-sec">O samochodzie</h2>
+      <p>{opis.wstep}</p>
+
+      <h2 class="h-sec">Historia modelu</h2>
+      {opis.historia.map((akapit) => <p>{akapit}</p>)}
+
+      <h2 class="h-sec">Za co jest chwalony</h2>
+      <ul class="pros">
+        {
+          opis.zalety.map((z) => (
+            <li>
+              <h3>{z.tytul}</h3>
+              <p>{z.tekst}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <aside class="specs" aria-labelledby="parametry-tytul">
+      <h2 id="parametry-tytul" class="h-sec">Parametry</h2>
+      <table class="spis">
+        <tbody>
+          {
+            opis.parametry.map((p) => (
+              <tr>
+                <th scope="row">{p.nazwa}</th>
+                <td>{p.wartosc}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+      <p class="fine">Dane producenta dla modelu LC 500. Wartości mogą się nieznacznie różnić w zależności od wersji i wyposażenia.</p>
+      <div class="cta">
+        <a class="action" href={`/lease/#kalendarz`}>Sprawdź dostępność <Arrow /></a>
+        <a class="action" href="/lease/">Wszystkie samochody <Arrow /></a>
+      </div>
+    </aside>
+  </div>
+
+  {
+    zdjecia.length > 0 && (
+      <section class="credits" aria-labelledby="autorzy-tytul">
+        <h2 id="autorzy-tytul" class="h-sec">Autorzy zdjęć</h2>
+        <ul>
+          {zdjecia.map((z) => (
+            <li>
+              <a href={z.zrodlo} rel="noopener" target="_blank">{z.alt}</a>, fot. {z.autor}, Wikimedia Commons, licencja{" "}
+              <a href={z.licencjaUrl} rel="license noopener" target="_blank">{z.licencja}</a>. Zdjęcie przeskalowane.
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+</Division>
+
+<style>
+  .gallery {
+    display: grid;
+    gap: 12px;
+  }
+
+  .g-main,
+  .g-grid a {
+    display: block;
+    overflow: hidden;
+    background: var(--beige);
+  }
+
+  .g-main {
+    aspect-ratio: 16 / 9;
+  }
+
+  .g-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .g-grid a {
+    aspect-ratio: 4 / 3;
+  }
+
+  .gallery img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .gallery a:hover img {
+    transform: scale(1.03);
+  }
+
+  .details {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 72px);
+    margin-top: clamp(48px, 6vw, 80px);
+    align-items: start;
+  }
+
+  .pros {
+    display: grid;
+    gap: 18px;
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pros li {
+    padding-left: 16px;
+    border-left: 2px solid var(--gold);
+  }
+
+  .pros h3 {
+    font: 600 1.0625rem/1.3 var(--sans);
+    color: var(--navy-ink);
+  }
+
+  .pros p {
+    margin-top: 4px;
+    max-width: 38em;
+    color: #2b4466;
+    line-height: 1.55;
+  }
+
+  .specs {
+    position: sticky;
+    top: 112px;
+  }
+
+  .specs .spis {
+    margin-top: 14px;
+  }
+
+  .specs .spis th {
+    font: 400 0.9375rem/1.3 var(--sans);
+    color: #4a5f7d;
+  }
+
+  .specs .spis td {
+    font: 600 0.9375rem/1.3 var(--sans);
+    color: var(--navy-ink);
+    text-align: right;
+    padding-right: 0;
+  }
+
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin-top: 22px;
+  }
+
+  .credits {
+    margin-top: clamp(48px, 6vw, 80px);
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .credits ul {
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: #4a5f7d;
+  }
+
+  .credits a {
+    color: inherit;
+  }
+
+  @media (max-width: 1000px) {
+    .details {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .specs {
+      position: static;
+    }
+
+    .g-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 600px) {
+    .g-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
