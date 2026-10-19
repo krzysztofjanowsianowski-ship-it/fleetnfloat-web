@@ -6,7 +6,8 @@
 set -euo pipefail
 
 REPO="krzysztofjanowsianowski-ship-it/fleetnfloat-web"
-BRANCH="${BRANCH:-main}"
+# REF: gałąź albo konkretny commit (używa go automatyczne wdrażanie).
+REF="${REF:-${BRANCH:-main}}"
 NODE_VERSION="22.22.0"
 WORK=/opt/fnfgroup-build
 
@@ -23,9 +24,9 @@ else
   export PATH="/opt/node-v$NODE_VERSION/bin:$PATH"
 fi
 
-echo "Pobieram kod z gałęzi $BRANCH"
+echo "Pobieram kod: $REF"
 rm -rf "$WORK" && mkdir -p "$WORK"
-curl -fsSL "https://codeload.github.com/$REPO/tar.gz/refs/heads/$BRANCH" | tar -xz -C "$WORK" --strip-components=1
+curl -fsSL "https://codeload.github.com/$REPO/tar.gz/$REF" | tar -xz -C "$WORK" --strip-components=1
 cd "$WORK"
 
 echo "Buduję stronę"

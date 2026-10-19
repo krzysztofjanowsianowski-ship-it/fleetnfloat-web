@@ -50,19 +50,16 @@ Strona jest statyczna i działa na serwerze Hetzner (91.107.222.145) obok kursy.
 1. **DNS domeny fnfgroup.pl** u rejestratora:
    - rekord `A` dla `fnfgroup.pl` (host `@`) → `91.107.222.145`
    - rekord `A` dla `www` → `91.107.222.145`
-2. **Automatyczne wdrażanie (GitHub Actions).** Każda zmiana zatwierdzona w gałęzi `main`, także edycją pliku na github.com, trafia na www.fnfgroup.pl w kilka minut. Przebieg widać w zakładce *Actions* repozytorium. Konfiguracja jednorazowa:
-   1. Na serwerze (`ssh root@91.107.222.145`) uruchom:
-      ```
-      curl -fsSL https://raw.githubusercontent.com/krzysztofjanowsianowski-ship-it/fleetnfloat-web/main/scripts/setup-autodeploy.sh | bash
-      ```
-      Skrypt tworzy osobny klucz SSH, który może wyłącznie podmienić pliki strony (`/usr/local/bin/fnfgroup-receive`), i wypisuje dwie wartości.
-   2. W GitHubie: *Settings → Secrets and variables → Actions → New repository secret*. Dodaj `DEPLOY_SSH_KEY` (jedna długa linia base64; działa też cały blok klucza z liniami BEGIN/END) i `DEPLOY_KNOWN_HOSTS` (linia z `ssh-keyscan`).
-   3. *Actions → Wdrożenie www.fnfgroup.pl → Run workflow*, żeby sprawdzić pierwsze wdrożenie.
-3. **Ręcznie z serwera** (bez GitHub Actions): `ssh root@91.107.222.145`, potem
+2. **Automatyczne wdrażanie.** Serwer co 2 minuty sprawdza gałąź `main` na GitHubie. Gdy pojawi się nowy commit (także edycja pliku na github.com), sam go buduje i publikuje. Nie są potrzebne żadne klucze ani sekrety. Włączenie, jednorazowo na serwerze (`ssh root@91.107.222.145`):
+   ```
+   curl -fsSL https://raw.githubusercontent.com/krzysztofjanowsianowski-ship-it/fleetnfloat-web/main/scripts/setup-autopull.sh | bash
+   ```
+   Dziennik wdrożeń: `journalctl -u fnfgroup-autopull -n 50`. Jeśli zmiana psuje budowanie, strona zostaje w poprzedniej wersji, a w zakładce *Actions* na GitHubie przebieg „Budowanie strony” jest czerwony.
+3. **Ręcznie z serwera** (od razu, bez czekania na sprawdzenie): `ssh root@91.107.222.145`, potem
    ```
    curl -fsSL https://raw.githubusercontent.com/krzysztofjanowsianowski-ship-it/fleetnfloat-web/main/scripts/server-deploy.sh | bash
    ```
-   Skrypt buduje stronę na serwerze, instaluje konfigurację Caddy i podmienia pliki. Zmiana konfiguracji Caddy (`deploy/Caddyfile.fnfgroup`) wymaga tej drogi, bo klucz automatycznego wdrażania nie ma do niej dostępu.
+   Skrypt buduje stronę na serwerze, instaluje konfigurację Caddy i podmienia pliki. To samo robi automatyczne wdrażanie, łącznie z konfiguracją Caddy.
 4. **Z własnej kopii projektu** (komputer z Node 22 i dostępem SSH): jednorazowo `./scripts/setup-server.sh`, potem `./scripts/deploy.sh`.
 
 `fnfgroup.pl` przekierowuje na `https://www.fnfgroup.pl`. Dopóki w `src/data/firma.ts` brakuje danych firmy, strona ma `noindex`; po uzupełnieniu danych znacznik znika przy następnym wdrożeniu.
