@@ -1,8 +1,14 @@
 ---
-// Formularz zapytania w układzie tabliczki rysunkowej: każde pole to komórka
-// z podpisem w rogu. Dział wybiera się tu albo przez akcję działu na stronie.
+// Formularz zapytania: każde pole to komórka z podpisem w rogu.
+// Dział jest wstępnie wybrany na stronie działu albo przez parametr ?dzial=.
 import { dzialy, firma } from "../data/firma";
 import Arrow from "./Arrow.astro";
+
+interface Props {
+  wybrany?: string;
+}
+
+const { wybrany } = Astro.props;
 ---
 
 <form
@@ -16,7 +22,7 @@ import Arrow from "./Arrow.astro";
   <div class="cell span">
     <label for="f-dzial">Dział</label>
     <select id="f-dzial" name="dzial" required>
-      {dzialy.map((d) => <option value={d.id}>{d.nazwa}</option>)}
+      {dzialy.map((d) => <option value={d.id} selected={d.id === wybrany}>{`${d.marka} · ${d.nazwa}`}</option>)}
     </select>
   </div>
   <div class="cell">
@@ -45,7 +51,7 @@ import Arrow from "./Arrow.astro";
   <div class="cell span consent">
     <input id="f-zgoda" name="zgoda" type="checkbox" required aria-describedby="e-zgoda" />
     <label for="f-zgoda">
-      Zgadzam się na przetwarzanie moich danych przez FLEET&FLOAT w celu odpowiedzi na to zapytanie.{" "}
+      Zgadzam się na przetwarzanie moich danych przez F&F GROUP (FLEET&FLOAT) w celu odpowiedzi na to zapytanie.{" "}
       <span class="draft">[link do polityki prywatności]</span>
     </label>
     <p class="err" id="e-zgoda" hidden>Zaznacz zgodę: bez niej nie możemy odpowiedzieć na zapytanie.</p>
@@ -56,12 +62,63 @@ import Arrow from "./Arrow.astro";
   </div>
 </form>
 
+<script>
+  const ids = ["lease", "it", "homes", "hr"];
+  const form = document.querySelector<HTMLFormElement>("[data-form]");
+  const select = document.querySelector<HTMLSelectElement>("#f-dzial");
+  const status = document.querySelector<HTMLElement>("[data-status]");
+  const fromUrl = new URLSearchParams(location.search).get("dzial");
+  if (select && fromUrl && ids.includes(fromUrl)) select.value = fromUrl;
+
+  function check(input: HTMLInputElement | HTMLTextAreaElement, ok: boolean) {
+    const err = document.getElementById(input.getAttribute("aria-describedby") ?? "");
+    input.setAttribute("aria-invalid", ok ? "false" : "true");
+    if (err) err.hidden = ok;
+    return ok;
+  }
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const name = form.querySelector<HTMLInputElement>("#f-imie")!;
+    const email = form.querySelector<HTMLInputElement>("#f-email")!;
+    const msg = form.querySelector<HTMLTextAreaElement>("#f-wiad")!;
+    const consent = form.querySelector<HTMLInputElement>("#f-zgoda")!;
+    const results = [
+      check(name, name.value.trim().length > 1),
+      check(email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())),
+      check(msg, msg.value.trim().length > 4),
+      check(consent, consent.checked),
+    ];
+    if (results.includes(false)) {
+      form.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
+      if (status) status.textContent = "Uzupełnij zaznaczone pola i wyślij ponownie.";
+      return;
+    }
+    const endpoint = form.dataset.endpoint;
+    if (!status) return;
+    if (!endpoint) {
+      status.textContent =
+        "To wersja robocza strony: formularz zostanie podłączony do skrzynki firmy przed publikacją. Nic nie zostało wysłane.";
+      return;
+    }
+    status.textContent = "Wysyłamy…";
+    try {
+      const res = await fetch(endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
+      if (!res.ok) throw new Error(String(res.status));
+      form.reset();
+      status.textContent = `Dziękujemy. Zapytanie dotarło, odpowiemy na adres ${email.value.trim()}.`;
+    } catch {
+      status.textContent = "Nie udało się wysłać zapytania. Spróbuj ponownie za chwilę albo zadzwoń do nas.";
+    }
+  });
+</script>
+
 <style>
   .tb {
     display: grid;
     grid-template-columns: 1fr 1fr;
     border: 1.5px solid var(--navy);
-    background: #fff;
+    background: var(--paper);
   }
 
   .cell {
@@ -88,7 +145,7 @@ import Arrow from "./Arrow.astro";
   }
 
   .cell:focus-within {
-    background: var(--deep);
+    background: var(--beige);
     box-shadow: inset 0 0 0 1.5px var(--navy);
   }
 
@@ -120,7 +177,7 @@ import Arrow from "./Arrow.astro";
   }
 
   select {
-    font: 500 1.25rem/1.3 var(--serif);
+    font: 600 1.25rem/1.3 var(--serif);
     color: var(--navy);
     cursor: pointer;
   }

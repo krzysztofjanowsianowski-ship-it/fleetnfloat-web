@@ -1,13 +1,22 @@
 ---
-import "@fontsource/bodoni-moda/500.css";
-import "@fontsource/bodoni-moda/500-italic.css";
-import "@fontsource/bodoni-moda/600.css";
-import "@fontsource/barlow/400.css";
-import "@fontsource/barlow/500.css";
-import "@fontsource/barlow/600.css";
-import "@fontsource/barlow-semi-condensed/500.css";
-import "@fontsource/barlow-semi-condensed/600.css";
+import "@fontsource/ibm-plex-sans/latin-ext-300.css";
+import "@fontsource/ibm-plex-sans/latin-ext-400.css";
+import "@fontsource/ibm-plex-sans/latin-ext-400-italic.css";
+import "@fontsource/ibm-plex-sans/latin-ext-500.css";
+import "@fontsource/ibm-plex-sans/latin-ext-600.css";
+import "@fontsource/ibm-plex-sans/latin-ext-600-italic.css";
+import "@fontsource/ibm-plex-sans/latin-ext-700.css";
+import "@fontsource/ibm-plex-sans/latin-300.css";
+import "@fontsource/ibm-plex-sans/latin-400.css";
+import "@fontsource/ibm-plex-sans/latin-400-italic.css";
+import "@fontsource/ibm-plex-sans/latin-500.css";
+import "@fontsource/ibm-plex-sans/latin-600.css";
+import "@fontsource/ibm-plex-sans/latin-600-italic.css";
+import "@fontsource/ibm-plex-sans/latin-700.css";
 import "../styles/global.css";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { firma } from "../data/firma";
 
 interface Props {
   title: string;
@@ -16,6 +25,8 @@ interface Props {
 
 const { title, description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// Dopóki dane firmy są niepełne, strona nie jest indeksowana przez wyszukiwarki.
+const roboczy = [firma.adres, firma.nip, firma.telefon, firma.email].some((v) => v === null);
 ---
 
 <!doctype html>
@@ -26,6 +37,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {roboczy && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" type="image/svg+xml" href="/brand/ikona-aplikacji.svg" />
     <meta name="theme-color" content="#203A5F" />
     <meta property="og:type" content="website" />
@@ -35,6 +47,27 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={canonical} />
   </head>
   <body>
-    <slot />
+    <a class="skip" href="#tresc">Przejdź do treści</a>
+    <SiteHeader />
+    <main id="tresc">
+      <slot />
+    </main>
+    <SiteFooter />
   </body>
 </html>
+
+<style is:global>
+  .skip {
+    position: absolute;
+    left: 12px;
+    top: -60px;
+    z-index: 50;
+    padding: 10px 14px;
+    background: var(--navy);
+    color: #fff;
+  }
+
+  .skip:focus {
+    top: 12px;
+  }
+</style>

@@ -1,0 +1,23 @@
+# Strona F&F GROUP www.fnfgroup.pl (statyczna, Astro). Dopisz do /etc/caddy/Caddyfile na serwerze
+# albo zaimportuj: import /etc/caddy/sites/fnfgroup.caddy
+www.fnfgroup.pl {
+	root * /var/www/fnfgroup
+	encode zstd gzip
+	try_files {path} {path}/ {path}/index.html
+	file_server
+
+	header /_astro/* Cache-Control "public, max-age=31536000, immutable"
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+	}
+
+	handle_errors {
+		rewrite * /index.html
+		file_server
+	}
+}
+
+fnfgroup.pl {
+	redir https://www.fnfgroup.pl{uri} permanent
+}

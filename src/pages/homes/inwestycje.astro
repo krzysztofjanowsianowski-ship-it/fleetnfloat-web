@@ -1,0 +1,138 @@
+---
+import Division from "../../layouts/Division.astro";
+import MixedUseProfile from "../../components/MixedUseProfile.astro";
+import SlopeHouseProfile from "../../components/SlopeHouseProfile.astro";
+import { zakladkiHomes } from "../../data/homes";
+import { inwestycje } from "../../data/inwestycje";
+
+const rysunki = { gdanska: MixedUseProfile, skarpa: SlopeHouseProfile };
+---
+
+<Division
+  id="homes"
+  podstrona={{ nazwa: "Inwestycje", akcja: "Zapytaj o inwestycję" }}
+  lead="Prowadzimy własne inwestycje budowlane. Pierwszą jest biurowiec przy ulicy Gdańskiej w Bydgoszczy, drugą dom wypoczynkowy na skarpie z widokiem na Brdę."
+  zakladki={zakladkiHomes}
+>
+  <h2 class="h-sec">Prowadzone inwestycje</h2>
+  <div class="projects">
+    {
+      inwestycje.map((inv) => {
+        const Rysunek = rysunki[inv.id as keyof typeof rysunki];
+        return (
+          <article class="project" aria-labelledby={`inv-${inv.id}`}>
+            <div class="p-text">
+              <p class="p-num">Inwestycja {inv.numer}</p>
+              <h3 id={`inv-${inv.id}`}>{inv.nazwa}</h3>
+              <p class="p-place">{inv.miejsce ?? <span class="draft">[lokalizacja do uzupełnienia]</span>}</p>
+              <p class="p-desc">{inv.opis}</p>
+              <dl class="p-data">
+                {inv.dane.map((d) => (
+                  <div>
+                    <dt>{d.etykieta}</dt>
+                    <dd>{d.wartosc ?? <span class="draft">[do uzupełnienia]</span>}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            <div class="p-art">
+              <Rysunek />
+            </div>
+          </article>
+        );
+      })
+    }
+  </div>
+  <p class="fine">Rysunki są poglądowe. Wizualizacje i szczegóły inwestycji dodamy po ich przekazaniu.</p>
+</Division>
+
+<style>
+  .projects {
+    display: grid;
+    gap: clamp(40px, 5vw, 64px);
+    margin-top: 16px;
+  }
+
+  .project {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: clamp(28px, 4vw, 56px);
+    align-items: center;
+    padding-top: 28px;
+    border-top: 1px solid var(--gold);
+  }
+
+  .project:nth-child(even) .p-art {
+    order: -1;
+  }
+
+  .p-num {
+    font: 600 1rem/1 var(--serif);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-deep-text);
+  }
+
+  .project h3 {
+    margin-top: 10px;
+    font: 600 clamp(1.5rem, 2.4vw, 2rem) / 1.2 var(--serif);
+    color: var(--navy-ink);
+  }
+
+  .p-place {
+    margin-top: 8px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .p-desc {
+    margin-top: 14px;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: #2b4466;
+  }
+
+  .p-data {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 22px 0 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .p-data div {
+    padding: 12px 16px 12px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .p-data dt {
+    font: 600 0.75rem/1.2 var(--sans);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #3d5373;
+  }
+
+  .p-data dd {
+    margin: 6px 0 0;
+    font: 600 1.0625rem/1.3 var(--serif);
+    color: var(--navy-ink);
+  }
+
+  .p-art {
+    padding: clamp(16px, 3vw, 32px);
+    background: var(--beige);
+  }
+
+  .fine {
+    margin-top: 32px;
+  }
+
+  @media (max-width: 900px) {
+    .project {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .project:nth-child(even) .p-art {
+      order: 0;
+    }
+  }
+</style>

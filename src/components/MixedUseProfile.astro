@@ -1,0 +1,121 @@
+---
+// Widok od ulicy: biurowiec z usługami w parterze i mieszkaniami na górze. Rysunek poglądowy, nie projekt.
+interface Props {
+  podpis?: boolean;
+}
+
+const { podpis = true } = Astro.props;
+const okna = [0, 1, 2, 3, 4, 5, 6];
+---
+
+<figure class="view">
+  <svg viewBox="0 0 560 300" role="img" aria-labelledby="mu-title">
+    <title id="mu-title">Rysunek poglądowy budynku: parter usługowy, piętra biurowe, mieszkania na górnych kondygnacjach</title>
+    <path d="M0 262 H560" class="edge"></path>
+    <path d="M0 282 H560" class="kerb"></path>
+    <g class="ink">
+      <rect x="120" y="40" width="300" height="222"></rect>
+      <path d="M110 40 H430" class="cornice"></path>
+      <!-- mieszkania: balkony -->
+      <path d="M120 96 H420" class="thin"></path>
+      {okna.map((i) => <rect x={134 + i * 40} y="52" width="26" height="32" class="thin"></rect>)}
+      {[0, 2, 4, 6].map((i) => <path d={`M${128 + i * 40} 84 h38 v8 h-38 z`} class="rail"></path>)}
+      <!-- biura: pasma okien -->
+      <path d="M120 150 H420 M120 204 H420" class="thin"></path>
+      <rect x="132" y="108" width="276" height="30" class="glass"></rect>
+      <rect x="132" y="162" width="276" height="30" class="glass"></rect>
+      {okna.slice(1).map((i) => <path d={`M${132 + i * 39.4} 108 v30 M${132 + i * 39.4} 162 v30`} class="thin"></path>)}
+      <!-- parter usługowy -->
+      <rect x="132" y="214" width="120" height="48" class="glass"></rect>
+      <rect x="288" y="214" width="120" height="48" class="glass"></rect>
+      <rect x="258" y="220" width="24" height="42"></rect>
+      <path d="M126 208 H414" class="awning"></path>
+    </g>
+    <g class="leaders">
+      <path d="M300 68 L450 30 H470"></path>
+      <path d="M380 124 L450 120 H470"></path>
+      <path d="M350 238 L450 236 H470"></path>
+    </g>
+    <g class="notes">
+      <text x="474" y="34">MIESZKANIA</text>
+      <text x="474" y="124">BIURA</text>
+      <text x="474" y="240">USŁUGI</text>
+    </g>
+  </svg>
+  {podpis && <figcaption>Podział funkcji. Rysunek poglądowy, nie projekt budynku.</figcaption>}
+</figure>
+
+<style>
+  .view svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .edge {
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 1.4;
+  }
+
+  .kerb {
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 1;
+    stroke-dasharray: 10 6;
+    opacity: 0.6;
+  }
+
+  .ink rect,
+  .ink path {
+    fill: var(--deep);
+    stroke: var(--navy);
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+  }
+
+  .ink .thin {
+    fill: none;
+    stroke-width: 1;
+  }
+
+  .ink .glass {
+    fill: rgba(32, 58, 95, 0.08);
+    stroke-width: 1;
+  }
+
+  .ink .rail {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.4;
+  }
+
+  .ink .cornice,
+  .ink .awning {
+    stroke-width: 5;
+    stroke-linecap: square;
+  }
+
+  .ink .awning {
+    stroke: var(--gold);
+    stroke-width: 3;
+  }
+
+  .leaders path {
+    fill: none;
+    stroke: var(--navy);
+    stroke-width: 1;
+  }
+
+  .notes text {
+    font: 600 12px var(--note);
+    letter-spacing: 1.4px;
+    fill: var(--navy);
+  }
+
+  figcaption {
+    margin-top: 10px;
+    font: 500 0.875rem/1.4 var(--note);
+    letter-spacing: 0.03em;
+    color: #4a5f7d;
+  }
+</style>

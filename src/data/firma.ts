@@ -1,6 +1,7 @@
-// Dane firmy. Pola ustawione na null nie zostały jeszcze przekazane:
+// Dane grupy. Pola ustawione na null nie zostały jeszcze przekazane:
 // strona pokazuje je jako pola do uzupełnienia, nigdy jako wymyślone wartości.
 export const firma = {
+  grupa: "F&F GROUP",
   nazwa: "FLEET&FLOAT",
   haslo: "Usługi dla Twojego biznesu",
   adres: null as string | null,
@@ -12,60 +13,51 @@ export const firma = {
 };
 
 export type Dzial = {
-  id: "houseboaty" | "pojazdy" | "oprogramowanie" | "kadry";
+  id: "lease" | "it" | "homes" | "hr";
+  marka: string;
+  sufiks: string;
   nazwa: string;
-  miejsce: string;
-  opis: string;
-  km: string;
-  woda: boolean;
+  krotko: string;
   akcja: string;
+  href: string;
 };
 
+// Kolejność jak w briefie: F&F LEASE, F&F.IT, F&F HOMES, F&F HR.
 export const dzialy: Dzial[] = [
   {
-    id: "houseboaty",
-    nazwa: "Houseboaty i domy BYGGA",
-    miejsce: "Przystań",
-    opis: "dealer producenta",
-    km: "2,4",
-    woda: true,
-    akcja: "Umów oględziny",
-  },
-  {
-    id: "pojazdy",
-    nazwa: "Wynajem pojazdów",
-    miejsce: "Baza",
-    opis: "ciężarowe i osobowe",
-    km: "7,9",
-    woda: false,
+    id: "lease",
+    marka: "F&F LEASE",
+    sufiks: " LEASE",
+    nazwa: "Wynajem samochodów",
+    krotko: "Najem okazjonalny od 1 dnia, krótko- i długoterminowy oraz leasing na 2 do 5 lat.",
     akcja: "Zapytaj o termin",
+    href: "/lease/",
   },
   {
-    id: "oprogramowanie",
-    nazwa: "Oprogramowanie",
-    miejsce: "Pracownia",
-    opis: "CRM, integracje, szkolenia",
-    km: "12,3",
-    woda: false,
+    id: "it",
+    marka: "F&F.IT",
+    sufiks: ".IT",
+    nazwa: "Oprogramowanie dla firm",
+    krotko: "Oprogramowanie do biura z użyciem AI: automatyzacje, integracje, systemy zarządzania, kontroling i AI marketing.",
     akcja: "Umów rozmowę",
+    href: "/it/",
   },
   {
-    id: "kadry",
-    nazwa: "Kadry i administracja",
-    miejsce: "Biuro",
-    opis: "wsparcie przedsiębiorstw",
-    km: "15,0",
-    woda: false,
-    akcja: "Zapytaj o ofertę",
+    id: "homes",
+    marka: "F&F HOMES",
+    sufiks: " HOMES",
+    nazwa: "Houseboaty, domy i inwestycje",
+    krotko: "Dealer BYGGA na rynki poza Polską (obsługa po angielsku, niemiecku i francusku) oraz własne inwestycje budowlane.",
+    akcja: "Umów oględziny",
+    href: "/homes/",
   },
-];
-
-// Wybrane modele według kart producenta na bygga.pl (odczyt 10.2026).
-// Bez cen: ceny producenta są niespójne i wymagają potwierdzenia.
-export const modeleBygga = [
-  { model: "FLUO 93 Navigator", rodzaj: "houseboat", mieszkalna: "20,8 m²", wymiary: "pokład 9,3 × 3,2 m", url: "https://www.bygga.pl/fluo-93-navigator/" },
-  { model: "FLUO 84 Pari", rodzaj: "houseboat z sypialnią", mieszkalna: "19,6 m²", wymiary: "pokład 8,5 × 3,7 m", url: "https://www.bygga.pl/fluo-84-pari/" },
-  { model: "FLUO 12 River King", rodzaj: "houseboat, dwie sypialnie", mieszkalna: "35 m² + taras 35 m²", wymiary: "pokład 12 × 4,35 m", url: "https://www.bygga.pl/fluo-12-river-king/" },
-  { model: "Terra Muskoka", rodzaj: "dom modułowy z antresolą", mieszkalna: "34,86 m² + 15 m²", wymiary: "8,3 × 4,2 m", url: "https://www.bygga.pl/terra-muskoka/" },
-  { model: "Terra Sardegna", rodzaj: "dom mobilny na przyczepie", mieszkalna: "18 m²", wymiary: "7,4 × 2,44 m", url: "https://www.bygga.pl/terra-sardegna/" },
+  {
+    id: "hr",
+    marka: "F&F HR",
+    sufiks: " HR",
+    nazwa: "Praca tymczasowa i kadry",
+    krotko: "Agencja pracy tymczasowej, outsourcing pracowniczy oraz usługi kadrowe i rozliczeniowe.",
+    akcja: "Zapytaj o ofertę",
+    href: "/hr/",
+  },
 ];

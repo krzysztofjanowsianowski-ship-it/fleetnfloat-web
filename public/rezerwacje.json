@@ -1,0 +1,6 @@
+{
+  "_opis": "Rezerwacje najmu okazjonalnego. Dla każdego auta lista okresów od-do (włącznie), format RRRR-MM-DD. Plik można podmienić na serwerze bez przebudowy strony.",
+  "lexus-lc500": [],
+  "lexus-rx350": [],
+  "mercedes-glc": []
+}

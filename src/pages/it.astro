@@ -1,0 +1,267 @@
+---
+import Division from "../layouts/Division.astro";
+import External from "../components/External.astro";
+import { specjalizacje, realizacje } from "../data/it";
+---
+
+<Division
+  id="it"
+  lead="Tworzymy oprogramowanie do biura z użyciem sztucznej inteligencji. Wykonujemy zarówno najmniejsze automatyzacje, jak i rozbudowane programy CRM."
+>
+  <section aria-labelledby="spec-tytul">
+    <h2 id="spec-tytul" class="h-sec">W czym się specjalizujemy</h2>
+    <ul class="specs">
+      {
+        specjalizacje.map((s, i) => (
+          <li class="spec">
+            <span class="num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+            <h3>{s.nazwa}</h3>
+            <p>{s.opis}</p>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="scale" aria-label="Skala projektów">
+      <span>Od najmniejszych automatyzacji</span>
+      <span class="line" aria-hidden="true"></span>
+      <span>po rozbudowane programy CRM</span>
+    </div>
+  </section>
+
+  <section class="works" aria-labelledby="real-tytul">
+    <h2 id="real-tytul" class="h-sec">Realizacje</h2>
+    <ul class="work-list">
+      {
+        realizacje.map((r) => (
+          <li class="work">
+            <span class="kind">{r.rodzaj}</span>
+            <h3>{r.nazwa}</h3>
+            {r.klient && <p class="client">Dla: {r.klient}</p>}
+          </li>
+        ))
+      }
+    </ul>
+
+    <article class="split featured" aria-labelledby="kursy-tytul">
+      <div class="prose">
+        <span class="kind">E-learning</span>
+        <h3 id="kursy-tytul">System e-learningowy z symulatorem tachografu</h3>
+        <ul class="checklist">
+          <li>Kursy obsługi tachografu cyfrowego i czasu pracy kierowcy.</li>
+          <li>Interaktywny symulator tachografu VDO i Stoneridge z filmami instruktażowymi i lektorem.</li>
+          <li>Panel firmy do zarządzania kierowcami i miesięczne rozliczenia.</li>
+        </ul>
+        <p><a class="action" href="https://kursy.fleetnfloat.com" rel="noopener" target="_blank">kursy.fleetnfloat.com <External /><span class="visually-hidden"> (nowe okno)</span></a></p>
+      </div>
+      <figure class="shot">
+        <img
+          src="/realizacje/kursy-symulator.webp"
+          width="1600"
+          height="778"
+          decoding="async"
+          loading="lazy"
+          alt="Ekran symulatora tachografu VDO DTCO 4.1a na platformie kursów: wyświetlacz, przyciski, sloty kart, liczniki jazdy i przerwy."
+        />
+        <figcaption>Zrzut ekranu z platformy w trybie podglądu.</figcaption>
+      </figure>
+    </article>
+  </section>
+</Division>
+
+<style>
+  .specs {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--gold);
+  }
+
+  .spec {
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    padding: 22px 20px 24px 0;
+  }
+
+  .spec + .spec {
+    padding-left: 20px;
+    border-left: 1px solid var(--rule);
+  }
+
+  .num {
+    font: 600 1rem/1 var(--serif);
+    letter-spacing: 0.08em;
+    color: var(--gold-deep-text);
+  }
+
+  .spec h3 {
+    font: 600 1.125rem/1.25 var(--sans);
+    color: var(--navy-ink);
+  }
+
+  .spec p {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: #2b4466;
+  }
+
+  .scale {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 28px;
+    padding: 16px 20px;
+    background: var(--navy);
+    color: #fff;
+    font: 600 0.875rem/1.3 var(--serif);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .scale .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold-on-navy) 0 100%);
+    position: relative;
+  }
+
+  .scale .line::after {
+    content: "";
+    position: absolute;
+    right: -1px;
+    top: -4px;
+    border: 4.5px solid transparent;
+    border-left: 8px solid var(--gold-on-navy);
+    border-right: 0;
+  }
+
+  .works {
+    margin-top: clamp(56px, 7vw, 88px);
+  }
+
+  .work-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .work {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    padding: 22px 22px 26px;
+    background: var(--beige);
+    border-top: 3px solid var(--navy);
+  }
+
+  .kind {
+    font: 600 0.75rem/1 var(--sans);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-deep-text);
+  }
+
+  .client {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: #2b4466;
+  }
+
+  .work h3,
+  .featured h3 {
+    font: 600 1.1875rem/1.3 var(--sans);
+    color: var(--navy-ink);
+  }
+
+  .featured {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    margin-top: 24px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .featured .prose {
+    display: grid;
+    align-content: start;
+    gap: 12px;
+  }
+
+  .shot {
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    box-shadow: 0 18px 40px -26px rgba(26, 48, 80, 0.5);
+  }
+
+  .shot img {
+    width: 100%;
+    height: auto;
+  }
+
+  .shot figcaption {
+    margin: 0;
+    padding: 10px 14px;
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  @media (max-width: 1000px) {
+    .specs {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 0;
+    }
+
+    .spec,
+    .spec + .spec {
+      padding: 18px 18px 20px 0;
+      border-left: 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .spec:first-child,
+    .spec:nth-child(2) {
+      border-top: 1px solid var(--gold);
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .work-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .featured {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .work-list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .specs {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .spec:nth-child(2) {
+      border-top: 1px solid var(--rule);
+    }
+
+    .scale {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .scale .line {
+      display: none;
+    }
+  }
+</style>
