@@ -77,9 +77,57 @@ const lexusLc500: Pick<Auto, "zdjecia" | "opis"> = {
   },
 };
 
+const CC_BY_4 = "https://creativecommons.org/licenses/by/4.0/deed.pl";
+const CC0 = "https://creativecommons.org/publicdomain/zero/1.0/deed.pl";
+const RX = "/flota/lexus-rx350";
+
+const lexusRx350h: Pick<Auto, "zdjecia" | "opis"> = {
+  zdjecia: [
+    { plik: `${RX}/rx-przod.webp`, alt: "Lexus RX 350h w kolorze Sonic Copper z przodu", autor: "Ethan Llamas", licencja: "CC BY-SA 4.0", licencjaUrl: CC_BY_SA_4, zrodlo: "https://commons.wikimedia.org/wiki/File:2024_Lexus_RX_350h_Premier_AWD_in_Sonic_Copper,_front_left.jpg" },
+    { plik: `${RX}/rx-salon.webp`, alt: "Miedziany Lexus RX na wystawie, z przodu", autor: "Corqe", licencja: "CC0 1.0", licencjaUrl: CC0, zrodlo: "https://commons.wikimedia.org/wiki/File:2023_Denver_Auto_Show_Lexus_RX_front_quarter.jpg" },
+    { plik: `${RX}/rx-przod-2.webp`, alt: "Miedziany Lexus RX 350h z przodu, z drugiej strony", autor: "Ethan Llamas", licencja: "CC BY-SA 4.0", licencjaUrl: CC_BY_SA_4, zrodlo: "https://commons.wikimedia.org/wiki/File:Lexus_RX_350h_AWD_AALH15_Executive_Sonic_Copper_01.jpg" },
+    { plik: `${RX}/rx-tyl.webp`, alt: "Miedziany Lexus RX 350h od tyłu", autor: "Ethan Llamas", licencja: "CC BY-SA 4.0", licencjaUrl: CC_BY_SA_4, zrodlo: "https://commons.wikimedia.org/wiki/File:Lexus_RX_350h_AWD_AALH15_Executive_Sonic_Copper_02.jpg" },
+    { plik: `${RX}/rx-tyl-2.webp`, alt: "Miedziany Lexus RX 350h od tyłu, na ulicy", autor: "4300streetcar", licencja: "CC BY 4.0", licencjaUrl: CC_BY_4, zrodlo: "https://commons.wikimedia.org/wiki/File:Lexus_RX350h_rear.jpg" },
+    { plik: `${RX}/rx-gora.webp`, alt: "Miedziany Lexus RX 350h widziany z góry", autor: "OWS Photography", licencja: "CC BY 4.0", licencjaUrl: CC_BY_4, zrodlo: "https://commons.wikimedia.org/wiki/File:Lexus_RX350h_(ALA10)_Washington_DC_Metro_Area,_USA_(1).jpg" },
+  ],
+  opis: {
+    lead: "Miedziany SUV klasy premium z napędem hybrydowym i brązowymi skórami. Rocznik 2023, wersja Omotenashi.",
+    wstep:
+      "RX 350h to hybrydowy SUV piątej generacji Lexusa RX: pięć miejsc, napęd na cztery koła i bagażnik o pojemności 612 litrów. Nasz egzemplarz to najwyżej wyposażona wersja Omotenashi w kolorze miedzianym, z brązową skórzaną tapicerką.",
+    parametry: [
+      { nazwa: "Napęd", wartosc: "hybrydowy: benzynowy 2,5 l i silniki elektryczne" },
+      { nazwa: "Moc systemowa", wartosc: "250 KM (184 kW)" },
+      { nazwa: "Skrzynia biegów", wartosc: "automatyczna, bezstopniowa (e-CVT)" },
+      { nazwa: "Napęd kół", wartosc: "na cztery koła (E-Four)" },
+      { nazwa: "0–100 km/h", wartosc: "7,9 s" },
+      { nazwa: "Prędkość maksymalna", wartosc: "200 km/h" },
+      { nazwa: "Zużycie paliwa (WLTP)", wartosc: "6,3–6,6 l/100 km" },
+      { nazwa: "Zbiornik paliwa", wartosc: "65 l" },
+      { nazwa: "Masa własna", wartosc: "od 1965 kg" },
+      { nazwa: "Długość / szerokość / wysokość", wartosc: "4890 / 1920 / 1695 mm" },
+      { nazwa: "Rozstaw osi", wartosc: "2850 mm" },
+      { nazwa: "Bagażnik", wartosc: "612 l" },
+      { nazwa: "Miejsca", wartosc: "5" },
+      { nazwa: "Rocznik / wersja", wartosc: "2023 / Omotenashi" },
+      { nazwa: "Lakier / wnętrze", wartosc: "miedziany / brązowa skóra" },
+    ],
+    historia: [
+      "Pierwszy Lexus RX trafił do sprzedaży w 1998 roku i jest uznawany za pierwszego luksusowego crossovera: połączył komfort limuzyny z wyższą pozycją za kierownicą i praktycznością SUV-a. Szybko stał się jednym z najlepiej sprzedających się modeli marki.",
+      "W 2005 roku RX 400h jako pierwszy samochód klasy premium na rynku dostał napęd hybrydowy. Od tego czasu hybryda jest znakiem rozpoznawczym RX-a i całego Lexusa.",
+      "Piąta generacja zadebiutowała w 2022 roku. Zbudowano ją na nowej płycie podłogowej GA-K: auto jest lżejsze od poprzednika o około 90 kg, ma dłuższy rozstaw osi przy tej samej długości nadwozia i niższą sylwetkę.",
+    ],
+    zalety: [
+      { tytul: "Cisza i komfort", tekst: "Recenzenci zgodnie podkreślają, że RX jest bardzo cichy i jedzie miękko, a jednocześnie pewnie. W trybie elektrycznym przy małych prędkościach porusza się niemal bezgłośnie." },
+      { tytul: "Niskie spalanie", tekst: "Jak na duży SUV z napędem na cztery koła hybryda zużywa mało paliwa. W teście Auto Świata średni wynik wyniósł około 6,5 l/100 km, a w mieście jeszcze mniej." },
+      { tytul: "Jakość wnętrza", tekst: "Testujący wysoko oceniają materiały i staranność wykończenia kabiny. Wersja Omotenashi dodaje miękką skórę półanilinową i system audio Mark Levinson." },
+      { tytul: "Praktyczność", tekst: "Bagażnik o pojemności 612 litrów sprawia, że RX dobrze sprawdza się w podróży z rodziną lub z bagażem na dłuższy wyjazd." },
+    ],
+  },
+};
+
 export const flota: Auto[] = [
   { id: "lexus-lc500", nazwa: "Lexus LC 500", rok: 2018, kolor: "czerwony", nadwozie: "coupe", lakier: "#A3141E", ...lexusLc500 },
-  { id: "lexus-rx350", nazwa: "Lexus RX 350", rok: 2023, kolor: "miedziany", nadwozie: "suv", lakier: "#9A5B3A" },
+  { id: "lexus-rx350", nazwa: "Lexus RX 350h", rok: 2023, kolor: "miedziany", nadwozie: "suv", lakier: "#9A5B3A", ...lexusRx350h },
   { id: "mercedes-glc", nazwa: "Mercedes-Benz GLC", rok: 2018, kolor: "biały, czarny dach", nadwozie: "suv", lakier: "#F4F4F2", dach: "#1E1F22" },
 ];
 
