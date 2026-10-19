@@ -50,11 +50,19 @@ Strona jest statyczna i działa na serwerze Hetzner (91.107.222.145) obok kursy.
 1. **DNS domeny fnfgroup.pl** u rejestratora:
    - rekord `A` dla `fnfgroup.pl` (host `@`) → `91.107.222.145`
    - rekord `A` dla `www` → `91.107.222.145`
-2. **Wdrożenie bez kopii projektu na komputerze** (najprostsze): zaloguj się na serwer `ssh root@91.107.222.145` i uruchom
+2. **Automatyczne wdrażanie (GitHub Actions).** Każda zmiana zatwierdzona w gałęzi `main`, także edycją pliku na github.com, trafia na www.fnfgroup.pl w kilka minut. Przebieg widać w zakładce *Actions* repozytorium. Konfiguracja jednorazowa:
+   1. Na serwerze (`ssh root@91.107.222.145`) uruchom:
+      ```
+      curl -fsSL https://raw.githubusercontent.com/krzysztofjanowsianowski-ship-it/fleetnfloat-web/main/scripts/setup-autodeploy.sh | bash
+      ```
+      Skrypt tworzy osobny klucz SSH, który może wyłącznie podmienić pliki strony (`/usr/local/bin/fnfgroup-receive`), i wypisuje dwie wartości.
+   2. W GitHubie: *Settings → Secrets and variables → Actions → New repository secret*. Dodaj `DEPLOY_SSH_KEY` (cały klucz z liniami BEGIN/END) i `DEPLOY_KNOWN_HOSTS` (linia z `ssh-keyscan`).
+   3. *Actions → Wdrożenie www.fnfgroup.pl → Run workflow*, żeby sprawdzić pierwsze wdrożenie.
+3. **Ręcznie z serwera** (bez GitHub Actions): `ssh root@91.107.222.145`, potem
    ```
-   curl -fsSL https://raw.githubusercontent.com/krzysztofjanowsianowski-ship-it/fleetnfloat-web/claude/jolly-bell-v2k0uz/scripts/server-deploy.sh | bash
+   curl -fsSL https://raw.githubusercontent.com/krzysztofjanowsianowski-ship-it/fleetnfloat-web/main/scripts/server-deploy.sh | bash
    ```
-   Skrypt pobiera kod z GitHuba, buduje stronę na serwerze, instaluje konfigurację Caddy i podmienia pliki. To samo polecenie służy do każdego kolejnego wdrożenia.
-3. **Albo z własnej kopii projektu** (komputer z Node 22 i dostępem SSH): jednorazowo `./scripts/setup-server.sh`, potem przy każdym wdrożeniu `./scripts/deploy.sh`.
+   Skrypt buduje stronę na serwerze, instaluje konfigurację Caddy i podmienia pliki. Zmiana konfiguracji Caddy (`deploy/Caddyfile.fnfgroup`) wymaga tej drogi, bo klucz automatycznego wdrażania nie ma do niej dostępu.
+4. **Z własnej kopii projektu** (komputer z Node 22 i dostępem SSH): jednorazowo `./scripts/setup-server.sh`, potem `./scripts/deploy.sh`.
 
 `fnfgroup.pl` przekierowuje na `https://www.fnfgroup.pl`. Dopóki w `src/data/firma.ts` brakuje danych firmy, strona ma `noindex`; po uzupełnieniu danych znacznik znika przy następnym wdrożeniu.
