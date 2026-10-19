@@ -18,8 +18,9 @@ touch /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys
 grep -qF "$(cat "$KEY.pub")" /root/.ssh/authorized_keys || echo "$LINE" >> /root/.ssh/authorized_keys
 
 echo
-echo "=== Sekret 1: nazwa DEPLOY_SSH_KEY, wartość (cały blok razem z liniami BEGIN/END): ==="
-cat "$KEY"
+echo "=== Sekret 1: nazwa DEPLOY_SSH_KEY, wartość (JEDNA długa linia, skopiuj całą): ==="
+base64 -w0 "$KEY"
+echo
 echo
 echo "=== Sekret 2: nazwa DEPLOY_KNOWN_HOSTS, wartość: ==="
 ssh-keyscan -t ed25519 91.107.222.145 2>/dev/null
