@@ -7,7 +7,7 @@ Zdjęcia pochodzą z Wikimedia Commons. Pokazują ten sam model w tym samym kolo
 | lc500-przod.webp | https://commons.wikimedia.org/wiki/File:Lexus_LC_500_URZ100_Radiant_Red_Contrast_Layering_01.jpg | Ethan Llamas | CC BY-SA 4.0 |
 | lc500-przod-2.webp | https://commons.wikimedia.org/wiki/File:Lexus_LC_500_URZ100_Radiant_Red_Contrast_Layering.jpg | Ethan Llamas | CC BY-SA 4.0 |
 | lc500-tyl.webp | https://commons.wikimedia.org/wiki/File:Lexus_LC_500_URZ100_Radiant_Red_Contrast_Layering_02.jpg | Ethan Llamas | CC BY-SA 4.0 |
-| lc500-wnetrze.webp | https://commons.wikimedia.org/wiki/File:Lexus_LC500h%22S_package%22_(DAA-GWZ100-ACVBB)_interior.jpg | Tokumeigakarinoaoshima | CC BY-SA 4.0 |
+| lc500-wnetrze.webp | https://commons.wikimedia.org/wiki/File:Lexus_LC_Convertible_Auto_Zuerich_2021_IMG_0506.jpg | Alexander Migl | CC BY-SA 4.0 |
 | lc500-salon-przod.webp | https://commons.wikimedia.org/wiki/File:Lexus_LC500_front_red_4.2.18.jpg | Kevauto | CC BY-SA 4.0 |
 | lc500-salon-tyl.webp | https://commons.wikimedia.org/wiki/File:Lexus_LC500_rear_red_4.2.18.jpg | Kevauto | CC BY-SA 4.0 |
 
