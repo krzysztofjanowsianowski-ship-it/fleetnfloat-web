@@ -32,6 +32,8 @@ cd "$WORK"
 echo "Buduję stronę"
 npm ci --no-audit --no-fund
 npm run build
+# Ślad wdrożonej wersji: https://www.fnfgroup.pl/wersja.txt
+printf "%s\n%s\n" "$REF" "$(date -Is)" > dist/wersja.txt
 
 echo "Konfiguracja Caddy"
 mkdir -p /etc/caddy/sites
