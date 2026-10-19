@@ -39,7 +39,7 @@ const lexusLc500: Pick<Auto, "zdjecia" | "opis"> = {
     { plik: `${LC}/lc500-przod.webp`, alt: "Czerwony Lexus LC 500 z przodu, w ujęciu trzy czwarte", autor: "Ethan Llamas", licencja: "CC BY-SA 4.0", licencjaUrl: CC_BY_SA_4, zrodlo: "https://commons.wikimedia.org/wiki/File:Lexus_LC_500_URZ100_Radiant_Red_Contrast_Layering_01.jpg" },
     { plik: `${LC}/lc500-przod-2.webp`, alt: "Czerwony Lexus LC 500 z przodu, z drugiej strony", autor: "Ethan Llamas", licencja: "CC BY-SA 4.0", licencjaUrl: CC_BY_SA_4, zrodlo: "https://commons.wikimedia.org/wiki/File:Lexus_LC_500_URZ100_Radiant_Red_Contrast_Layering.jpg" },
     { plik: `${LC}/lc500-tyl.webp`, alt: "Czerwony Lexus LC 500 od tyłu", autor: "Ethan Llamas", licencja: "CC BY-SA 4.0", licencjaUrl: CC_BY_SA_4, zrodlo: "https://commons.wikimedia.org/wiki/File:Lexus_LC_500_URZ100_Radiant_Red_Contrast_Layering_02.jpg" },
-    { plik: `${LC}/lc500-wnetrze.webp`, alt: "Wnętrze Lexusa LC z beżową tapicerką (wersja z kierownicą po prawej stronie)", autor: "Tokumeigakarinoaoshima", licencja: "CC BY-SA 4.0", licencjaUrl: CC_BY_SA_4, zrodlo: "https://commons.wikimedia.org/wiki/File:Lexus_LC500h%22S_package%22_(DAA-GWZ100-ACVBB)_interior.jpg" },
+    { plik: `${LC}/lc500-wnetrze.webp`, alt: "Wnętrze Lexusa LC z beżową tapicerką (na zdjęciu wersja kabriolet)", autor: "Alexander Migl", licencja: "CC BY-SA 4.0", licencjaUrl: CC_BY_SA_4, zrodlo: "https://commons.wikimedia.org/wiki/File:Lexus_LC_Convertible_Auto_Zuerich_2021_IMG_0506.jpg" },
     { plik: `${LC}/lc500-salon-przod.webp`, alt: "Czerwony Lexus LC 500 z boku i z przodu, na wystawie", autor: "Kevauto", licencja: "CC BY-SA 4.0", licencjaUrl: CC_BY_SA_4, zrodlo: "https://commons.wikimedia.org/wiki/File:Lexus_LC500_front_red_4.2.18.jpg" },
     { plik: `${LC}/lc500-salon-tyl.webp`, alt: "Czerwony Lexus LC 500 od tyłu, na wystawie", autor: "Kevauto", licencja: "CC BY-SA 4.0", licencjaUrl: CC_BY_SA_4, zrodlo: "https://commons.wikimedia.org/wiki/File:Lexus_LC500_rear_red_4.2.18.jpg" },
   ],
@@ -82,6 +82,7 @@ export const flota: Auto[] = [
   { id: "lexus-rx350", nazwa: "Lexus RX 350", rok: 2023, kolor: "miedziany", nadwozie: "suv", lakier: "#9A5B3A" },
   { id: "mercedes-glc", nazwa: "Mercedes-Benz GLC", rok: 2018, kolor: "biały, czarny dach", nadwozie: "suv", lakier: "#F4F4F2", dach: "#1E1F22" },
 ];
+
 export const formyNajmu = [
   {
     id: "okazjonalny",
