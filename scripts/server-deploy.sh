@@ -2,11 +2,11 @@
 # Wdrożenie www.fnfgroup.pl uruchamiane NA SERWERZE (bez kopii projektu na komputerze).
 # Pobiera kod z GitHuba, buduje stronę, instaluje konfigurację Caddy i podmienia /var/www/fnfgroup.
 # Użycie (po zalogowaniu na serwer przez ssh):
-#   curl -fsSL https://raw.githubusercontent.com/krzysztofjanowsianowski-ship-it/fleetnfloat-web/claude/jolly-bell-v2k0uz/scripts/server-deploy.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/krzysztofjanowsianowski-ship-it/fleetnfloat-web/main/scripts/server-deploy.sh | bash
 set -euo pipefail
 
 REPO="krzysztofjanowsianowski-ship-it/fleetnfloat-web"
-BRANCH="${BRANCH:-claude/jolly-bell-v2k0uz}"
+BRANCH="${BRANCH:-main}"
 NODE_VERSION="22.22.0"
 WORK=/opt/fnfgroup-build
 
