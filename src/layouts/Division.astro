@@ -29,7 +29,7 @@ const pozostale = dzialy.filter((d) => d.id !== id);
         <div>
           <nav class="crumbs" aria-label="Okruszki"><a href="/">Strona główna</a><span aria-hidden="true">»</span><a href="/#obszary">Obszary działalności</a><span aria-hidden="true">»</span>{podstrona ? <><a href={dzial.href}>{dzial.marka}</a><span aria-hidden="true">»</span><span>{podstrona.nazwa}</span></> : <span>{dzial.marka}</span>}</nav>
           <h1><Mark sufiks={dzial.sufiks} /></h1>
-          <p class="lead">{id !== "lease" && <strong>{podstrona?.nazwa ?? dzial.nazwa}.</strong>} {lead}</p>
+          <p class="lead">{(podstrona || id !== "lease") && <strong>{podstrona?.nazwa ?? dzial.nazwa}.</strong>} {lead}</p>
           {/* F&F LEASE: bez przycisku „Zapytaj o termin” w nagłówku. */}
           {id !== "lease" && <a class="button" href="#kontakt">{podstrona?.akcja ?? dzial.akcja} <Arrow /></a>}
         </div>
