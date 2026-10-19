@@ -21,73 +21,73 @@ colors:
   signal-rust: "#9a3b1f"
 typography:
   display:
-    fontFamily: "Bodoni Moda, Bodoni 72, Didot, serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "clamp(2.25rem, 5vw, 4rem)"
     fontWeight: 500
     lineHeight: 1.04
     letterSpacing: "0.14em"
   headline:
-    fontFamily: "Bodoni Moda, Bodoni 72, Didot, serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "clamp(1.75rem, 3vw, 2.5rem)"
     fontWeight: 500
     lineHeight: 1.15
     letterSpacing: "0.08em"
   headline-page:
-    fontFamily: "Barlow, system-ui, sans-serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "clamp(1.625rem, 2.4vw, 2rem)"
     fontWeight: 500
     lineHeight: 1.2
   mark-small:
-    fontFamily: "Bodoni Moda, Bodoni 72, Didot, serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 500
     lineHeight: 1
     letterSpacing: "0.12em"
   statement:
-    fontFamily: "Barlow, system-ui, sans-serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "clamp(1.0625rem, 1.4vw, 1.1875rem)"
     fontWeight: 600
     lineHeight: 1.55
   lead:
-    fontFamily: "Barlow, system-ui, sans-serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "clamp(1.0625rem, 1.4vw, 1.25rem)"
     fontWeight: 400
     lineHeight: 1.6
   nav:
-    fontFamily: "Barlow, system-ui, sans-serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "clamp(1rem, 1.3vw, 1.1875rem)"
     fontWeight: 500
     lineHeight: 1.2
   body:
-    fontFamily: "Barlow, system-ui, sans-serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 400
     lineHeight: 1.55
     fontFeature: "\"lnum\" 1"
   caption:
-    fontFamily: "Barlow, system-ui, sans-serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "0.875rem"
     fontWeight: 400
   label:
-    fontFamily: "Barlow, system-ui, sans-serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "0.8125rem"
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "0.16em"
   label-field:
-    fontFamily: "Barlow Semi Condensed, Barlow, system-ui, sans-serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "0.75rem"
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "0.14em"
   button:
-    fontFamily: "Barlow Semi Condensed, Barlow, system-ui, sans-serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 600
     lineHeight: 1
     letterSpacing: "0.08em"
   action:
-    fontFamily: "Barlow Semi Condensed, Barlow, system-ui, sans-serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 600
     lineHeight: 1
@@ -145,7 +145,7 @@ components:
 
 **Creative North Star: "The Group Portal in Brand Ink"**
 
-The site works like a capital group's corporate portal: a white page with a two-row header, breadcrumbs, a section sidebar, and content laid out in plain ruled blocks. What makes it FLEET&FLOAT is the ink. Navy and gold come straight from the logo files, and every division name in a brand position is set the way the logo sets it, in Bodoni Moda capitals spaced wide with an italic gold ampersand. Explanatory text is plain Barlow.
+The site works like a capital group's corporate portal: a white page with a two-row header, breadcrumbs, a section sidebar, and content laid out in plain ruled blocks. What makes it FLEET&FLOAT is the ink. Navy and gold come straight from the logo files, and every division name in a brand position is set the way the logo sets it, in IBM Plex Sans capitals spaced wide with an italic gold ampersand. Explanatory text is plain IBM Plex Sans.
 
 Density is orderly and informational rather than theatrical. Grounds are white, light grey bands (#f2f3f5) hold the contact section, the other-divisions strip, the footer's legal row and the tile image fields, and hairline navy-tinted rules separate everything else. The signature object is the group diagram on the home page: four quarter-circle segments in navy and gold tones around the light-ground sygnet, with text set around the ring. Depth is almost absent. Corners are square, surfaces stay flat, and interaction shows as a change of tone, position or scale rather than as lift.
 
@@ -154,7 +154,7 @@ The brand assets are binding: the logo files and the sygnet are used as supplied
 **Key Characteristics:**
 - Corporate portal frame: utility links row, logo plus main menu row, breadcrumbs, a 240px section sidebar on group pages.
 - White ground, light grey (#f2f3f5) bands, navy-tinted hairline rules; square corners everywhere.
-- Division marks in logo notation: spaced Bodoni capitals with the italic gold ampersand.
+- Division marks in logo notation: spaced IBM Plex Sans capitals with the italic gold ampersand.
 - Group diagram: four quarters around the sygnet that slide outward and brighten on hover.
 - Area tiles: a grey drawing field over a navy name bar; on hover the drawing zooms in, the bar darkens and the chevron slides.
 
@@ -191,30 +191,28 @@ Two inks from the logo sheet, navy and gold, on white and pale grey, with navy t
 
 ## Typography
 
-**Display Font:** Bodoni Moda 500 / 500 italic / 600 (fallback Bodoni 72, Didot, serif)
-**Body Font:** Barlow 400 / 500 / 600 (fallback system-ui, sans-serif)
-**Label Font:** Barlow Semi Condensed 500 / 600 (buttons, action links, form labels, errors, status text, drawing notes)
+**Font:** IBM Plex Sans 300 / 400 / 400 italic / 500 / 600 / 600 italic / 700 (fallback system-ui, sans-serif), the typeface used on ifirma.pl, chosen by the owner (10.2026). One family for display, body and labels.
 
 **Character:** The Didone appears only where the brand speaks: marks and a few uppercase headlines. Everything that explains, navigates or labels is a sturdy grotesque with lining numerals, as you would expect on a corporate portal.
 
 ### Hierarchy
-- **Display** (Bodoni 500, clamp(2.25rem, 5vw, 4rem), 1.04, 0.14em, uppercase): the division mark heading on each division page.
-- **Headline** (Bodoni 500, clamp(1.75rem, 3vw, 2.5rem), 1.15, 0.08em, uppercase): the contact section heading.
-- **Headline Page** (Barlow 500, clamp(1.625rem, 2.4vw, 2rem), 1.2): portal section headings on the home page ("W skrócie", "Obszary działalności").
-- **Mark Small** (Bodoni 500, 1.125rem, 0.12em): division marks in the footer brand row and the other-divisions strip. Tile bars use 1.0625rem, and diagram quarters use 21px in SVG.
-- **Statement** (Barlow 600, clamp(1.0625rem, 1.4vw, 1.1875rem), 1.55): the centred summary under "W skrócie", max 44em. It is left-aligned below 600px.
-- **Lead** (Barlow 400, clamp(1.0625rem, 1.4vw, 1.25rem), 1.6): the division intro paragraph, max 40em, opening with the division name in 600.
-- **Nav** (Barlow 500, clamp(1rem, 1.3vw, 1.1875rem), 1.2): main menu items. They drop to 0.9375rem below 900px.
-- **Body** (Barlow 400, 1.125rem, 1.55, lining numerals): running text, prose max 38em. Tables run at 0.9375rem with tabular numerals. Sidebar links run at 0.9375rem.
-- **Caption** (Barlow 400, 0.875rem): crumbs, utility links, figure captions, fine print.
-- **Label** (Barlow 600, 0.8125rem, 0.16em, uppercase): in-page section heads in division prose and the other-divisions heading. Table heads use 0.75rem at 0.1em, and firm-detail terms use 0.75rem at 0.14em.
-- **Label Field** (Barlow Semi Condensed 600, 0.75rem, 0.14em, uppercase): form field labels at the top of each cell.
-- **Button** (Barlow Semi Condensed 600, 1.0625rem, 0.08em, uppercase): the primary button.
-- **Action** (Barlow Semi Condensed 600, 1rem, 0.05em, mixed case): underlined text actions.
+- **Display** (Plex 600, clamp(2.25rem, 5vw, 4rem), 1.04, 0.14em, uppercase): the division mark heading on each division page.
+- **Headline** (Plex 600, clamp(1.75rem, 3vw, 2.5rem), 1.15, 0.08em, uppercase): the contact section heading.
+- **Headline Page** (IBM Plex Sans 500, clamp(1.625rem, 2.4vw, 2rem), 1.2): portal section headings on the home page ("W skrócie", "Obszary działalności").
+- **Mark Small** (Plex 600, 1.125rem, 0.12em): division marks in the footer brand row and the other-divisions strip. Tile bars use 1.0625rem, and diagram quarters use 21px in SVG.
+- **Statement** (IBM Plex Sans 600, clamp(1.0625rem, 1.4vw, 1.1875rem), 1.55): the centred summary under "W skrócie", max 44em. It is left-aligned below 600px.
+- **Lead** (IBM Plex Sans 400, clamp(1.0625rem, 1.4vw, 1.25rem), 1.6): the division intro paragraph, max 40em, opening with the division name in 600.
+- **Nav** (IBM Plex Sans 500, clamp(1rem, 1.3vw, 1.1875rem), 1.2): main menu items. They drop to 0.9375rem below 900px.
+- **Body** (IBM Plex Sans 400, 1.125rem, 1.55, lining numerals): running text, prose max 38em. Tables run at 0.9375rem with tabular numerals. Sidebar links run at 0.9375rem.
+- **Caption** (IBM Plex Sans 400, 0.875rem): crumbs, utility links, figure captions, fine print.
+- **Label** (IBM Plex Sans 600, 0.8125rem, 0.16em, uppercase): in-page section heads in division prose and the other-divisions heading. Table heads use 0.75rem at 0.1em, and firm-detail terms use 0.75rem at 0.14em.
+- **Label Field** (IBM Plex Sans 600, 0.75rem, 0.14em, uppercase): form field labels at the top of each cell.
+- **Button** (IBM Plex Sans 600, 1.0625rem, 0.08em, uppercase): the primary button.
+- **Action** (IBM Plex Sans 600, 1rem, 0.05em, mixed case): underlined text actions.
 
-**The Logo Notation Rule.** A division or group mark (page heading, tile bar, diagram quarter, footer brand row, other-divisions strip, form division select) is set in Bodoni capitals at 0.12–0.14em spacing, with an italic ampersand in the ground-matched gold. Never set a mark's ampersand roman.
+**The Logo Notation Rule.** A division or group mark (page heading, tile bar, diagram quarter, footer brand row, other-divisions strip, form division select) is set in Plex capitals at 0.12–0.14em spacing, with an italic ampersand in the ground-matched gold. Never set a mark's ampersand roman.
 
-**The Serif Speaks for the Brand Rule.** Bodoni is reserved for marks, the uppercase contact headline, table row heads and the form's division select. Page headings, navigation, explanation, labels and controls are Barlow.
+**The Serif Speaks for the Brand Rule.** Plex is reserved for marks, the uppercase contact headline, table row heads and the form's division select. Page headings, navigation, explanation, labels and controls are IBM Plex Sans.
 
 ## Layout
 
@@ -263,8 +261,8 @@ A solid navy badge with an inner keyline, like an embossed seal.
 
 ### Navigation
 - **Utility row:** caption-size navy links, underlined on hover.
-- **Main menu:** Barlow 500 navy items with a 2px transparent underline. On hover the underline shows in rule colour. The current item turns gold-deep-text with a gold underline.
-- **Sidebar:** rule-separated rows at 0.9375rem (9px 12px padding). Hover fills them with band grey, and the active row is gold-deep-text 600. Division sub-items are indented 28px, in Bodoni at 0.875rem and 0.08em. Below the list sits a ruled contact box with a 32px stroke envelope icon. Its border turns navy on hover.
+- **Main menu:** IBM Plex Sans 500 navy items with a 2px transparent underline. On hover the underline shows in rule colour. The current item turns gold-deep-text with a gold underline.
+- **Sidebar:** rule-separated rows at 0.9375rem (9px 12px padding). Hover fills them with band grey, and the active row is gold-deep-text 600. Division sub-items are indented 28px, in Plex at 0.875rem and 0.08em. Below the list sits a ruled contact box with a 32px stroke envelope icon. Its border turns navy on hover.
 - **Footer brand row:** division marks in Mark Small, underlined in gold on hover.
 
 ### Area Tile (signature)
@@ -273,11 +271,11 @@ A solid navy badge with an inner keyline, like an embossed seal.
 - **Shape:** square, no border, no shadow.
 
 ### Group Diagram (signature)
-- **Structure:** a 640-unit SVG, max 600px wide. Four quarter segments, clockwise from top left: LEASE navy (#203A5F) and IT lighter navy (#35598A), both with gold-on-navy ampersands, then HOMES tagline gold (#8A6A36) and HR dark gold (#6E5427), both with cream ampersands (#F1E2C6). Each segment carries a white Bodoni mark and a short Barlow name. The centre is a white disc with the light-ground sygnet (6px navy ring, 1.4px gold inner ring, navy ampersand). Around it are an inner rule ring and an outer gold ring at 60% opacity, with Barlow 500 uppercase ring text at 6px tracking.
+- **Structure:** a 640-unit SVG, max 600px wide. Four quarter segments, clockwise from top left: LEASE navy (#203A5F) and IT lighter navy (#35598A), both with gold-on-navy ampersands, then HOMES tagline gold (#8A6A36) and HR dark gold (#6E5427), both with cream ampersands (#F1E2C6). Each segment carries a white Plex mark and a short IBM Plex Sans name. The centre is a white disc with the light-ground sygnet (6px navy ring, 1.4px gold inner ring, navy ampersand). Around it are an inner rule ring and an outer gold ring at 60% opacity, with IBM Plex Sans 500 uppercase ring text at 6px tracking.
 - **Hover / Focus:** a segment translates 6px outward and brightens to 1.12 (0.35s, cubic-bezier(0.16, 1, 0.3, 1)). Focus adds a 3px gold stroke. Below 560px segment names hide and marks enlarge.
 
 ### Inputs / Fields
-- **Style:** the form is one white sheet in a 1.5px navy frame, split into cells by rule hairlines (two columns, one below 760px). Each cell has a field label at the top and a borderless, transparent input in Barlow 1.125rem. The division select is Bodoni 500 at 1.25rem.
+- **Style:** the form is one white sheet in a 1.5px navy frame, split into cells by rule hairlines (two columns, one below 760px). Each cell has a field label at the top and a borderless, transparent input in IBM Plex Sans 1.125rem. The division select is Plex 500 at 1.25rem.
 - **Focus:** the cell gets the Cell Focus inset navy edge. The input itself has no outline.
 - **Error:** a signal-rust message under the field in condensed 500 at 0.9375rem, and invalid text turns rust. A polite status line sits beside the submit button.
 
@@ -285,7 +283,7 @@ A solid navy badge with an inner keyline, like an embossed seal.
 - A list under a 1.5px navy top rule. Each row is closed by a rule hairline and led by a 14px gold dash. Lead-in words are bold navy.
 
 ### Specification Table
-- Rows separated by rules under a 1.5px navy head line. Heads are uppercase muted, row heads are Bodoni and linked in navy, and numerals are tabular. Below 560px the table collapses to stacked blocks.
+- Rows separated by rules under a 1.5px navy head line. Heads are uppercase muted, row heads are Plex and linked in navy, and numerals are tabular. Below 560px the table collapses to stacked blocks.
 
 ### Line Drawing
 - Navy outline drawings on white fill, with optional condensed uppercase notes and leader lines, captioned in quiet navy condensed. The houseboat's water uses shoal blue (#d6e0ea). Drawings are always marked as illustrative.
@@ -297,7 +295,7 @@ A solid navy badge with an inner keyline, like an embossed seal.
 
 ### Do:
 - **Do** keep the portal frame on group pages: two-row header, breadcrumbs, 240px section sidebar.
-- **Do** set every division and group mark in Bodoni capitals at 0.12–0.14em with the italic ampersand in the ground-matched gold.
+- **Do** set every division and group mark in Plex capitals at 0.12–0.14em with the italic ampersand in the ground-matched gold.
 - **Do** build on white with band grey (#f2f3f5) for secondary bands, and separate content with rule and rule-soft hairlines.
 - **Do** use gold-deep-text, not gold, when gold has to be read as text on a light ground.
 - **Do** show hover as tone, offset or clipped scale (tile bar to ink navy, diagram quarter 6px outward, drawing to 1.05), never as lift.

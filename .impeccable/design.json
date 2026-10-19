@@ -247,7 +247,7 @@
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Uppercase Bodoni contact section heading."
+        "purpose": "Uppercase Plex contact section heading."
       },
       "headline-page": {
         "displayName": "Headline Page",
@@ -387,7 +387,7 @@
       "name": "Two-Row Header",
       "kind": "nav",
       "refersTo": "nav-link",
-      "description": "White corporate header: utility links row, then logo and Barlow main menu with gold underline on the current item.",
+      "description": "White corporate header: utility links row, then logo and IBM Plex Sans main menu with gold underline on the current item.",
       "html": "<header class=\"ds-header\"><div class=\"ds-util\"><a href=\"#\">Obszary działalności</a><a href=\"#\">Kontakt</a></div><nav class=\"ds-menu\"><a href=\"#\" aria-current=\"page\">O grupie</a><a href=\"#\">F&amp;F LEASE</a><a href=\"#\">F&amp;F.IT</a><a href=\"#\">F&amp;F HOMES</a><a href=\"#\">F&amp;F HR</a></nav></header>",
       "css": ".ds-header { background: #fff; border-bottom: 1px solid var(--rule); padding: 0 24px; } .ds-util { display: flex; justify-content: flex-end; gap: 28px; padding-top: 14px; font: 400 0.875rem/1.55 var(--sans); } .ds-util a { color: var(--navy); text-decoration: none; } .ds-util a:hover { text-decoration: underline; } .ds-menu { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px clamp(18px, 2.4vw, 36px); padding: 10px 0 18px; } .ds-menu a { display: block; padding: 6px 0; font: 500 clamp(1rem, 1.3vw, 1.1875rem)/1.2 var(--sans); color: var(--navy); text-decoration: none; border-bottom: 2px solid transparent; transition: border-color 0.2s, color 0.2s; } .ds-menu a:hover { border-color: var(--rule); } .ds-menu a[aria-current=\"page\"] { color: var(--gold-deep-text); border-color: var(--gold); } .ds-menu a:focus-visible, .ds-util a:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }"
     },
@@ -395,7 +395,7 @@
       "name": "Section Sidebar",
       "kind": "nav",
       "refersTo": "sidebar-link",
-      "description": "Ruled section menu on group pages with Bodoni division sub-items.",
+      "description": "Ruled section menu on group pages with Plex division sub-items.",
       "html": "<aside class=\"ds-side\"><a href=\"#\" aria-current=\"true\">W skrócie</a><a href=\"#\">Obszary działalności</a><a class=\"ds-sub\" href=\"#\">F&amp;F LEASE</a><a class=\"ds-sub\" href=\"#\">F&amp;F.IT</a><a href=\"#\">Kontakt</a></aside>",
       "css": ".ds-side { width: 240px; } .ds-side a { display: block; padding: 9px 12px; font: 400 0.9375rem/1.55 var(--sans); color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--rule); } .ds-side a:hover { background: var(--beige); } .ds-side a[aria-current] { color: var(--gold-deep-text); font-weight: 600; } .ds-side a.ds-sub { padding-left: 28px; font-family: var(--serif); font-size: 0.875rem; letter-spacing: 0.08em; } .ds-side a:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }"
     },
@@ -411,7 +411,7 @@
       "name": "Group Diagram Quarter",
       "kind": "custom",
       "refersTo": "group-diagram",
-      "description": "Signature: one diagram quarter with a Bodoni mark; it slides 6px outward and brightens on hover or focus.",
+      "description": "Signature: one diagram quarter with a Plex mark; it slides 6px outward and brightens on hover or focus.",
       "html": "<svg class=\"ds-diagram\" viewBox=\"60 60 280 280\" role=\"group\" aria-label=\"Działy\"><a href=\"#\" class=\"ds-petal\" style=\"--dx:-6px;--dy:-6px\"><path d=\"M311 311 V84 A227 227 0 0 0 84 311 Z\" fill=\"#203A5F\"/><text class=\"ds-p-mark\" x=\"208\" y=\"224\" text-anchor=\"middle\">F<tspan fill=\"#D2B07A\" font-style=\"italic\">&amp;</tspan>F LEASE</text><text class=\"ds-p-name\" x=\"208\" y=\"250\" text-anchor=\"middle\">Wynajem pojazdów</text></a></svg>",
       "css": ".ds-diagram { width: 280px; height: auto; overflow: visible; } .ds-petal { transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s; outline: none; } .ds-petal:hover, .ds-petal:focus-visible { transform: translate(var(--dx), var(--dy)); filter: brightness(1.12); } .ds-petal:focus-visible path { stroke: var(--gold); stroke-width: 3; } .ds-p-mark { font: 500 21px var(--serif); letter-spacing: 2px; fill: #fff; } .ds-p-name { font: 500 14px var(--sans); fill: rgba(255, 255, 255, 0.92); }"
     },
@@ -434,11 +434,11 @@
   ],
   "narrative": {
     "northStar": "The Group Portal in Brand Ink",
-    "overview": "The site works like a capital group's corporate portal: a white page with a two-row header, breadcrumbs, a section sidebar, and content laid out in plain ruled blocks. What makes it FLEET&FLOAT is the ink. Navy and gold come straight from the logo files, and every division name in a brand position is set the way the logo sets it, in Bodoni Moda capitals spaced wide with an italic gold ampersand. Explanatory text is plain Barlow.\n\nDensity is orderly and informational rather than theatrical. Grounds are white, light grey bands (#f2f3f5) hold the contact section, the other-divisions strip, the footer's legal row and the tile image fields, and hairline navy-tinted rules separate everything else. The signature object is the group diagram on the home page: four quarter-circle segments in navy and gold tones around the light-ground sygnet, with text set around the ring. Depth is almost absent. Corners are square, surfaces stay flat, and interaction shows as a change of tone, position or scale rather than as lift.\n\nThe brand assets are binding: the logo files and the sygnet are used as supplied, in the colours of their ground.",
+    "overview": "The site works like a capital group's corporate portal: a white page with a two-row header, breadcrumbs, a section sidebar, and content laid out in plain ruled blocks. What makes it FLEET&FLOAT is the ink. Navy and gold come straight from the logo files, and every division name in a brand position is set the way the logo sets it, in IBM Plex Sans capitals spaced wide with an italic gold ampersand. Explanatory text is plain IBM Plex Sans.\n\nDensity is orderly and informational rather than theatrical. Grounds are white, light grey bands (#f2f3f5) hold the contact section, the other-divisions strip, the footer's legal row and the tile image fields, and hairline navy-tinted rules separate everything else. The signature object is the group diagram on the home page: four quarter-circle segments in navy and gold tones around the light-ground sygnet, with text set around the ring. Depth is almost absent. Corners are square, surfaces stay flat, and interaction shows as a change of tone, position or scale rather than as lift.\n\nThe brand assets are binding: the logo files and the sygnet are used as supplied, in the colours of their ground.",
     "keyCharacteristics": [
       "Corporate portal frame: utility links row, logo plus main menu row, breadcrumbs, a 240px section sidebar on group pages.",
       "White ground, light grey (#f2f3f5) bands, navy-tinted hairline rules; square corners everywhere.",
-      "Division marks in logo notation: spaced Bodoni capitals with the italic gold ampersand.",
+      "Division marks in logo notation: spaced IBM Plex Sans capitals with the italic gold ampersand.",
       "Group diagram: four quarters around the sygnet that slide outward and brighten on hover.",
       "Area tiles: a grey drawing field over a navy name bar; on hover the drawing zooms in, the bar darkens and the chevron slides."
     ],
@@ -455,12 +455,12 @@
       },
       {
         "name": "The Logo Notation Rule",
-        "body": "A division or group mark (page heading, tile bar, diagram quarter, footer brand row, other-divisions strip, form division select) is set in Bodoni capitals at 0.12–0.14em spacing, with an italic ampersand in the ground-matched gold. Never set a mark's ampersand roman.",
+        "body": "A division or group mark (page heading, tile bar, diagram quarter, footer brand row, other-divisions strip, form division select) is set in Plex capitals at 0.12–0.14em spacing, with an italic ampersand in the ground-matched gold. Never set a mark's ampersand roman.",
         "section": "typography"
       },
       {
         "name": "The Serif Speaks for the Brand Rule",
-        "body": "Bodoni is reserved for marks, the uppercase contact headline, table row heads and the form's division select. Page headings, navigation, explanation, labels and controls are Barlow.",
+        "body": "Plex is reserved for marks, the uppercase contact headline, table row heads and the form's division select. Page headings, navigation, explanation, labels and controls are IBM Plex Sans.",
         "section": "typography"
       },
       {
@@ -481,7 +481,7 @@
     ],
     "dos": [
       "Do keep the portal frame on group pages: two-row header, breadcrumbs, 240px section sidebar.",
-      "Do set every division and group mark in Bodoni capitals at 0.12–0.14em with the italic ampersand in the ground-matched gold.",
+      "Do set every division and group mark in Plex capitals at 0.12–0.14em with the italic ampersand in the ground-matched gold.",
       "Do build on white with band grey (#f2f3f5) for secondary bands, and separate content with rule and rule-soft hairlines.",
       "Do use gold-deep-text, not gold, when gold has to be read as text on a light ground.",
       "Do show hover as tone, offset or clipped scale (tile bar to ink navy, diagram quarter 6px outward, drawing to 1.05), never as lift.",
